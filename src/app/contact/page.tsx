@@ -244,7 +244,6 @@ export default function ContactPage() {
                         {...register('name')}
                         error={errors.name?.message}
                         placeholder="O seu nome completo"
-                        leftIcon={<User className="h-4 w-4" />}
                       />
 
                       {/* Email Field */}
@@ -254,7 +253,6 @@ export default function ContactPage() {
                         {...register('email')}
                         error={errors.email?.message}
                         placeholder="o.seu.email@exemplo.com"
-                        leftIcon={<Mail className="h-4 w-4" />}
                       />
 
                       {/* Subject Field */}
