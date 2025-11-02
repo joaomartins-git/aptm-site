@@ -64,10 +64,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Button asChild>
-                <Link href="/about">
-                  Saber Mais Sobre Nós
-                </Link>
+              <Button onClick={() => window.location.href = '/about'}>
+                Saber Mais Sobre Nós
               </Button>
             </div>
 
