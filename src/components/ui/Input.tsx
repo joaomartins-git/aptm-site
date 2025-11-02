@@ -11,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, label, error, id, ...props }, ref) => {
+  ({ className, type, label, error, id, leftIcon, ...props }, ref) => {
     const [generatedId] = React.useState(() => `input-${Math.random().toString(36).substr(2, 9)}`)
     const inputId = id || generatedId
 
