@@ -116,14 +116,12 @@ export function EventsOverview() {
                   </div>
 
                   <Button
-                    asChild
                     variant="outline"
                     className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                     disabled={event.isPlaceholder}
+                    onClick={() => !event.isPlaceholder && router.push(`/events/${event.id}`)}
                   >
-                    <Link href={event.isPlaceholder ? '#' : `/events/${event.id}`}>
-                      {event.isPlaceholder ? 'Em Breve' : 'Inscrever-se'}
-                    </Link>
+                    {event.isPlaceholder ? 'Em Breve' : 'Inscrever-se'}
                   </Button>
                 </CardContent>
               </Card>
