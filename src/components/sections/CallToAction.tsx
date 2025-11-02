@@ -56,25 +56,21 @@ export function CallToAction() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
-              asChild
               size="lg"
               className="bg-background text-primary hover:bg-background/90 w-full sm:w-auto flex items-center justify-center"
+              onClick={() => window.location.href = '/about'}
             >
-              <Link href="/about">
-                Saber Mais Sobre a APTM
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              Saber Mais Sobre a APTM
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
 
             <Button
-              asChild
               variant="outline"
               size="lg"
               className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto"
+              onClick={() => window.location.href = '/contact'}
             >
-              <Link href="/contact">
-                Contactar-nos
-              </Link>
+              Contactar-nos
             </Button>
           </div>
         </div>
