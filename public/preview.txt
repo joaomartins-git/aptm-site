@@ -1,0 +1,27 @@
+APTM WEBSITE PREVIEW
+===================
+
+Modern, responsive business website for:
+✓ Associação Portuguesa de Terapia da Mão
+✓ Next.js 16 + TypeScript + Tailwind CSS
+✓ Professional blue/gray color scheme
+✓ Responsive navigation with dropdowns
+✓ Complete pages: Home, About, Services, Events, Trainings, Contact
+✓ Form validation with React Hook Form + Zod
+✓ SEO optimized and accessible
+✓ Mobile-first design
+
+Features:
+- Hero sections with calls-to-action
+- Service cards with pricing
+- Event calendar placeholder
+- Training program information
+- Contact form with validation
+- Team member profiles
+- Timeline/history sections
+- FAQ sections
+- Professional footer with social links
+
+Ready for development and deployment!
+
+Visit: http://localhost:3000

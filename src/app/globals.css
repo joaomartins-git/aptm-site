@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* APTM Brand Colors */
+  --primary-blue: #2563eb; /* Blue-600 */
+  --secondary-blue: #1e40af; /* Blue-800 */
+  --light-gray: #f8fafc; /* Slate-50 */
+  --medium-gray: #64748b; /* Slate-500 */
+  --dark-gray: #1e293b; /* Slate-800 */
+  --white: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* APTM Brand Colors */
+  --color-primary: var(--primary-blue);
+  --color-primary-foreground: var(--white);
+  --color-secondary: var(--secondary-blue);
+  --color-secondary-foreground: var(--white);
+  --color-muted: var(--light-gray);
+  --color-muted-foreground: var(--medium-gray);
+  --color-accent: var(--primary-blue);
+  --color-accent-foreground: var(--white);
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: var(--white);
+  --color-border: #e2e8f0;
+  --color-input: var(--white);
+  --color-ring: var(--primary-blue);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom utility classes for APTM brand */
+.text-aptm-primary {
+  color: var(--primary-blue);
+}
+
+.text-aptm-secondary {
+  color: var(--secondary-blue);
+}
+
+.bg-aptm-primary {
+  background-color: var(--primary-blue);
+}
+
+.bg-aptm-secondary {
+  background-color: var(--secondary-blue);
+}
+
+.bg-aptm-light {
+  background-color: var(--light-gray);
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom focus states for accessibility */
+.focus-aptm {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
