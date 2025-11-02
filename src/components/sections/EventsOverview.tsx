@@ -130,10 +130,8 @@ export function EventsOverview() {
         </div>
 
         <div className="text-center">
-          <Button asChild size="lg" variant="outline">
-            <Link href="/events">
-              Ver Todos os Eventos
-            </Link>
+          <Button size="lg" variant="outline" onClick={() => router.push('/events')}>
+            Ver Todos os Eventos
           </Button>
         </div>
 
