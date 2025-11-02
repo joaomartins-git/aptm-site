@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { cn } from '@/lib/utils'
 import type { InputHTMLAttributes } from 'react'
@@ -9,7 +11,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, error, id, ...props }, ref) => {
-    const inputId = id || `input-${React.useId()}`
+    const [generatedId] = React.useState(() => `input-${Math.random().toString(36).substr(2, 9)}`)
+    const inputId = id || generatedId
 
     return (
       <div className="space-y-2">
