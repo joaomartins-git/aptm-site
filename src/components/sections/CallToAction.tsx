@@ -25,6 +25,8 @@ const ctaFeatures = [
 ]
 
 export function CallToAction() {
+  const router = useRouter()
+
   return (
     <section className="py-20 bg-primary text-primary-foreground">
       <div className="container">
