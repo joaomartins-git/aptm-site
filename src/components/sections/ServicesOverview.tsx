@@ -126,13 +126,11 @@ export function ServicesOverview() {
                   </ul>
 
                   <Button
-                    asChild
                     variant="outline"
                     className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    onClick={() => router.push(service.href)}
                   >
-                    <Link href={service.href}>
-                      Saber Mais
-                    </Link>
+                    Saber Mais
                   </Button>
                 </CardContent>
               </Card>
