@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { cn } from '@/lib/utils'
 import type { TextareaHTMLAttributes } from 'react'
@@ -9,7 +11,8 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, error, id, ...props }, ref) => {
-    const textareaId = id || `textarea-${React.useId()}`
+    const [generatedId] = React.useState(() => `textarea-${Math.random().toString(36).substr(2, 9)}`)
+    const textareaId = id || generatedId
 
     return (
       <div className="space-y-2">
