@@ -30,6 +30,7 @@ export function Hero({
   secondaryAction,
   className
 }: HeroProps) {
+  const router = useRouter()
   return (
     <section
       className={cn(
