@@ -316,7 +316,7 @@ export default function EventsPage() {
                     </div>
 
                     <div className="text-xs text-muted-foreground mb-4">
-                      {levelInfo[event.level]}
+                      {levelInfo[event.level as keyof typeof levelInfo]}
                     </div>
 
                     <Button
