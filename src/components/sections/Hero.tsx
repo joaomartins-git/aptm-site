@@ -73,22 +73,22 @@ export function Hero({
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               {primaryAction && (
                 <Button
-                  asChild
                   size="lg"
                   className="w-full sm:w-auto bg-background text-foreground hover:bg-background/90"
+                  onClick={() => router.push(primaryAction.href)}
                 >
-                  <Link href={primaryAction.href}>{primaryAction.label}</Link>
+                  {primaryAction.label}
                 </Button>
               )}
 
               {secondaryAction && (
                 <Button
-                  asChild
                   variant="outline"
                   size="lg"
                   className="w-full sm:w-auto border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                  onClick={() => router.push(secondaryAction.href)}
                 >
-                  <Link href={secondaryAction.href}>{secondaryAction.label}</Link>
+                  {secondaryAction.label}
                 </Button>
               )}
             </div>
