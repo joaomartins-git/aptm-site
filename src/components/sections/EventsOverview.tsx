@@ -55,6 +55,8 @@ const eventTypeInfo = {
 }
 
 export function EventsOverview() {
+  const router = useRouter()
+
   return (
     <section className="py-20 bg-background">
       <div className="container">
