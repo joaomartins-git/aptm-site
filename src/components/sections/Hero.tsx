@@ -74,7 +74,7 @@ export function Hero({
                   size="lg"
                   className="w-full sm:w-auto bg-background text-foreground hover:bg-background/90"
                 >
-                  <a href={primaryAction.href}>{primaryAction.label}</a>
+                  <Link href={primaryAction.href}>{primaryAction.label}</Link>
                 </Button>
               )}
 
@@ -85,7 +85,7 @@ export function Hero({
                   size="lg"
                   className="w-full sm:w-auto border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                 >
-                  <a href={secondaryAction.href}>{secondaryAction.label}</a>
+                  <Link href={secondaryAction.href}>{secondaryAction.label}</Link>
                 </Button>
               )}
             </div>
