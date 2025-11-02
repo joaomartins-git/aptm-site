@@ -74,6 +74,8 @@ const services = [
 ]
 
 export function ServicesOverview() {
+  const router = useRouter()
+
   return (
     <section className="py-20 bg-muted/30">
       <div className="container">
