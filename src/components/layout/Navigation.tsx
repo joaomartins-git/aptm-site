@@ -142,7 +142,7 @@ export function Navigation({ mobile = false }: NavigationProps) {
                 />
               </button>
 
-              {activeDropdown === item.label && (
+              {activeDropdown === item.label && item.submenu && (
                 <div className={dropdownClasses}>
                   {item.submenu.map((subItem) => (
                     <Link
