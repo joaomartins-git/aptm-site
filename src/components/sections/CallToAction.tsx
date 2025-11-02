@@ -63,7 +63,7 @@ export function CallToAction() {
             <Button
               size="lg"
               className="bg-background text-primary hover:bg-background/90 w-full sm:w-auto flex items-center justify-center"
-              onClick={() => window.location.href = '/about'}
+              onClick={() => router.push('/about')}
             >
               Saber Mais Sobre a APTM
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -73,7 +73,7 @@ export function CallToAction() {
               variant="outline"
               size="lg"
               className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto"
-              onClick={() => window.location.href = '/contact'}
+              onClick={() => router.push('/contact')}
             >
               Contactar-nos
             </Button>
