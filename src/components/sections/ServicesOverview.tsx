@@ -139,10 +139,8 @@ export function ServicesOverview() {
         </div>
 
         <div className="text-center mt-12">
-          <Button asChild size="lg">
-            <Link href="/services">
-              Ver Todos os Serviços
-            </Link>
+          <Button size="lg" onClick={() => router.push('/services')}>
+            Ver Todos os Serviços
           </Button>
         </div>
       </div>
