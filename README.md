@@ -1,24 +1,30 @@
-# APTM - Associação Portuguesa de Terapia da Mão
+# APTM Website
 
-Website moderno e responsivo para a Associação Portuguesa de Terapia da Mão, desenvolvido com Next.js 16, TypeScript e Tailwind CSS.
+Modern, responsive business website for [Associação Portuguesa de Terapia da Mão](https://aptm.pt) built with Next.js 16, TypeScript, and Tailwind CSS.
 
-## 🌐 Visão Geral
+## ✨ Quick Start
 
-Este site representa a presença digital oficial da APTM, fornecendo informações sobre:
-- Serviços especializados em terapia da mão
-- Eventos e formações profissionais
-- Recursos para membros da associação
-- Contacto e inscrições
+```bash
+# Install dependencies
+npm install
 
-## 🚀 Tecnologias Utilizadas
+# Start development server
+npm run dev
 
-- **Framework**: Next.js 16+ com App Router
-- **Linguagem**: TypeScript (modo estrito)
-- **Estilização**: Tailwind CSS v4
-- **Validação de Formulários**: React Hook Form + Zod
-- **Ícones**: Lucide React
+# Build for production
+npm run build
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the website.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16+ with App Router
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS v4 with APTM brand colors
+- **Forms**: React Hook Form + Zod validation
+- **Icons**: Lucide React
 - **UI Components**: Radix UI
-- **Ferramentas**: ESLint, PostCSS
 
 ## 📁 Estrutura do Projeto
 
