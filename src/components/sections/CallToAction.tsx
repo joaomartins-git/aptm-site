@@ -58,9 +58,9 @@ export function CallToAction() {
             <Button
               asChild
               size="lg"
-              className="bg-background text-primary hover:bg-background/90 w-full sm:w-auto"
+              className="bg-background text-primary hover:bg-background/90 w-full sm:w-auto flex items-center justify-center"
             >
-              <Link href="/about" className="flex items-center">
+              <Link href="/about">
                 Saber Mais Sobre a APTM
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
