@@ -256,7 +256,7 @@ export default function EventsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {upcomingEvents.map((event) => {
-              const typeInfo = eventTypeInfo[event.type]
+              const typeInfo = eventTypeInfo[event.type as keyof typeof eventTypeInfo]
               const IconComponent = typeInfo.icon
 
               return (
