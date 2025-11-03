@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Input } from '@/components/ui/Input'
 import { BookOpen, Users, Clock, Star, Award, Target, TrendingUp, Shield } from 'lucide-react'
+import trainingsData from '../../data/trainings.json'
 
-const trainingCourses = [
+const trainingCourses = trainingsData.courses
   {
     id: 'foundation',
     title: 'Fundamentos em Terapia da Mão',
