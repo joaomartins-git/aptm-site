@@ -7,8 +7,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
+import servicesData from '../../data/services.json'
 
-const services = [
+// Icon mapping
+const iconMap = {
+  Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock
+}
+
+const services = servicesData.mainServices.map((service: any) => ({
+  ...service,
+  icon: iconMap[service.icon as keyof typeof iconMap] || Users
+}))
+
+const additionalServices = servicesData.additionalServices.map((service: any) => ({
+  ...service,
+  icon: iconMap[service.icon as keyof typeof iconMap] || Users
+}))
   {
     id: 'consulting',
     icon: Users,
