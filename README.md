@@ -1,70 +1,30 @@
-# APTM - Associação Portuguesa de Terapia da Mão
+# APTM Website
 
-Website moderno e responsivo para a Associação Portuguesa de Terapia da Mão, desenvolvido com Next.js 16, TypeScript e Tailwind CSS.
+Modern, responsive business website for [Associação Portuguesa de Terapia da Mão](https://aptm.pt) built with Next.js 16, TypeScript, and Tailwind CSS.
 
-## 🌐 Visão Geral
-
-Este site representa a presença digital oficial da APTM, fornecendo informações sobre:
-- Serviços especializados em terapia da mão
-- Eventos e formações profissionais
-- Recursos para membros da associação
-- Contacto e inscrições
-
-## 🚀 Tecnologias Utilizadas
-
-- **Framework**: Next.js 16+ com App Router
-- **Linguagem**: TypeScript (modo estrito)
-- **Estilização**: Tailwind CSS v4
-- **Validação de Formulários**: React Hook Form + Zod
-- **Ícones**: Lucide React
-- **UI Components**: Radix UI
-- **Ferramentas**: ESLint, PostCSS
-
-## 📁 Estrutura do Projeto
-
-```
-aptm-site/
-├── src/
-│   ├── app/                    # Páginas (Next.js App Router)
-│   │   ├── about/             # Página Sobre Nós
-│   │   ├── contact/           # Página de Contacto
-│   │   ├── events/            # Página de Eventos (placeholder)
-│   │   ├── services/          # Página de Serviços
-│   │   ├── trainings/         # Página de Formações (placeholder)
-│   │   ├── layout.tsx         # Layout principal
-│   │   └── page.tsx           # Página inicial
-│   ├── components/
-│   │   ├── ui/                # Componentes UI reutilizáveis
-│   │   ├── layout/            # Componentes de layout
-│   │   └── sections/          # Secções de página
-│   ├── lib/                   # Utilitários e configurações
-│   ├── types/                 # Definições TypeScript
-│   └── styles/                # Estilos globais
-├── public/                    # Assets estáticos
-└── package.json               # Dependências e scripts
-```
-
-## 🛠️ Scripts Disponíveis
+## ✨ Quick Start
 
 ```bash
-# Iniciar servidor de desenvolvimento
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 
-# Construir para produção
+# Build for production
 npm run build
-
-# Iniciar servidor de produção
-npm run start
-
-# Verificar tipos TypeScript
-npm run type-check
-
-# Verificar linting
-npm run lint
-
-# Corrigir linting automaticamente
-npm run lint:fix
 ```
+
+Open [http://localhost:3000](http://localhost:3000) to view the website.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16+ with App Router
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS v4 with APTM brand colors
+- **Forms**: React Hook Form + Zod validation
+- **Icons**: Lucide React
+- **UI Components**: Radix UI
 
 ## 🎨 Design System
 
