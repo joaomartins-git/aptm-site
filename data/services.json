@@ -82,22 +82,26 @@
     {
       "title": "Formação Contínua",
       "description": "Programas de formação modular e workshops especializados para profissionais.",
-      "features": ["Workshops práticos", "Cursos online", "Certificações", "Atualizações clínicas"]
+      "features": ["Workshops práticos", "Cursos online", "Certificações", "Atualizações clínicas"],
+      "icon": "BookOpen"
     },
     {
       "title": "Avaliação e Certificação",
       "description": "Programa de certificação profissional e avaliação de competências clínicas.",
-      "features": ["Avaliação prática", "Certificação nacional", "Recertificação", "Padrões internacionais"]
+      "features": ["Avaliação prática", "Certificação nacional", "Recertificação", "Padrões internacionais"],
+      "icon": "Target"
     },
     {
       "title": "Networking Profissional",
       "description": "Eventos e plataformas para conexão entre profissionais especializados.",
-      "features": ["Encontros anuais", "Fóruns online", "Grupos de estudo", "Mentoria"]
+      "features": ["Encontros anuais", "Fóruns online", "Grupos de estudo", "Mentoria"],
+      "icon": "Users"
     },
     {
       "title": "Recursos Clínicos",
       "description": "Biblioteca de recursos, protocolos e ferramentas para prática clínica.",
-      "features": ["Protocolos clínicos", "Ferramentas de avaliação", "Guias de prática", "Estudos de caso"]
+      "features": ["Protocolos clínicos", "Ferramentas de avaliação", "Guias de prática", "Estudos de caso"],
+      "icon": "Search"
     }
   ]
 }
