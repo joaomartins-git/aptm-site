@@ -3,6 +3,7 @@
     {
       "id": "consulting",
       "title": "Consultoria Especializada",
+      "icon": "Users",
       "description": "Serviços de consultoria de alto nível para profissionais e instituições de saúde, com foco em otimização de processos clínicos e implementação de melhores práticas.",
       "features": [
         "Avaliação funcional completa",
