@@ -1,0 +1,102 @@
+{
+  "mainServices": [
+    {
+      "id": "consulting",
+      "title": "Consultoria Especializada",
+      "description": "Serviços de consultoria de alto nível para profissionais e instituições de saúde, com foco em otimização de processos clínicos e implementação de melhores práticas.",
+      "features": [
+        "Avaliação funcional completa",
+        "Planos de tratamento personalizados",
+        "Otimização de fluxos clínicos",
+        "Implementação de protocolos baseados em evidências",
+        "Formação contínua para equipas",
+        "Acompanhamento e supervisão clínica"
+      ],
+      "href": "#consulting",
+      "badge": "Popular",
+      "pricing": {
+        "type": "Personalizado",
+        "description": "Sob consulta"
+      }
+    },
+    {
+      "id": "research",
+      "title": "Investigação e Desenvolvimento",
+      "description": "Projetos de investigação clínica e desenvolvimento de novas técnicas e metodologias em terapia da mão, com colaborações nacionais e internacionais.",
+      "features": [
+        "Estudos clínicos controlados",
+        "Publicações científicas",
+        "Colaborações internacionais",
+        "Desenvolvimento de novos protocolos",
+        "Investigação aplicada",
+        "Transferência de conhecimento"
+      ],
+      "href": "#research",
+      "badge": "Inovação",
+      "pricing": {
+        "type": "Projetos",
+        "description": "Financiamento disponível"
+      }
+    },
+    {
+      "id": "partnerships",
+      "title": "Programas de Parceria",
+      "description": "Estabelecimento de parcerias estratégicas com instituições de saúde, universidades e indústria para desenvolvimento conjunto de projetos e iniciativas.",
+      "features": [
+        "Rede de parceiros institucionais",
+        "Projetos colaborativos",
+        "Eventos conjuntos",
+        "Partilha de recursos",
+        "Desenvolvimento de sinergias",
+        "Oportunidades de networking"
+      ],
+      "href": "#partnerships",
+      "badge": "Colaboração",
+      "pricing": {
+        "type": "Múltiplos níveis",
+        "description": "Adaptado a cada parceiro"
+      }
+    },
+    {
+      "id": "member-benefits",
+      "title": "Benefícios para Membros",
+      "description": "Acesso exclusivo a recursos educacionais, eventos, networking profissional e oportunidades de desenvolvimento contínuo.",
+      "features": [
+        "Descontos em formações e eventos",
+        "Acesso a publicações científicas",
+        "Plataforma de recursos educacionais",
+        "Networking profissional exclusivo",
+        "Certificação APTM",
+        "Mentoria e orientação"
+      ],
+      "href": "#member-benefits",
+      "badge": "Exclusivo",
+      "pricing": {
+        "type": "Membro APTM",
+        "description": "A partir de 60€/ano"
+      }
+    }
+  ],
+  "additionalServices": [
+    {
+      "title": "Formação Contínua",
+      "description": "Programas de formação modular e workshops especializados para profissionais.",
+      "features": ["Workshops práticos", "Cursos online", "Certificações", "Atualizações clínicas"]
+    },
+    {
+      "title": "Avaliação e Certificação",
+      "description": "Programa de certificação profissional e avaliação de competências clínicas.",
+      "features": ["Avaliação prática", "Certificação nacional", "Recertificação", "Padrões internacionais"]
+    },
+    {
+      "title": "Networking Profissional",
+      "description": "Eventos e plataformas para conexão entre profissionais especializados.",
+      "features": ["Encontros anuais", "Fóruns online", "Grupos de estudo", "Mentoria"]
+    },
+    {
+      "title": "Recursos Clínicos",
+      "description": "Biblioteca de recursos, protocolos e ferramentas para prática clínica.",
+      "features": ["Protocolos clínicos", "Ferramentas de avaliação", "Guias de prática", "Estudos de caso"]
+    }
+  ]
+}
