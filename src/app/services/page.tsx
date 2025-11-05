@@ -9,9 +9,20 @@ import { Badge } from '@/components/ui/Badge'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
 import { getServices } from '@/lib/content'
 
+// Icon mapping
+const iconMap = {
+  Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock
+}
+
 const servicesData = getServices()
-const services = servicesData.mainServices
-const additionalServices = servicesData.additionalServices
+const services = servicesData.mainServices.map((service) => ({
+  ...service,
+  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}))
+const additionalServices = servicesData.additionalServices.map((service) => ({
+  ...service,
+  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}))
 
 
 export default function ServicesPage() {
