@@ -3,57 +3,6 @@
 Modern, responsive business website for [Associação Portuguesa de Terapia da Mão](https://aptm.pt) built with Next.js 16, TypeScript, and Tailwind CSS.
 
 ## ✨ Quick Start
-<<<<<<< HEAD
-=======
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the website.
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 16+ with App Router
-- **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS v4 with APTM brand colors
-- **Forms**: React Hook Form + Zod validation
-- **Icons**: Lucide React
-- **UI Components**: Radix UI
-
-## 📁 Estrutura do Projeto
-
-```
-aptm-site/
-├── src/
-│   ├── app/                    # Páginas (Next.js App Router)
-│   │   ├── about/             # Página Sobre Nós
-│   │   ├── contact/           # Página de Contacto
-│   │   ├── events/            # Página de Eventos (placeholder)
-│   │   ├── services/          # Página de Serviços
-│   │   ├── trainings/         # Página de Formações (placeholder)
-│   │   ├── layout.tsx         # Layout principal
-│   │   └── page.tsx           # Página inicial
-│   ├── components/
-│   │   ├── ui/                # Componentes UI reutilizáveis
-│   │   ├── layout/            # Componentes de layout
-│   │   └── sections/          # Secções de página
-│   ├── lib/                   # Utilitários e configurações
-│   ├── types/                 # Definições TypeScript
-│   └── styles/                # Estilos globais
-├── public/                    # Assets estáticos
-└── package.json               # Dependências e scripts
-```
-
-## 🛠️ Scripts Disponíveis
->>>>>>> main
 
 ```bash
 # Install dependencies
