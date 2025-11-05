@@ -19,31 +19,18 @@ const iconMap = {
 } as const
 
 /**
- * Retrieves all services data with icon mapping applied
+ * Retrieves all services data
  * @returns {ServicesData} Object containing mainServices and additionalServices arrays
  *
  * CMS Integration Point:
  * Replace JSON import with CMS API call:
  * const response = await cmsClient.getServices()
- * return response.data.map(service => ({
- *   ...service,
- *   icon: iconMap[service.icon] || Users
- * }))
+ * return response.data
  */
 export function getServices(): ServicesData {
-  const mainServices = (servicesData.mainServices as Service[]).map((service) => ({
-    ...service,
-    icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
-  }))
-
-  const additionalServices = (servicesData.additionalServices as Service[]).map((service) => ({
-    ...service,
-    icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
-  }))
-
   return {
-    mainServices,
-    additionalServices
+    mainServices: servicesData.mainServices as Service[],
+    additionalServices: servicesData.additionalServices as Service[]
   }
 }
 
