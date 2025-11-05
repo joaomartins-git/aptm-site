@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Input } from '@/components/ui/Input'
 import { Video, Users, MapPin, Calendar, Clock, Search, Star, Bell } from 'lucide-react'
-import eventsData from '../../data/events.json'
+import eventsData from '../../../data/events.json'
 
 const upcomingEvents = eventsData.upcomingEvents
 

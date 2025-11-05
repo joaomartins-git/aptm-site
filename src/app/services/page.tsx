@@ -7,22 +7,35 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
-import servicesData from '../../data/services.json'
+import servicesData from '../../../data/services.json'
+import type { Service} from '../../../lib/types';
+
 
 // Icon mapping
 const iconMap = {
   Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock
 }
 
-const services = servicesData.mainServices.map((service: any) => ({
-  ...service,
-  icon: iconMap[service.icon as keyof typeof iconMap] || Users
-}))
+// const services = servicesData.mainServices.map((service: Service) => ({
+//   ...service,
+//   icon: iconMap[service.icon as keyof typeof iconMap] || Users
+// }))
 
-const additionalServices = servicesData.additionalServices.map((service: any) => ({
-  ...service,
-  icon: iconMap[service.icon as keyof typeof iconMap] || Users
-}))
+const services = (servicesData.mainServices as Service[]).map((s) => ({
+  ...s,
+  icon: iconMap[(s.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}));
+
+// const additionalServices = servicesData.additionalServices.map((service: Service) => ({
+//   ...service,
+//   icon: iconMap[service.icon as keyof typeof iconMap] || Users
+// }))
+
+const additionalServices = (servicesData.additionalServices as Service[]).map((s) => ({
+  ...s,
+  icon: iconMap[(s.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}));
+
 
 export default function ServicesPage() {
   const router = useRouter()
@@ -63,7 +76,7 @@ export default function ServicesPage() {
                 <Card
                   key={service.id}
                   className="group hover:shadow-lg transition-all duration-300"
-                  id={service.href.slice(1)}
+                  id={service.href?.slice(1)}
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -79,9 +92,9 @@ export default function ServicesPage() {
                     <CardTitle className="text-2xl mt-4">{service.title}</CardTitle>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
                       <CheckCircle className="h-4 w-4 text-primary" />
-                      <span>{service.pricing.type}</span>
+                      <span>{service.pricing?.type}</span>
                       <span>•</span>
-                      <span>{service.pricing.description}</span>
+                      <span>{service.pricing?.description}</span>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -271,7 +284,7 @@ export default function ServicesPage() {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-6 italic">
-                    "{testimonial.content}"
+                    {testimonial.content}
                   </p>
                   <div>
                     <div className="font-semibold text-foreground">
