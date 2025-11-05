@@ -7,116 +7,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
+import { getServices } from '@/lib/content'
 
-const services = [
-  {
-    id: 'consulting',
-    icon: Users,
-    title: 'Consultoria Especializada',
-    description: 'Serviços de consultoria de alto nível para profissionais e instituições de saúde, com foco em otimização de processos clínicos e implementação de melhores práticas.',
-    features: [
-      'Avaliação funcional completa',
-      'Planos de tratamento personalizados',
-      'Otimização de fluxos clínicos',
-      'Implementação de protocolos baseados em evidências',
-      'Formação contínua para equipas',
-      'Acompanhamento e supervisão clínica'
-    ],
-    href: '#consulting',
-    badge: 'Popular',
-    pricing: {
-      type: 'Personalizado',
-      description: 'Sob consulta'
-    }
-  },
-  {
-    id: 'research',
-    icon: Search,
-    title: 'Investigação e Desenvolvimento',
-    description: 'Projetos de investigação clínica e desenvolvimento de novas técnicas e metodologias em terapia da mão, com colaborações nacionais e internacionais.',
-    features: [
-      'Estudos clínicos controlados',
-      'Publicações científicas',
-      'Colaborações internacionais',
-      'Desenvolvimento de novos protocolos',
-      'Investigação aplicada',
-      'Transferência de conhecimento'
-    ],
-    href: '#research',
-    badge: 'Inovação',
-    pricing: {
-      type: 'Projetos',
-      description: 'Financiamento disponível'
-    }
-  },
-  {
-    id: 'partnerships',
-    icon: Handshake,
-    title: 'Programas de Parceria',
-    description: 'Estabelecimento de parcerias estratégicas com instituições de saúde, universidades e indústria para desenvolvimento conjunto de projetos e iniciativas.',
-    features: [
-      'Rede de parceiros institucionais',
-      'Projetos colaborativos',
-      'Eventos conjuntos',
-      'Partilha de recursos',
-      'Desenvolvimento de sinergias',
-      'Oportunidades de networking'
-    ],
-    href: '#partnerships',
-    badge: 'Colaboração',
-    pricing: {
-      type: 'Múltiplos níveis',
-      description: 'Adaptado a cada parceiro'
-    }
-  },
-  {
-    id: 'member-benefits',
-    icon: Award,
-    title: 'Benefícios para Membros',
-    description: 'Acesso exclusivo a recursos educacionais, eventos, networking profissional e oportunidades de desenvolvimento contínuo.',
-    features: [
-      'Descontos em formações e eventos',
-      'Acesso a publicações científicas',
-      'Plataforma de recursos educacionais',
-      'Networking profissional exclusivo',
-      'Certificação APTM',
-      'Mentoria e orientação'
-    ],
-    href: '#member-benefits',
-    badge: 'Exclusivo',
-    pricing: {
-      type: 'Membro APTM',
-      description: 'A partir de 60€/ano'
-    }
-  }
-]
+// Icon mapping
+const iconMap = {
+  Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock
+}
 
-const additionalServices = [
-  {
-    icon: BookOpen,
-    title: 'Formação Contínua',
-    description: 'Programas de formação modular e workshops especializados para profissionais.',
-    features: ['Workshops práticos', 'Cursos online', 'Certificações', 'Atualizações clínicas']
-  },
-  {
-    icon: Target,
-    title: 'Avaliação e Certificação',
-    description: 'Programa de certificação profissional e avaliação de competências clínicas.',
-    features: ['Avaliação prática', 'Certificação nacional', 'Recertificação', 'Padrões internacionais']
-  },
-  {
-    icon: Users,
-    title: 'Networking Profissional',
-    description: 'Eventos e plataformas para conexão entre profissionais especializados.',
-    features: ['Encontros anuais', 'Fóruns online', 'Grupos de estudo', 'Mentoria']
-  },
-  {
-    icon: Search,
-    title: 'Recursos Clínicos',
-    description: 'Biblioteca de recursos, protocolos e ferramentas para prática clínica.',
-    features: ['Protocolos clínicos', 'Ferramentas de avaliação', 'Guias de prática', 'Estudos de caso']
-  }
-]
+const servicesData = getServices()
+const services = servicesData.mainServices.map((service) => ({
+  ...service,
+  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}))
+const additionalServices = servicesData.additionalServices.map((service) => ({
+  ...service,
+  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}))
+
 
 export default function ServicesPage() {
   const router = useRouter()
@@ -157,7 +64,7 @@ export default function ServicesPage() {
                 <Card
                   key={service.id}
                   className="group hover:shadow-lg transition-all duration-300"
-                  id={service.href.slice(1)}
+                  id={service.href?.slice(1)}
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -173,9 +80,9 @@ export default function ServicesPage() {
                     <CardTitle className="text-2xl mt-4">{service.title}</CardTitle>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
                       <CheckCircle className="h-4 w-4 text-primary" />
-                      <span>{service.pricing.type}</span>
+                      <span>{service.pricing?.type}</span>
                       <span>•</span>
-                      <span>{service.pricing.description}</span>
+                      <span>{service.pricing?.description}</span>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -365,7 +272,7 @@ export default function ServicesPage() {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-6 italic">
-                    "{testimonial.content}"
+                    {testimonial.content}
                   </p>
                   <div>
                     <div className="font-semibold text-foreground">
