@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Input } from '@/components/ui/Input'
 import { BookOpen, Users, Clock, Star, Award, Target, TrendingUp, Shield } from 'lucide-react'
-import trainingsData from '../../../data/trainings.json'
+import { getTrainings } from '@/lib/content'
 
-const trainingCourses = trainingsData.courses
+const trainingCourses = getTrainings()
 
 const levelInfo = {
   'Básico': 'Ideal para estudantes e profissionais iniciantes',

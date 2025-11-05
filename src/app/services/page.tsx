@@ -7,34 +7,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
-import servicesData from '../../../data/services.json'
-import type { Service} from '../../../lib/types';
-
+import { getServices } from '@/lib/content'
 
 // Icon mapping
 const iconMap = {
   Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock
 }
 
-// const services = servicesData.mainServices.map((service: Service) => ({
-//   ...service,
-//   icon: iconMap[service.icon as keyof typeof iconMap] || Users
-// }))
-
-const services = (servicesData.mainServices as Service[]).map((s) => ({
-  ...s,
-  icon: iconMap[(s.icon ?? 'Users') as keyof typeof iconMap] || Users,
-}));
-
-// const additionalServices = servicesData.additionalServices.map((service: Service) => ({
-//   ...service,
-//   icon: iconMap[service.icon as keyof typeof iconMap] || Users
-// }))
-
-const additionalServices = (servicesData.additionalServices as Service[]).map((s) => ({
-  ...s,
-  icon: iconMap[(s.icon ?? 'Users') as keyof typeof iconMap] || Users,
-}));
+const servicesData = getServices()
+const services = servicesData.mainServices.map((service) => ({
+  ...service,
+  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}))
+const additionalServices = servicesData.additionalServices.map((service) => ({
+  ...service,
+  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+}))
 
 
 export default function ServicesPage() {
