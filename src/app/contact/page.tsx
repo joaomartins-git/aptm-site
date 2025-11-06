@@ -55,16 +55,6 @@ const contactInfo = {
   }
 }
 
-const contactReasons = [
-  { value: 'general', label: 'Informações Gerais' },
-  { value: 'membership', label: 'Informações sobre Membros' },
-  { value: 'training', label: 'Formações e Cursos' },
-  { value: 'events', label: 'Eventos e Congressos' },
-  { value: 'partnership', label: 'Parcerias e Colaborações' },
-  { value: 'technical', label: 'Suporte Técnico' },
-  { value: 'complaint', label: 'Reclamações' },
-  { value: 'other', label: 'Outro' }
-]
 
 const socialMedia = [
   {
