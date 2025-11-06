@@ -136,18 +136,43 @@ export default function ContactPage() {
     setSubmitStatus('idle')
 
     try {
-      // Simulate API call - in production, this would be an actual API endpoint
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-      // For demo purposes, we'll just log the data
-      console.log('Form submitted:', data)
+      const result = await response.json()
 
-      setSubmitStatus('success')
-      setSubmitMessage('Mensagem enviada com sucesso! Responderemos o mais breve possível.')
-      reset()
+      if (response.ok) {
+        setSubmitStatus('success')
+        if (result.mocked) {
+          setSubmitMessage('Mensagem enviada com sucesso! (Modo de desenvolvimento)')
+        } else {
+          setSubmitMessage('Mensagem enviada com sucesso! Responderemos o mais breve possível.')
+        }
+        reset()
+      } else {
+        // Handle different error types
+        if (response.status === 429) {
+          setSubmitStatus('error')
+          setSubmitMessage('Muitas tentativas. Por favor, aguarde um minuto antes de tentar novamente.')
+        } else if (response.status === 400 && result.details) {
+          // Show validation errors from server
+          setSubmitStatus('error')
+          const errorMessages = result.details.map((detail: any) => detail.message).join(', ')
+          setSubmitMessage(`Erro de validação: ${errorMessages}`)
+        } else {
+          setSubmitStatus('error')
+          setSubmitMessage(result.error || 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.')
+        }
+      }
     } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
-      setSubmitMessage('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.')
+      setSubmitMessage('Ocorreu um erro ao enviar sua mensagem. Por favor, verifique sua conexão e tente novamente.')
     } finally {
       setIsSubmitting(false)
     }
