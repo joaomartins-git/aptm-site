@@ -139,13 +139,18 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <div
+        ref={mobileMenuRef}
+        id="mobile-menu"
         className={cn(
           "border-t border-border bg-background md:hidden",
           isMobileMenuOpen ? "block" : "hidden"
         )}
+        role="region"
+        aria-label="Mobile navigation"
+        inert={!isMobileMenuOpen}
       >
         <div className="container p-4">
-          <Navigation mobile />
+          <Navigation mobile onCloseMenu={closeMobileMenu} />
         </div>
       </div>
     </header>
