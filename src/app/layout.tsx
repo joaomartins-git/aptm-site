@@ -82,8 +82,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <div className="flex-1">
+          <SkipLink href="#main">Skip to content</SkipLink>
           <Header />
-          <main>{children}</main>
+          <main id="main" role="main">{children}</main>
         </div>
         <Footer />
       </body>
