@@ -59,10 +59,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Get client IP for rate limiting
-    const ip = request.ip ||
-               request.headers.get('x-forwarded-for') ||
-               request.headers.get('x-real-ip') ||
-               'unknown'
+    const forwarded = request.headers.get('x-forwarded-for')
+    const realIp = request.headers.get('x-real-ip')
+    const ip = forwarded ? forwarded.split(',')[0] : realIp || 'unknown'
 
     // Check rate limiting
     if (isRateLimited(ip)) {
