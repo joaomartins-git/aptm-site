@@ -120,6 +120,32 @@ NEXT_PUBLIC_INSTAGRAM_URL=
 NEXT_PUBLIC_TWITTER_URL=
 ```
 
+## Contact Form Configuration
+
+The contact form can send emails via Resend or use mock delivery in development.
+
+### Production Email Setup (Resend)
+
+1. Create a Resend account at [resend.com](https://resend.com)
+2. Get your API key from the Resend dashboard
+3. Configure environment variables:
+
+```env
+RESEND_API_KEY=re_your_api_key_here
+CONTACT_RECIPIENT=your-email@example.com
+```
+
+### Development Mock Mode
+
+If `RESEND_API_KEY` or `CONTACT_RECIPIENT` are not set, the form will:
+- Log submissions to console
+- Return success response without sending real emails
+- Perfect for development and testing
+
+### Rate Limiting
+
+The contact API includes basic rate limiting (1 request per minute per IP) to prevent abuse.
+
 ## 📊 SEO e Performance
 
 ### Meta Tags
