@@ -10,16 +10,63 @@ import { cn } from '@/lib/utils'
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const firstMenuItemRef = useRef<HTMLDivElement>(null)
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
     if (isSearchOpen) setIsSearchOpen(false)
   }
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
+  const handleMobileMenuKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      toggleMobileMenu()
+    } else if (event.key === 'Escape' && isMobileMenuOpen) {
+      event.preventDefault()
+      closeMobileMenu()
+      mobileMenuButtonRef.current?.focus()
+    }
+  }
+
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen)
     if (isMobileMenuOpen) setIsMobileMenuOpen(false)
   }
+
+  // Focus management for mobile menu
+  useEffect(() => {
+    if (isMobileMenuOpen && mobileMenuRef.current) {
+      // Focus the first menu item when menu opens
+      const firstFocusableElement = mobileMenuRef.current.querySelector('a, button, input')
+      if (firstFocusableElement) {
+        setTimeout(() => firstFocusableElement.focus(), 100)
+      }
+    }
+  }, [isMobileMenuOpen])
+
+  // Handle click outside to close menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        mobileMenuButtonRef.current &&
+        !mobileMenuButtonRef.current.contains(event.target as Node)
+      ) {
+        closeMobileMenu()
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isMobileMenuOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
