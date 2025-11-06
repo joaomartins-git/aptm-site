@@ -326,21 +326,21 @@ export default function ContactPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center space-x-3">
-                      <Phone className="h-4 w-4 text-primary" />
+                      <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
                       <div>
                         <div className="font-medium">Telefone</div>
                         <div className="text-sm text-muted-foreground">+351 210 000 000</div>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Mail className="h-4 w-4 text-primary" />
+                      <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
                       <div>
                         <div className="font-medium">Email</div>
                         <div className="text-sm text-muted-foreground">geral@aptm.pt</div>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Clock className="h-4 w-4 text-primary" />
+                      <Clock className="h-4 w-4 text-primary" aria-hidden="true" />
                       <div>
                         <div className="font-medium">Horário</div>
                         <div className="text-sm text-muted-foreground">9h00 - 18h00</div>
