@@ -451,7 +451,7 @@ export default function ContactPage() {
               <CardContent className="p-0">
                 <div className="aspect-video bg-muted flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
+                    <MapPin className="h-16 w-16 text-primary mx-auto mb-4" aria-hidden="true" />
                     <h3 className="text-xl font-semibold mb-2">Mapa Interativo</h3>
                     <p className="text-muted-foreground mb-4">
                       Mapa do Google será integrado aqui
