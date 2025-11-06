@@ -80,6 +80,27 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
     setActiveDropdown(activeDropdown === label ? null : label)
   }
 
+  const handleDropdownKeyDown = (event: React.KeyboardEvent, label: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      if (mobile) {
+        handleDropdownToggle(label)
+      } else {
+        setActiveDropdown(activeDropdown === label ? null : label)
+      }
+    } else if (event.key === 'Escape' && activeDropdown === label) {
+      event.preventDefault()
+      setActiveDropdown(null)
+    }
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape' && activeDropdown) {
+      event.preventDefault()
+      setActiveDropdown(null)
+    }
+  }
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
