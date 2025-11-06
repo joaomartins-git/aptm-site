@@ -14,6 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, error, id, leftIcon, ...props }, ref) => {
     const [generatedId] = React.useState(() => `input-${Math.random().toString(36).substr(2, 9)}`)
     const inputId = id || generatedId
+    const errorId = error ? `${inputId}-error` : undefined
 
     return (
       <div className="space-y-2">
