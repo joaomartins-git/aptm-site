@@ -138,6 +138,7 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
         const isActive = false // TODO: Implement active page detection
 
         if (hasSubmenu) {
+          const dropdownId = `dropdown-${item.label.toLowerCase().replace(/\s+/g, '-')}`
           return (
             <div
               key={item.label}
@@ -146,13 +147,16 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
               onMouseLeave={handleMouseLeave}
             >
               <button
+                id={dropdownId}
                 onClick={() => handleDropdownToggle(item.label)}
+                onKeyDown={(e) => handleDropdownKeyDown(e, item.label)}
                 className={cn(
                   itemClasses(item.href, isActive),
                   "flex items-center justify-between w-full"
                 )}
                 aria-expanded={activeDropdown === item.label}
                 aria-haspopup="true"
+                aria-controls={activeDropdown === item.label ? `${dropdownId}-menu` : undefined}
               >
                 <span>{item.label}</span>
                 <ChevronDown
@@ -161,6 +165,7 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
                     activeDropdown === item.label ? "rotate-180" : "",
                     mobile && "ml-2"
                   )}
+                  aria-hidden="true"
                 />
               </button>
 
