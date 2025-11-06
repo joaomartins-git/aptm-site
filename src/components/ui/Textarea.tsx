@@ -38,7 +38,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
         {error && (
-          <p className="text-sm text-destructive">{error}</p>
+          <p id={errorId} className="text-sm text-destructive" role="alert">{error}</p>
         )}
       </div>
     )
