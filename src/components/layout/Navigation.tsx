@@ -53,9 +53,10 @@ const navigationItems: NavItem[] = [
 
 interface NavigationProps {
   mobile?: boolean
+  onCloseMenu?: () => void
 }
 
-export function Navigation({ mobile = false }: NavigationProps) {
+export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
