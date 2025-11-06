@@ -281,15 +281,23 @@ export default function ContactPage() {
 
                       {/* Status Messages */}
                       {submitStatus === 'success' && (
-                        <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
-                          <CheckCircle className="h-5 w-5 text-green-600" />
+                        <div
+                          className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg"
+                          role="alert"
+                          aria-live="polite"
+                        >
+                          <CheckCircle className="h-5 w-5 text-green-600" aria-hidden="true" />
                           <p className="text-sm text-green-800">{submitMessage}</p>
                         </div>
                       )}
 
                       {submitStatus === 'error' && (
-                        <div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
-                          <AlertCircle className="h-5 w-5 text-red-600" />
+                        <div
+                          className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg"
+                          role="alert"
+                          aria-live="assertive"
+                        >
+                          <AlertCircle className="h-5 w-5 text-red-600" aria-hidden="true" />
                           <p className="text-sm text-red-800">{submitMessage}</p>
                         </div>
                       )}
