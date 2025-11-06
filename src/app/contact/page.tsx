@@ -360,7 +360,7 @@ export default function ContactPage() {
                     </p>
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
-                        <Phone className="h-4 w-4 text-red-500" />
+                        <Phone className="h-4 w-4 text-red-500" aria-hidden="true" />
                         <span className="text-sm font-medium">+351 910 000 000</span>
                       </div>
                       <p className="text-xs text-muted-foreground">
