@@ -55,16 +55,6 @@ const contactInfo = {
   }
 }
 
-const contactReasons = [
-  { value: 'general', label: 'Informações Gerais' },
-  { value: 'membership', label: 'Informações sobre Membros' },
-  { value: 'training', label: 'Formações e Cursos' },
-  { value: 'events', label: 'Eventos e Congressos' },
-  { value: 'partnership', label: 'Parcerias e Colaborações' },
-  { value: 'technical', label: 'Suporte Técnico' },
-  { value: 'complaint', label: 'Reclamações' },
-  { value: 'other', label: 'Outro' }
-]
 
 const socialMedia = [
   {
@@ -127,7 +117,6 @@ export default function ContactPage() {
     defaultValues: {
       name: '',
       email: '',
-      subject: '',
       message: ''
     }
   })
@@ -137,18 +126,43 @@ export default function ContactPage() {
     setSubmitStatus('idle')
 
     try {
-      // Simulate API call - in production, this would be an actual API endpoint
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
-      // For demo purposes, we'll just log the data
-      console.log('Form submitted:', data)
+      const result = await response.json()
 
-      setSubmitStatus('success')
-      setSubmitMessage('Mensagem enviada com sucesso! Responderemos o mais breve possível.')
-      reset()
+      if (response.ok) {
+        setSubmitStatus('success')
+        if (result.mocked) {
+          setSubmitMessage('Mensagem enviada com sucesso! (Modo de desenvolvimento)')
+        } else {
+          setSubmitMessage('Mensagem enviada com sucesso! Responderemos o mais breve possível.')
+        }
+        reset()
+      } else {
+        // Handle different error types
+        if (response.status === 429) {
+          setSubmitStatus('error')
+          setSubmitMessage('Muitas tentativas. Por favor, aguarde um minuto antes de tentar novamente.')
+        } else if (response.status === 400 && result.details) {
+          // Show validation errors from server
+          setSubmitStatus('error')
+          const errorMessages = result.details.map((detail: any) => detail.message).join(', ')
+          setSubmitMessage(`Erro de validação: ${errorMessages}`)
+        } else {
+          setSubmitStatus('error')
+          setSubmitMessage(result.error || 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.')
+        }
+      }
     } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
-      setSubmitMessage('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.')
+      setSubmitMessage('Ocorreu um erro ao enviar sua mensagem. Por favor, verifique sua conexão e tente novamente.')
     } finally {
       setIsSubmitting(false)
     }
@@ -255,27 +269,7 @@ export default function ContactPage() {
                         placeholder="o.seu.email@exemplo.com"
                       />
 
-                      {/* Subject Field */}
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                          Assunto
-                        </label>
-                        <select
-                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                          {...register('subject')}
-                        >
-                          <option value="">Selecione um assunto</option>
-                          {contactReasons.map((reason) => (
-                            <option key={reason.value} value={reason.value}>
-                              {reason.label}
-                            </option>
-                          ))}
-                        </select>
-                        {errors.subject && (
-                          <p className="text-sm text-destructive">{errors.subject.message}</p>
-                        )}
-                      </div>
-
+                      
                       {/* Message Field */}
                       <Textarea
                         label="Mensagem"
