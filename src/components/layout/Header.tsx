@@ -106,16 +106,20 @@ export function Header() {
 
           {/* Mobile Menu Toggle */}
           <Button
+            ref={mobileMenuButtonRef}
             variant="ghost"
             size="sm"
             onClick={toggleMobileMenu}
+            onKeyDown={handleMobileMenuKeyDown}
             className="md:hidden"
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? (
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5" aria-hidden="true" />
             ) : (
-              <Menu className="h-5 w-5" />
+              <Menu className="h-5 w-5" aria-hidden="true" />
             )}
           </Button>
         </div>
