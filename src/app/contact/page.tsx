@@ -279,27 +279,7 @@ export default function ContactPage() {
                         placeholder="o.seu.email@exemplo.com"
                       />
 
-                      {/* Subject Field */}
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                          Assunto
-                        </label>
-                        <select
-                          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                          {...register('subject')}
-                        >
-                          <option value="">Selecione um assunto</option>
-                          {contactReasons.map((reason) => (
-                            <option key={reason.value} value={reason.value}>
-                              {reason.label}
-                            </option>
-                          ))}
-                        </select>
-                        {errors.subject && (
-                          <p className="text-sm text-destructive">{errors.subject.message}</p>
-                        )}
-                      </div>
-
+                      
                       {/* Message Field */}
                       <Textarea
                         label="Mensagem"
