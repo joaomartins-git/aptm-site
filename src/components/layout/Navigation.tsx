@@ -170,18 +170,25 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
               </button>
 
               {activeDropdown === item.label && item.submenu && (
-                <div className={dropdownClasses}>
-                  {item.submenu.map((subItem) => (
+                <div
+                  id={`${dropdownId}-menu`}
+                  className={dropdownClasses}
+                  role="menu"
+                  aria-labelledby={dropdownId}
+                >
+                  {item.submenu.map((subItem, index) => (
                     <Link
                       key={subItem.href}
                       href={subItem.href}
                       className={cn(
-                        "block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200",
+                        "block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200 focus:outline-none focus-visible:bg-accent focus-visible:text-accent-foreground",
                         mobile ? "w-full" : ""
                       )}
+                      role="menuitem"
                       onClick={() => {
                         if (mobile) {
                           setActiveDropdown(null)
+                          onCloseMenu?.()
                         }
                       }}
                     >
