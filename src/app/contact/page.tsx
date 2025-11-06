@@ -204,7 +204,7 @@ export default function ContactPage() {
                 <Card key={key} className="text-center hover:shadow-lg transition-all duration-300">
                   <CardHeader>
                     <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                      <IconComponent className="h-8 w-8 text-primary" />
+                      <IconComponent className="h-8 w-8 text-primary" aria-hidden="true" />
                     </div>
                     <CardTitle className="text-xl">{info.title}</CardTitle>
                   </CardHeader>
