@@ -309,7 +309,7 @@ export default function ContactPage() {
                         disabled={isSubmitting}
                         loading={isSubmitting}
                       >
-                        <Send className="h-4 w-4 mr-2" />
+                        <Send className="h-4 w-4 mr-2" aria-hidden="true" />
                         {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                       </Button>
                     </form>
