@@ -127,7 +127,6 @@ export default function ContactPage() {
     defaultValues: {
       name: '',
       email: '',
-      subject: '',
       message: ''
     }
   })
