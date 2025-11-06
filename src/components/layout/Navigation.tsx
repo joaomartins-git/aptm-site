@@ -206,6 +206,11 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
             key={item.href}
             href={item.href}
             className={itemClasses(item.href, isActive)}
+            onClick={() => {
+              if (mobile) {
+                onCloseMenu?.()
+              }
+            }}
           >
             {item.label}
           </Link>
