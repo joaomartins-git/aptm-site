@@ -101,7 +101,7 @@ export function Header() {
             className="lg:hidden"
             aria-label="Toggle search"
           >
-            <Search className="h-5 w-5" />
+            <Search className="h-5 w-5" aria-hidden="true" />
           </Button>
 
           {/* Mobile Menu Toggle */}
