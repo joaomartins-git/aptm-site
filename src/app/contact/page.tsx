@@ -243,7 +243,7 @@ export default function ContactPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <MessageSquare className="h-5 w-5 mr-2" />
+                      <MessageSquare className="h-5 w-5 mr-2" aria-hidden="true" />
                       Formulário de Contacto
                     </CardTitle>
                     <CardDescription>
