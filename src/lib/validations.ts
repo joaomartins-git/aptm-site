@@ -10,10 +10,6 @@ export const contactFormSchema = z.object({
     .string()
     .email("Por favor, introduza um email válido")
     .max(255, "O email não pode ter mais de 255 caracteres"),
-  subject: z
-    .string()
-    .min(3, "O assunto deve ter pelo menos 3 caracteres")
-    .max(200, "O assunto não pode ter mais de 200 caracteres"),
   message: z
     .string()
     .min(10, "A mensagem deve ter pelo menos 10 caracteres")
