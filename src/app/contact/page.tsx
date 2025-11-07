@@ -149,10 +149,10 @@ export default function ContactPage() {
         if (response.status === 429) {
           setSubmitStatus('error')
           setSubmitMessage('Muitas tentativas. Por favor, aguarde um minuto antes de tentar novamente.')
-        } else if (response.status === 400 && result.details) {
+        } else if (response.status === 400 && Array.isArray(result.details)) {
           // Show validation errors from server
           setSubmitStatus('error')
-          const errorMessages = result.details.map((detail: any) => detail.message).join(', ')
+          const errorMessages = result.details.map((detail: { message: string }) => detail.message).join(', ')
           setSubmitMessage(`Erro de validação: ${errorMessages}`)
         } else {
           setSubmitStatus('error')

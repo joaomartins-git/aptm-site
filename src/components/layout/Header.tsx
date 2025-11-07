@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { Navigation } from './Navigation'
 import { SearchBar } from './SearchBar'
 import { cn } from '@/lib/utils'
+import Link from "next/link";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -43,7 +44,7 @@ export function Header() {
   useEffect(() => {
     if (isMobileMenuOpen && mobileMenuRef.current) {
       // Focus the first menu item when menu opens
-      const firstFocusableElement = mobileMenuRef.current.querySelector('a, button, input')
+      const firstFocusableElement = mobileMenuRef.current?.querySelector<HTMLElement>('a, button, input') ?? null;
       if (firstFocusableElement) {
         setTimeout(() => firstFocusableElement.focus(), 100)
       }
@@ -73,12 +74,12 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-4">
-          <a href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded bg-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">APTM</span>
             </div>
             <span className="font-bold text-xl text-foreground">APTM</span>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
