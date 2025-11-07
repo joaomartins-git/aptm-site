@@ -204,7 +204,7 @@ export default function ContactPage() {
                 <Card key={key} className="text-center hover:shadow-lg transition-all duration-300">
                   <CardHeader>
                     <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                      <IconComponent className="h-8 w-8 text-primary" />
+                      <IconComponent className="h-8 w-8 text-primary" aria-hidden="true" />
                     </div>
                     <CardTitle className="text-xl">{info.title}</CardTitle>
                   </CardHeader>
@@ -243,7 +243,7 @@ export default function ContactPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <MessageSquare className="h-5 w-5 mr-2" />
+                      <MessageSquare className="h-5 w-5 mr-2" aria-hidden="true" />
                       Formulário de Contacto
                     </CardTitle>
                     <CardDescription>
@@ -281,15 +281,23 @@ export default function ContactPage() {
 
                       {/* Status Messages */}
                       {submitStatus === 'success' && (
-                        <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
-                          <CheckCircle className="h-5 w-5 text-green-600" />
+                        <div
+                          className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg"
+                          role="alert"
+                          aria-live="polite"
+                        >
+                          <CheckCircle className="h-5 w-5 text-green-600" aria-hidden="true" />
                           <p className="text-sm text-green-800">{submitMessage}</p>
                         </div>
                       )}
 
                       {submitStatus === 'error' && (
-                        <div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
-                          <AlertCircle className="h-5 w-5 text-red-600" />
+                        <div
+                          className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg"
+                          role="alert"
+                          aria-live="assertive"
+                        >
+                          <AlertCircle className="h-5 w-5 text-red-600" aria-hidden="true" />
                           <p className="text-sm text-red-800">{submitMessage}</p>
                         </div>
                       )}
@@ -301,7 +309,7 @@ export default function ContactPage() {
                         disabled={isSubmitting}
                         loading={isSubmitting}
                       >
-                        <Send className="h-4 w-4 mr-2" />
+                        <Send className="h-4 w-4 mr-2" aria-hidden="true" />
                         {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                       </Button>
                     </form>
@@ -318,21 +326,21 @@ export default function ContactPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center space-x-3">
-                      <Phone className="h-4 w-4 text-primary" />
+                      <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
                       <div>
                         <div className="font-medium">Telefone</div>
                         <div className="text-sm text-muted-foreground">+351 210 000 000</div>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Mail className="h-4 w-4 text-primary" />
+                      <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
                       <div>
                         <div className="font-medium">Email</div>
                         <div className="text-sm text-muted-foreground">geral@aptm.pt</div>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Clock className="h-4 w-4 text-primary" />
+                      <Clock className="h-4 w-4 text-primary" aria-hidden="true" />
                       <div>
                         <div className="font-medium">Horário</div>
                         <div className="text-sm text-muted-foreground">9h00 - 18h00</div>
@@ -352,7 +360,7 @@ export default function ContactPage() {
                     </p>
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
-                        <Phone className="h-4 w-4 text-red-500" />
+                        <Phone className="h-4 w-4 text-red-500" aria-hidden="true" />
                         <span className="text-sm font-medium">+351 910 000 000</span>
                       </div>
                       <p className="text-xs text-muted-foreground">
@@ -443,7 +451,7 @@ export default function ContactPage() {
               <CardContent className="p-0">
                 <div className="aspect-video bg-muted flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
+                    <MapPin className="h-16 w-16 text-primary mx-auto mb-4" aria-hidden="true" />
                     <h3 className="text-xl font-semibold mb-2">Mapa Interativo</h3>
                     <p className="text-muted-foreground mb-4">
                       Mapa do Google será integrado aqui

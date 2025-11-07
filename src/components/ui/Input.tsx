@@ -14,6 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, error, id, leftIcon, ...props }, ref) => {
     const [generatedId] = React.useState(() => `input-${Math.random().toString(36).substr(2, 9)}`)
     const inputId = id || generatedId
+    const errorId = error ? `${inputId}-error` : undefined
 
     return (
       <div className="space-y-2">
@@ -34,6 +35,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             type={type}
             id={inputId}
+            aria-describedby={errorId}
+            aria-invalid={!!error}
             className={cn(
               "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
               leftIcon && "pl-10",
@@ -45,7 +48,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
         </div>
         {error && (
-          <p className="text-sm text-destructive">{error}</p>
+          <p id={errorId} className="text-sm text-destructive" role="alert">{error}</p>
         )}
       </div>
     )

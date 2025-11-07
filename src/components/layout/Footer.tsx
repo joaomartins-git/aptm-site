@@ -53,10 +53,10 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                  className="text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                   aria-label={social.label}
                 >
-                  <social.icon className="h-5 w-5" />
+                  <social.icon className="h-5 w-5" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -70,7 +70,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                    className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                   >
                     {link.label}
                   </Link>
@@ -87,7 +87,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                    className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                   >
                     {link.label}
                   </Link>
@@ -101,7 +101,7 @@ export function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Contacto</h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm text-muted-foreground">
                   <p>Rua Exemplo, 123</p>
                   <p>1000-001 Lisboa</p>
@@ -109,19 +109,19 @@ export function Footer() {
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-primary flex-shrink-0" />
+                <Phone className="h-5 w-5 text-primary flex-shrink-0" aria-hidden="true" />
                 <a
                   href="tel:+351210000000"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                  className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                 >
                   +351 210 000 000
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary flex-shrink-0" />
+                <Mail className="h-5 w-5 text-primary flex-shrink-0" aria-hidden="true" />
                 <a
                   href="mailto:geral@aptm.pt"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                  className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                 >
                   geral@aptm.pt
                 </a>
@@ -140,13 +140,13 @@ export function Footer() {
             <div className="flex space-x-6">
               <Link
                 href="/privacy"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
               >
                 Política de Privacidade
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
               >
                 Termos de Utilização
               </Link>

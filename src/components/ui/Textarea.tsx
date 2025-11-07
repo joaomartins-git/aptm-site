@@ -13,6 +13,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, error, id, ...props }, ref) => {
     const [generatedId] = React.useState(() => `textarea-${Math.random().toString(36).substr(2, 9)}`)
     const textareaId = id || generatedId
+    const errorId = error ? `${textareaId}-error` : undefined
 
     return (
       <div className="space-y-2">
@@ -26,6 +27,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
         <textarea
           id={textareaId}
+          aria-describedby={errorId}
+          aria-invalid={!!error}
           className={cn(
             "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
             error && "border-destructive focus-visible:ring-destructive",
@@ -35,7 +38,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
         {error && (
-          <p className="text-sm text-destructive">{error}</p>
+          <p id={errorId} className="text-sm text-destructive" role="alert">{error}</p>
         )}
       </div>
     )

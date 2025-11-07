@@ -53,9 +53,10 @@ const navigationItems: NavItem[] = [
 
 interface NavigationProps {
   mobile?: boolean
+  onCloseMenu?: () => void
 }
 
-export function Navigation({ mobile = false }: NavigationProps) {
+export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -77,6 +78,27 @@ export function Navigation({ mobile = false }: NavigationProps) {
   const handleDropdownToggle = (label: string) => {
     if (!mobile) return
     setActiveDropdown(activeDropdown === label ? null : label)
+  }
+
+  const handleDropdownKeyDown = (event: React.KeyboardEvent, label: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      if (mobile) {
+        handleDropdownToggle(label)
+      } else {
+        setActiveDropdown(activeDropdown === label ? null : label)
+      }
+    } else if (event.key === 'Escape' && activeDropdown === label) {
+      event.preventDefault()
+      setActiveDropdown(null)
+    }
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape' && activeDropdown) {
+      event.preventDefault()
+      setActiveDropdown(null)
+    }
   }
 
   useEffect(() => {
@@ -116,6 +138,7 @@ export function Navigation({ mobile = false }: NavigationProps) {
         const isActive = false // TODO: Implement active page detection
 
         if (hasSubmenu) {
+          const dropdownId = `dropdown-${item.label.toLowerCase().replace(/\s+/g, '-')}`
           return (
             <div
               key={item.label}
@@ -124,13 +147,16 @@ export function Navigation({ mobile = false }: NavigationProps) {
               onMouseLeave={handleMouseLeave}
             >
               <button
+                id={dropdownId}
                 onClick={() => handleDropdownToggle(item.label)}
+                onKeyDown={(e) => handleDropdownKeyDown(e, item.label)}
                 className={cn(
                   itemClasses(item.href, isActive),
                   "flex items-center justify-between w-full"
                 )}
                 aria-expanded={activeDropdown === item.label}
                 aria-haspopup="true"
+                aria-controls={activeDropdown === item.label ? `${dropdownId}-menu` : undefined}
               >
                 <span>{item.label}</span>
                 <ChevronDown
@@ -139,22 +165,30 @@ export function Navigation({ mobile = false }: NavigationProps) {
                     activeDropdown === item.label ? "rotate-180" : "",
                     mobile && "ml-2"
                   )}
+                  aria-hidden="true"
                 />
               </button>
 
               {activeDropdown === item.label && item.submenu && (
-                <div className={dropdownClasses}>
-                  {item.submenu.map((subItem) => (
+                <div
+                  id={`${dropdownId}-menu`}
+                  className={dropdownClasses}
+                  role="menu"
+                  aria-labelledby={dropdownId}
+                >
+                  {item.submenu.map((subItem, index) => (
                     <Link
                       key={subItem.href}
                       href={subItem.href}
                       className={cn(
-                        "block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200",
+                        "block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors duration-200 focus:outline-none focus-visible:bg-accent focus-visible:text-accent-foreground",
                         mobile ? "w-full" : ""
                       )}
+                      role="menuitem"
                       onClick={() => {
                         if (mobile) {
                           setActiveDropdown(null)
+                          onCloseMenu?.()
                         }
                       }}
                     >
@@ -172,6 +206,11 @@ export function Navigation({ mobile = false }: NavigationProps) {
             key={item.href}
             href={item.href}
             className={itemClasses(item.href, isActive)}
+            onClick={() => {
+              if (mobile) {
+                onCloseMenu?.()
+              }
+            }}
           >
             {item.label}
           </Link>
