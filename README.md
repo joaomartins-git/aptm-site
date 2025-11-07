@@ -1,3 +1,6 @@
+[![CI](https://github.com/joaomartins-git/aptm-site/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/joaomartins-git/aptm-site/actions/workflows/ci.yml)
+
+
 # APTM Website
 
 Modern, responsive business website for [Associação Portuguesa de Terapia da Mão](https://aptm.pt) built with Next.js 16, TypeScript, and Tailwind CSS.
