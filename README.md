@@ -185,14 +185,36 @@ npm run build
 
 ## 🚀 Deploy
 
-### Vercel (Recomendado)
+### Production URL
+🌐 **Live Site**: [https://aptm-site-git-main-joaomartins-git.vercel.app](https://aptm-site-git-main-joaomartins-git.vercel.app)
+
+### Preview Deployments
+This site automatically creates preview deployments for every Pull Request:
+- 🔗 Each PR gets a unique preview URL
+- 🧪 Test changes in isolation before merging
+- 📦 Share preview links with stakeholders
+- 🔄 Automatic cleanup when PR is merged/closed
+
+### Deployment Process
+1. **Production**: Automatically deployed from `main` branch
+2. **Preview**: Automatically deployed for every PR/branch
+3. **Environment**: Uses Vercel environment variables for each deployment type
+
+### Vercel Configuration
+- **Build Command**: `npm run build`
+- **Framework**: Next.js 16
+- **Node Version**: 18.x (Vercel default)
+- **Environment Variables**: Configured in Vercel dashboard
+
+### Manual Deployment
+For manual deployment to Vercel:
 ```bash
 npm run build
 vercel --prod
 ```
 
-### Outras Plataformas
-O site pode ser deployado em qualquer plataforma que suporte aplicações Next.js:
+### Other Platforms
+The site can be deployed to any platform supporting Next.js applications:
 - Netlify
 - AWS Amplify
 - Railway
