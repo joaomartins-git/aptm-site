@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_PT",
-    url: "https://aptm.pt",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://aptm.pt",
     title: "APTM - Associação Portuguesa de Terapia da Mão",
     description: "Promovendo excelência e desenvolvimento na terapia da mão em Portugal",
     siteName: "APTM",
