@@ -23,7 +23,7 @@
   --color-primary-foreground: var(--white);
   --color-secondary: var(--secondary-blue);
   --color-secondary-foreground: var(--white);
-  --color-muted: var(--light-gray);
+  --color-muted: var(--enhanced-background);
   --color-muted-foreground: var(--medium-gray);
   --color-accent: var(--primary-blue);
   --color-accent-foreground: var(--white);
