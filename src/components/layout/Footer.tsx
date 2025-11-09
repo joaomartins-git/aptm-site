@@ -39,12 +39,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">APTM</span>
-              </div>
-              <span className="font-bold text-xl text-foreground">APTM</span>
-            </div>
+            <Link href="/" className="flex items-center gap-2" aria-label="Ir para a página inicial">
+              <Image
+                src="/aptm-logo.svg"
+                alt="APTM – Associação Portuguesa de Terapia da Mão"
+                width={120}
+                height={32}
+                className="h-8 w-auto"
+                priority
+              />
+            </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
               Associação Portuguesa de Terapia da Mão – Promovendo excelência
               e desenvolvimento na terapia da mão em Portugal.
