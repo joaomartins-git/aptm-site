@@ -16,11 +16,11 @@ const iconMap = {
 }
 
 const servicesData = getServices()
-const services = servicesData.mainServices.map((service) => ({
+const services = servicesData.mainServices.map((service: Service) => ({
   ...service,
   icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
 }))
-const additionalServices = servicesData.additionalServices.map((service) => ({
+const additionalServices = servicesData.additionalServices.map((service: Service) => ({
   ...service,
   icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
 }))
