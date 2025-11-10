@@ -1,6 +1,9 @@
 'use client'
 
-import { Hero } from "@/components/sections/Hero";
+import { HomeHero } from "@/components/sections/HomeHero";
+import { HomeNavCards } from "@/components/sections/HomeNavCards";
+import { HomeAgenda } from "@/components/sections/HomeAgenda";
+import { HomeInstagram } from "@/components/sections/HomeInstagram";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { EventsOverview } from "@/components/sections/EventsOverview";
 import { CallToAction } from "@/components/sections/CallToAction";
@@ -12,20 +15,17 @@ import { Heart, Target, Award, Users } from "lucide-react";
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <Hero
-        subtitle="Bem-vindo à APTM"
-        title="Liderando Excelência em Terapia da Mão"
-        description="A Associação Portuguesa de Terapia da Mão promove o desenvolvimento profissional e a excelência no tratamento de condições da mão e membro superior."
-        primaryAction={{
-          label: "Tornar-se Membro",
-          href: "/about"
-        }}
-        secondaryAction={{
-          label: "Conhecer Serviços",
-          href: "/services"
-        }}
-      />
+      {/* Home Hero Carousel */}
+      <HomeHero />
+
+      {/* Home Navigation Cards */}
+      <HomeNavCards />
+
+      {/* Home Agenda Section */}
+      <HomeAgenda />
+
+      {/* Home Instagram Gallery */}
+      <HomeInstagram />
 
       {/* About Preview Section */}
       <section className="py-20 bg-background">
