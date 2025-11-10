@@ -149,7 +149,7 @@ export default function ServicesPage() {
                       {service.description}
                     </CardDescription>
                     <ul className="space-y-2 mb-6">
-                      {service.features.map((feature, featureIndex) => (
+                      {service.features.map((feature: any, featureIndex: number) => (
                         <li key={featureIndex} className="flex items-center space-x-2">
                           <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                           <span className="text-sm text-muted-foreground">{feature}</span>
