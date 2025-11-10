@@ -77,6 +77,41 @@
       "level": "Avançado",
       "image": "/images/events/workshop-surgical.jpg",
       "isPlaceholder": true
-    }
+    },
+     {
+    "id": "evt-2025-11-14-ortho",
+    "title": "Sessão Clínica: Tendinopatias da Mão",
+    "date": "2025-11-14",
+    "location": "Lisboa",
+    "type": "seminar",
+    "description": "Discussão de casos com foco em reabilitação funcional."
+  },
+  {
+    "id": "evt-2025-11-20-web",
+    "title": "Webinar: Avaliação Funcional do Punho",
+    "date": "2025-11-20",
+    "location": "Online",
+    "type": "webinar",
+    "description": "Instrumentos e protocolos de avaliação.",
+    "speaker": "Dra. Maria Santos"
+  },
+  {
+    "id": "evt-2025-11-28-work",
+    "title": "Workshop: Órteses de Polegar",
+    "date": "2025-11-28",
+    "location": "Porto",
+    "type": "workshop",
+    "description": "Sessão prática com materiais termo-moldáveis.",
+    "level": "Intermédio",
+    "price": "€60"
+  },
+  {
+    "id": "evt-2025-12-05-conf",
+    "title": "Conferência APTM 2025",
+    "date": "2025-12-05",
+    "location": "Coimbra",
+    "type": "conference",
+    "description": "Tendências em terapia da mão."
+  }
   ]
 }
