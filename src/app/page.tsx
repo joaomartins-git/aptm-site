@@ -15,20 +15,17 @@ import { Heart, Target, Award, Users } from "lucide-react";
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <Hero
-        subtitle="Bem-vindo à APTM"
-        title="Liderando Excelência em Terapia da Mão"
-        description="A Associação Portuguesa de Terapia da Mão promove o desenvolvimento profissional e a excelência no tratamento de condições da mão e membro superior."
-        primaryAction={{
-          label: "Tornar-se Membro",
-          href: "/about"
-        }}
-        secondaryAction={{
-          label: "Conhecer Serviços",
-          href: "/services"
-        }}
-      />
+      {/* Home Hero Carousel */}
+      <HomeHero />
+
+      {/* Home Navigation Cards */}
+      <HomeNavCards />
+
+      {/* Home Agenda Section */}
+      <HomeAgenda />
+
+      {/* Home Instagram Gallery */}
+      <HomeInstagram />
 
       {/* About Preview Section */}
       <section className="py-20 bg-background">
