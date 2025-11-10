@@ -6,7 +6,7 @@
  */
 
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
-import type { Service, Event, Training, ServicesData } from '../../lib/types'
+import type { Service, Event, Training, ServicesData, NewsItem } from '../../lib/types'
 
 // Import JSON data
 import servicesData from '../../data/services.json'
