@@ -338,7 +338,8 @@ export function HomeCalendarAgenda() {
                           )}
                           aria-label={`${date.getDate()} de ${currentMonth.toLocaleDateString('pt-PT', { month: 'long' })}${dayHasEvents ? ` (${dayEvents.length} eventos)` : ''}`}
                           aria-current={dayIsToday ? 'date' : undefined}
-                          aria-selected={dayIsSelected}
+                          aria-selected={dayIsSelected ? 'true' : undefined}
+                          tabIndex={dayIsSelected ? 0 : -1}
                           tabIndex={dayIsToday ? 0 : -1}
                         >
                           <span className="text-sm">{date.getDate()}</span>
