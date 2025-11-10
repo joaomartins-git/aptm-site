@@ -1,6 +1,9 @@
 'use client'
 
-import { Hero } from "@/components/sections/Hero";
+import { HomeHero } from "@/components/sections/HomeHero";
+import { HomeNavCards } from "@/components/sections/HomeNavCards";
+import { HomeAgenda } from "@/components/sections/HomeAgenda";
+import { HomeInstagram } from "@/components/sections/HomeInstagram";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { EventsOverview } from "@/components/sections/EventsOverview";
 import { CallToAction } from "@/components/sections/CallToAction";
