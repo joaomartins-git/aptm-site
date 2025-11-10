@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { getEvents } from '@/lib/content'
 import { formatDate, truncateText } from '@/lib/utils'
-import type { Event } from '../../../lib/types'
+import type { Event } from '@/lib/types'
 
 /**
  * Get event type styling for badges
