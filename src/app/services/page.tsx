@@ -8,22 +8,44 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
 import { getServices } from '@/lib/content'
-import type { Service } from '@/types/index'
+import type { Service, ServicesData  } from '@/types'
 
 // Icon mapping
 const iconMap = {
   Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock
 }
+type IconName = keyof typeof iconMap;
 
-const servicesData = getServices()
-const services = servicesData.mainServices.map((service: Service) => ({
-  ...service,
-  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
-}))
-const additionalServices = servicesData.additionalServices.map((service: Service) => ({
-  ...service,
-  icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
-}))
+const servicesData: ServicesData = getServices()
+
+const services = servicesData.mainServices.map((service) => {
+  const name = (service.icon ?? 'Users') as IconName;
+  const IconComponent = iconMap[name] ?? Users;
+  return {
+    ...service,
+    icon: IconComponent,
+  };
+});
+
+// const services = servicesData.mainServices.map((service: Service) => ({
+//   ...service,
+//   icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+// }))
+
+const additionalServices = servicesData.additionalServices.map((service) => {
+  const name = (service.icon ?? 'Users') as IconName;
+  const IconComponent = iconMap[name] ?? Users;
+  return {
+    ...service,
+    icon: IconComponent,
+  };
+});
+
+
+// const additionalServices = servicesData.additionalServices.map((service: Service) => ({
+//   ...service,
+//   icon: iconMap[(service.icon ?? 'Users') as keyof typeof iconMap] || Users,
+// }))
 
 
 export default function ServicesPage() {
@@ -59,7 +81,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {services.map((service: any) => {
+            {services.map((service) => {
               const IconComponent = service.icon
               return (
                 <Card
@@ -94,7 +116,7 @@ export default function ServicesPage() {
                     <div className="mb-6">
                       <h4 className="font-semibold text-foreground mb-3">Inclui:</h4>
                       <ul className="space-y-2">
-                        {service.features.map((feature: any, index: number) => (
+                        {service.features.map((feature, index: number) => (
                           <li key={index} className="flex items-start space-x-2">
                             <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                             <span className="text-sm text-muted-foreground">{feature}</span>
@@ -130,7 +152,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {additionalServices.map((service: any, index: number) => {
+            {additionalServices.map((service, index: number) => {
               const IconComponent = service.icon
               return (
                 <Card key={index} className="hover:shadow-lg transition-all duration-300">
@@ -149,7 +171,7 @@ export default function ServicesPage() {
                       {service.description}
                     </CardDescription>
                     <ul className="space-y-2 mb-6">
-                      {service.features.map((feature: any, featureIndex: number) => (
+                      {service.features.map((feature, featureIndex: number) => (
                         <li key={featureIndex} className="flex items-center space-x-2">
                           <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                           <span className="text-sm text-muted-foreground">{feature}</span>

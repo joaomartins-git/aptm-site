@@ -1,5 +1,10 @@
 // Common types used across the APTM website
 
+export type IconName =
+  | 'Users' | 'Search' | 'Handshake' | 'Award'
+  | 'BookOpen' | 'Target' | 'CheckCircle' | 'Clock';
+
+
 export interface NavItem {
   label: string;
   href: string;
@@ -10,8 +15,23 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  //icon: string;
+  href?: string;
+  badge?: string;
+  pricing?: {
+    type: string;
+    description: string;
+    price?: string;
+    period?: string;
+  };
   features: string[];
+  // the JSON gives a plain string here; allow string but prefer IconName
+  icon?: IconName | string;
+}
+
+export interface ServicesData {
+  mainServices: Service[];
+  additionalServices: Service[];
 }
 
 export interface TeamMember {

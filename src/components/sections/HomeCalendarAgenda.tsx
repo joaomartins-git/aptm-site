@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/Button'
 import { getEvents } from '@/lib/content'
 import { formatDate } from '@/lib/utils'
 import { cn } from '@/lib/utils'
-import type { Event } from '@/types/index'
+import type { Event } from '@/types'
 
 /**
  * Get event type styling for badges
@@ -47,10 +47,23 @@ function getEventTypeName(eventType: Event['type']) {
   }
 }
 
+function getInitialSelectedDate(
+  getEventsForDate: (d: Date) => Event[],
+  upcomingEvents: Event[]
+): Date {
+  const now = new Date();
+  const todayEvents = getEventsForDate(now);
+
+  if (todayEvents.length > 0) return now;
+  if (upcomingEvents.length > 0) return new Date(upcomingEvents[0].date);
+
+  return now; // fallback to today
+}
+
 export function HomeCalendarAgenda() {
   const events = getEvents()
   const [currentMonth, setCurrentMonth] = useState(new Date())
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  //const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const calendarRef = useRef<HTMLDivElement>(null)
 
   // Sort events by date
@@ -72,6 +85,17 @@ export function HomeCalendarAgenda() {
       return eventDate.toISOString().split('T')[0] === dateStr
     })
   }
+
+  const [selectedDate, setSelectedDate] = useState<Date>(() =>
+    getInitialSelectedDate(getEventsForDate, upcomingEvents)
+  );
+
+  // const [selectedDate, setSelectedDate] = useState<Date>(() => {
+  //   const todayEvents = getEventsForDate(now);
+  //   if (todayEvents.length > 0) return now;
+  //   if (upcomingEvents.length > 0) return new Date(upcomingEvents[0].date);
+  //   return now;
+  // });
 
   // Generate calendar days
   const generateCalendarDays = () => {
@@ -173,16 +197,18 @@ export function HomeCalendarAgenda() {
   }, [])
 
   // Set initial selected date to today or first event
-  useEffect(() => {
-    if (!selectedDate) {
-      const todayEvents = getEventsForDate(now)
-      if (todayEvents.length > 0) {
-        setSelectedDate(now)
-      } else if (upcomingEvents.length > 0) {
-        setSelectedDate(new Date(upcomingEvents[0].date))
-      }
-    }
-  }, [selectedDate, now, upcomingEvents])
+  // useEffect(() => {
+  //   if (!selectedDate) {
+  //     const todayEvents = getEventsForDate(now)
+  //     const next = todayEvents.length > 0 ? now : (upcomingEvents[0] ? new Date(upcomingEvents[0].date) : null);
+
+  //     if (next && selectedDate.getTime() !== next.getTime()) {
+  //       setSelectedDate(next)
+  //     } else if (upcomingEvents.length > 0) {
+  //       setSelectedDate(new Date(upcomingEvents[0].date))
+  //     }
+  //   }
+  // }, [selectedDate, now, upcomingEvents])
 
   // Get events for selected date
   const selectedDateEvents = selectedDate ? getEventsForDate(selectedDate) : []
