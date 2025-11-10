@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Calendar, MapPin, Video, Users } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
-import type { Event } from '@/types'
+import type { Event } from '@/types/index'
 
 const upcomingEvents: Event[] = [
   {
@@ -33,6 +33,14 @@ const upcomingEvents: Event[] = [
     type: 'workshop',
     description: 'Workshop prático focado em técnicas de avaliação funcional da mão.',
     isPlaceholder: true
+  },
+    {
+    id: 'conference-1',
+    title: 'Conferência Anual de Terapia da Mão',
+    date: '2025-02-16T09:00:00Z',
+    type: 'conference',
+    description: 'Conferência com especialistas internacionais sobre as mais recentes técnicas e abordagens em reabilitação da mão.',
+    isPlaceholder: true
   }
 ]
 
@@ -51,6 +59,11 @@ const eventTypeInfo = {
     label: 'Workshop',
     icon: MapPin,
     color: 'bg-orange-100 text-orange-800 border-orange-200'
+  },
+  conference: {
+    label: 'Conferência',
+    icon: Calendar,
+    color: 'bg-purple-100 text-purple-800 hover:bg-purple-200'
   }
 }
 

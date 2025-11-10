@@ -1,8 +1,9 @@
 'use client'
 
-import { HomeHero } from "@/components/sections/HomeHero";
+import { HomeHeroBanner } from "@/components/sections/HomeHeroBanner";
+import { HomeNewsCarousel } from "@/components/sections/HomeNewsCarousel";
+import { HomeCalendarAgenda } from "@/components/sections/HomeCalendarAgenda";
 import { HomeNavCards } from "@/components/sections/HomeNavCards";
-import { HomeAgenda } from "@/components/sections/HomeAgenda";
 import { HomeInstagram } from "@/components/sections/HomeInstagram";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { EventsOverview } from "@/components/sections/EventsOverview";
@@ -15,14 +16,17 @@ import { Heart, Target, Award, Users } from "lucide-react";
 export default function Home() {
   return (
     <>
-      {/* Home Hero Carousel */}
-      <HomeHero />
+      {/* Home Hero Banner */}
+      <HomeHeroBanner />
+
+      {/* Home News Carousel */}
+      <HomeNewsCarousel />
+
+      {/* Home Calendar Agenda */}
+      <HomeCalendarAgenda />
 
       {/* Home Navigation Cards */}
       <HomeNavCards />
-
-      {/* Home Agenda Section */}
-      <HomeAgenda />
 
       {/* Home Instagram Gallery */}
       <HomeInstagram />

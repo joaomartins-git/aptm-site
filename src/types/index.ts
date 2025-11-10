@@ -1,5 +1,10 @@
 // Common types used across the APTM website
 
+export type IconName =
+  | 'Users' | 'Search' | 'Handshake' | 'Award'
+  | 'BookOpen' | 'Target' | 'CheckCircle' | 'Clock';
+
+
 export interface NavItem {
   label: string;
   href: string;
@@ -10,8 +15,23 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  //icon: string;
+  href?: string;
+  badge?: string;
+  pricing?: {
+    type: string;
+    description: string;
+    price?: string;
+    period?: string;
+  };
   features: string[];
+  // the JSON gives a plain string here; allow string but prefer IconName
+  icon?: IconName | string;
+}
+
+export interface ServicesData {
+  mainServices: Service[];
+  additionalServices: Service[];
 }
 
 export interface TeamMember {
@@ -26,8 +46,13 @@ export interface Event {
   id: string;
   title: string;
   date: string;
-  type: 'webinar' | 'seminar' | 'workshop';
+  type: 'webinar' | 'seminar' | 'workshop' | 'conference';
   description: string;
+  speaker?: string;
+  duration?: string;
+  price?: string;
+  level?: string;
+  image?: string;
   isPlaceholder?: boolean;
 }
 
@@ -37,7 +62,14 @@ export interface Training {
   duration: string;
   level: 'beginner' | 'intermediate' | 'advanced';
   description: string;
+  format: string;
+  price: string;
+  instructor: string;
+  modules: number;
+  certification: boolean;
+  image?: string;
   isPlaceholder?: boolean;
+  highlights: string[];
 }
 
 export interface ContactForm {
@@ -45,6 +77,15 @@ export interface ContactForm {
   email: string;
   subject: string;
   message: string;
+}
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  excerpt?: string;
+  date: string;
+  href: string;
+  image?: string;
 }
 
 export interface SiteMetadata {
