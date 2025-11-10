@@ -206,7 +206,7 @@ export default function TrainingsPage() {
                   <div className="mb-4">
                     <h4 className="font-medium text-foreground mb-2">Destaques:</h4>
                     <ul className="space-y-1">
-                      {course.highlights.slice(0, 3).map((highlight, index) => (
+                      {(course.highlights ?? []).slice(0, 3).map((highlight: string, index: number) => (
                         <li key={index} className="flex items-center text-sm text-muted-foreground">
                           <Star className="h-3 w-3 text-primary mr-2" />
                           {highlight}
@@ -302,7 +302,7 @@ export default function TrainingsPage() {
                     'Avaliação de competências clínicas',
                     'Prova teórica nacional',
                     'Certificado reconhecido'
-                  ].map((item, index) => (
+                  ].map((item: string, index: number) => (
                     <div key={index} className="flex items-center space-x-3 p-3 bg-background rounded-lg">
                       <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-semibold">
                         {index + 1}
