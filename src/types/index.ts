@@ -28,6 +28,11 @@ export interface Event {
   date: string;
   type: 'webinar' | 'seminar' | 'workshop' | 'conference';
   description: string;
+  speaker?: string;
+  duration?: string;
+  price?: string;
+  level?: string;
+  image?: string;
   isPlaceholder?: boolean;
 }
 
