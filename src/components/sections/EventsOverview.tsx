@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Calendar, MapPin, Video, Users } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
-import type { Event } from '@/types'
+import type { Event } from '@/types/index'
 
 const upcomingEvents: Event[] = [
   {
