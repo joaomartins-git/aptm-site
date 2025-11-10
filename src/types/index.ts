@@ -47,6 +47,15 @@ export interface ContactForm {
   message: string;
 }
 
+export interface NewsItem {
+  id: string;
+  title: string;
+  excerpt?: string;
+  date: string;
+  href: string;
+  image?: string;
+}
+
 export interface SiteMetadata {
   title: string;
   description: string;
