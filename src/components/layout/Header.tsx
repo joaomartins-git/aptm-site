@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { Menu, X, Search } from 'lucide-react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Navigation } from './Navigation'
 import { SearchBar } from './SearchBar'
@@ -74,11 +75,15 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-4">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">APTM</span>
-            </div>
-            <span className="font-bold text-xl text-foreground">APTM</span>
+          <Link href="/" className="flex items-center gap-2" aria-label="Ir para a página inicial">
+            <Image
+              src="/aptm-logo.svg"
+              alt="APTM – Associação Portuguesa de Terapia da Mão"
+              width={120}
+              height={32}
+              className="h-8 w-auto"
+              priority
+            />
           </Link>
         </div>
 

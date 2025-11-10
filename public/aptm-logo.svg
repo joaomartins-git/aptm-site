@@ -1,0 +1,14 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with APTM blue color -->
+  <circle cx="60" cy="60" r="58" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
+
+  <!-- APTM Text in white -->
+  <text x="60" y="72" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">
+    APTM
+  </text>
+
+  <!-- Subtitle - smaller text -->
+  <text x="60" y="88" font-family="Arial, sans-serif" font-size="8" font-anchor="middle" fill="white" opacity="0.9">
+    TERAPIA DA MÃO
+  </text>
+</svg>
