@@ -42,7 +42,14 @@ export interface Training {
   duration: string;
   level: 'beginner' | 'intermediate' | 'advanced';
   description: string;
+  format: string;
+  price: string;
+  instructor: string;
+  modules: number;
+  certification: boolean;
+  image?: string;
   isPlaceholder?: boolean;
+  highlights: string[];
 }
 
 export interface ContactForm {
