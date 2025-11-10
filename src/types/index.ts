@@ -26,7 +26,7 @@ export interface Event {
   id: string;
   title: string;
   date: string;
-  type: 'webinar' | 'seminar' | 'workshop';
+  type: 'webinar' | 'seminar' | 'workshop' | 'conference';
   description: string;
   isPlaceholder?: boolean;
 }
