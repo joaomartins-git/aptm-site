@@ -16,14 +16,17 @@ import { Heart, Target, Award, Users } from "lucide-react";
 export default function Home() {
   return (
     <>
-      {/* Home Hero Carousel */}
-      <HomeHero />
+      {/* Home Hero Banner */}
+      <HomeHeroBanner />
+
+      {/* Home News Carousel */}
+      <HomeNewsCarousel />
+
+      {/* Home Calendar Agenda */}
+      <HomeCalendarAgenda />
 
       {/* Home Navigation Cards */}
       <HomeNavCards />
-
-      {/* Home Agenda Section */}
-      <HomeAgenda />
 
       {/* Home Instagram Gallery */}
       <HomeInstagram />
