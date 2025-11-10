@@ -19,18 +19,18 @@ export default function Home() {
       {/* Home Hero Banner */}
       <HomeHeroBanner />
 
-      {/* Home News Carousel */}
-      <HomeNewsCarousel />
-
-      {/* Home Calendar Agenda */}
-      <HomeCalendarAgenda />
-
       {/* Home Navigation Cards */}
       <HomeNavCards />
 
       {/* Home Instagram Gallery */}
       <HomeInstagram />
 
+      {/* Home News Carousel */}
+      <HomeNewsCarousel />
+
+      {/* Home Calendar Agenda */}
+      <HomeCalendarAgenda />
+      
       {/* About Preview Section */}
       <section className="py-20 bg-background">
         <div className="container">
