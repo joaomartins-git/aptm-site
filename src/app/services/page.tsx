@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
 import { getServices } from '@/lib/content'
+import type { Service } from '@/types/index'
 
 // Icon mapping
 const iconMap = {
