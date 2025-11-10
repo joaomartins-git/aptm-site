@@ -130,7 +130,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {additionalServices.map((service, index) => {
+            {additionalServices.map((service: any, index: number) => {
               const IconComponent = service.icon
               return (
                 <Card key={index} className="hover:shadow-lg transition-all duration-300">
