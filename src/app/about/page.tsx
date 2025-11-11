@@ -118,7 +118,7 @@ export default function AboutPage() {
 
       {/* Mission & Vision */}
       <section className="py-20 bg-background" id="mission">
-        <div className="container">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
@@ -261,7 +261,7 @@ export default function AboutPage() {
 
       {/* Statistics */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
+        <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               APTM em Números
@@ -294,7 +294,7 @@ export default function AboutPage() {
 
       {/* Team */}
       <section className="py-20 bg-background" id="team">
-        <div className="container">
+        <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Nossa Equipa
@@ -335,7 +335,7 @@ export default function AboutPage() {
 
       {/* Timeline */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
+        <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Nossa História
