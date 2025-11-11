@@ -5,6 +5,24 @@ import { Camera } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
+// Instagram post interface
+interface InstagramPost {
+  id: string
+  image: string
+  caption: string
+  date: string
+  permalink: string
+  type: 'image' | 'video'
+  username: string
+}
+
+// API response interface
+interface InstagramApiResponse {
+  ok: boolean
+  posts?: InstagramPost[]
+  error?: string
+}
+
 /**
  * HomeInstagram Component
  *
