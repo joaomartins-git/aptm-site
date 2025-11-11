@@ -138,9 +138,9 @@ export function HomeHero() {
             />
             {/* Dark overlay for text readability */}
             <div className="absolute inset-0 bg-black/40" />
-          </Container>
+          </div>
         ))}
-      </Container>
+      </div>
 
       {/* Content */}
       <div className="relative z-10 h-full flex items-center">
