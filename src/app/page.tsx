@@ -131,7 +131,6 @@ export default function Home() {
             </div>
           </div>
         </Container>
-      </Container>
       </section>
 
       {/* Services Overview */}
