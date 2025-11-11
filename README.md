@@ -74,6 +74,15 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - `Textarea` - Para formulários
 - `Badge` - Para tags e status
 
+## About Section Structure
+
+- **PDF Documents**: Official documents stored in `public/docs/`
+  - `estatutos.pdf`: Association statutes (downloadable)
+- **Board Data**: Board members information in `src/data/board.json`
+  - Uses `BoardMember` and `BoardRole` types from `src/types/index.ts`
+  - Grouped by role: Presidente, Vice-Presidente, Secretário, Tesoureiro, Vogal
+- **Navigation**: About section has dropdown submenu with three pages
+
 ## 🚀 Setup e Instalação
 
 ### Pré-requisitos
