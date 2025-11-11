@@ -137,7 +137,7 @@ export default function ServicesPage() {
               )
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Additional Services */}
@@ -191,7 +191,7 @@ export default function ServicesPage() {
               )
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Process */}
@@ -252,7 +252,7 @@ export default function ServicesPage() {
               )
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Testimonials */}
@@ -310,7 +310,7 @@ export default function ServicesPage() {
               </Card>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Call to Action */}
@@ -340,7 +340,7 @@ export default function ServicesPage() {
               Saber Mais
             </Button>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   )
