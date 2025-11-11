@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { Heart, Target, Award, Users } from "lucide-react";
+import Container from "@/components/ui/Container";
 
 export default function Home() {
   return (
