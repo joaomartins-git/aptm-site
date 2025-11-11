@@ -8,7 +8,6 @@ import {
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { cn } from '@/lib/utils'
-import Container from '@/components/ui/Container'
 
 interface NavCard {
   id: string
@@ -52,7 +51,7 @@ const navCards: NavCard[] = [
 export function HomeNavCards() {
   return (
     <section className="py-20 bg-background">
-      <Container>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -97,7 +96,7 @@ export function HomeNavCards() {
             )
           })}
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

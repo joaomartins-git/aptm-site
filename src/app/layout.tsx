@@ -4,7 +4,6 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/ui/SkipLink";
-import Container from "@/components/ui/Container";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -85,11 +84,7 @@ export default function RootLayout({
         <div className="flex-1">
           <SkipLink href="#main">Skip to content</SkipLink>
           <Header />
-          <main id="main" role="main">
-            <Container>
-              {children}
-            </Container>
-          </main>
+          <main id="main" role="main">{children}</main>
         </div>
         <Footer />
       </body>

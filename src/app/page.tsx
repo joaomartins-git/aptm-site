@@ -12,7 +12,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { Heart, Target, Award, Users } from "lucide-react";
-import Container from "@/components/ui/Container";
 
 export default function Home() {
   return (
@@ -34,7 +33,7 @@ export default function Home() {
       
       {/* About Preview Section */}
       <section className="py-20 bg-background">
-        <Container>
+        <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
@@ -130,7 +129,7 @@ export default function Home() {
               </Card>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Services Overview */}
