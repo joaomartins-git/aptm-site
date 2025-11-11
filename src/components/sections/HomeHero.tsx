@@ -144,7 +144,7 @@ export function HomeHero() {
 
       {/* Content */}
       <div className="relative z-10 h-full flex items-center">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="max-w-4xl mx-auto text-center text-white">
             {/* Slide content with transitions */}
             <div className="transition-all duration-700 ease-in-out">
@@ -169,7 +169,7 @@ export function HomeHero() {
 
       {/* Navigation Controls */}
       <div className="absolute bottom-8 left-0 right-0 z-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="flex items-center justify-between">
             {/* Previous Button */}
             <button
