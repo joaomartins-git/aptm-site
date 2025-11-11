@@ -124,7 +124,7 @@ export async function HomeInstagram() {
           )}>
             {instagramPosts.map((post) => {
               // Handle different post types (real Instagram vs placeholders)
-              const isRealPost = !useFallback && 'image' in post
+              const isRealPost = 'image' in post
               const postImage = isRealPost ? post.image : post.src
               const postAlt = isRealPost
                 ? (post.caption
