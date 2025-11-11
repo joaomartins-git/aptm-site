@@ -137,8 +137,8 @@ export default function AboutPage() {
                     <p className="text-muted-foreground text-sm">
                       Estabelecimento dos mais altos padrões de prática clínica
                     </p>
-                  </Container>
-                </Container>
+                  </div>
+                </div>
                 <div className="flex items-start space-x-3">
                   <Target className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                   <div>
@@ -146,8 +146,8 @@ export default function AboutPage() {
                     <p className="text-muted-foreground text-sm">
                       Formação e desenvolvimento profissional permanente
                     </p>
-                  </Container>
-                </Container>
+                  </div>
+                </div>
                 <div className="flex items-start space-x-3">
                   <Users className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                   <div>
@@ -155,10 +155,10 @@ export default function AboutPage() {
                     <p className="text-muted-foreground text-sm">
                       Rede colaborativa de profissionais especializados
                     </p>
-                  </Container>
-                </Container>
-              </Container>
-            </Container>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
