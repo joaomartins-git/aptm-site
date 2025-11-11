@@ -161,6 +161,35 @@ If `RESEND_API_KEY` or `CONTACT_RECIPIENT` are not set, the form will:
 
 The contact API includes basic rate limiting (1 request per minute per IP) to prevent abuse.
 
+## Instagram Integration
+
+### Instagram Basic Display API Setup
+
+The Instagram section can display real posts from your Instagram account using the Instagram Basic Display API.
+
+1. Create a Facebook Developer account at [developers.facebook.com](https://developers.facebook.com)
+2. Create a new app and add "Instagram Basic Display" product
+3. Configure OAuth redirect URI: `{YOUR_SITE_URL}/api/auth/instagram/callback`
+4. Generate long-lived access token using Facebook's API explorer
+5. Get your Instagram User ID from the API response
+
+### Environment Variables
+
+Configure the following variables in your deployment environment:
+
+```env
+# Instagram Basic Display API
+IG_ACCESS_TOKEN=your_long_lived_access_token_here
+IG_USER_ID=your_numeric_instagram_user_id
+```
+
+### Development Mode
+
+If `IG_ACCESS_TOKEN` or `IG_USER_ID` are not set, the section will:
+- Display placeholder images instead of real Instagram posts
+- Link to your static Instagram profile URL
+- Perfect for development and testing
+
 ## 📊 SEO e Performance
 
 ### Meta Tags
