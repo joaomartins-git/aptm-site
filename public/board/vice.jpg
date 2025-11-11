@@ -1,0 +1,5 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" fill="#10b981"/>
+  <text x="100" y="90" font-family="Arial" font-size="24" fill="white" text-anchor="middle">VP</text>
+  <text x="100" y="120" font-family="Arial" font-size="16" fill="white" text-anchor="middle">Vice-Presidente</text>
+</svg>
