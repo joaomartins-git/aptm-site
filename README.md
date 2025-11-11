@@ -50,6 +50,9 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 ### ✅ Páginas Principais
 - **Home** (`/`) - Hero secção, serviços destacados, eventos, CTA
 - **About** (`/about`) - Missão, visão, equipa, histórico, estatísticas
+  - **História** (`/about/historia`) - Linha temporal com marcos importantes da APTM
+  - **Estatutos** (`/about/estatutos`) - Download e visualização dos estatutos da associação
+  - **Corpos Sociais** (`/about/corpos-sociais`) - Equipa diretiva atual organizada por cargos
 - **Services** (`/services`) - Catálogo completo de serviços e preços
 - **Events** (`/events`) - Placeholder com tipos de eventos e calendário
 - **Trainings** (`/trainings`) - Placeholder com programa de certificação
