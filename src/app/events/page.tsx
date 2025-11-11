@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Input } from '@/components/ui/Input'
+import Container from '@/components/ui/Container'
 import { Video, Users, MapPin, Calendar, Clock, Search, Star, Bell } from 'lucide-react'
 import { getEvents } from '@/lib/content'
 
