@@ -72,8 +72,8 @@ export async function HomeInstagram() {
     href: 'https://instagram.com/aptm'
   }))
 
-  // Real Instagram posts or fallback - use proper typing
-  const instagramPosts = !useFallback ? instagramResponse!.posts! : placeholderImages as any
+  // Real Instagram posts or fallback - properly typed
+  const instagramPosts: PostItem[] = !useFallback ? instagramResponse!.posts! : placeholderImages
 
   return (
     <section className="py-20 bg-background">
