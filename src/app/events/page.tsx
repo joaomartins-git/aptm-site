@@ -107,7 +107,7 @@ export default function EventsPage() {
               )
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Search and Filter */}
@@ -162,7 +162,7 @@ export default function EventsPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Upcoming Events */}
@@ -260,7 +260,7 @@ export default function EventsPage() {
               Ver Calendário Completo
             </Button>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Coming Soon Notice */}
@@ -286,7 +286,7 @@ export default function EventsPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Newsletter */}
@@ -314,7 +314,7 @@ export default function EventsPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   )
