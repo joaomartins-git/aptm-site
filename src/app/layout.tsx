@@ -85,7 +85,11 @@ export default function RootLayout({
         <div className="flex-1">
           <SkipLink href="#main">Skip to content</SkipLink>
           <Header />
-          <main id="main" role="main">{children}</main>
+          <main id="main" role="main">
+            <Container>
+              {children}
+            </Container>
+          </main>
         </div>
         <Footer />
       </body>
