@@ -71,7 +71,7 @@ export default function ServicesPage() {
 
       {/* Main Services */}
       <section className="py-20 bg-background" id="consulting">
-        <div className="container">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Serviços Principais
@@ -142,7 +142,7 @@ export default function ServicesPage() {
 
       {/* Additional Services */}
       <section className="py-20 bg-muted/30" id="additional-services">
-        <div className="container">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Serviços Adicionais
@@ -196,7 +196,7 @@ export default function ServicesPage() {
 
       {/* Process */}
       <section className="py-20 bg-background" id="process">
-        <div className="container">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Como Funciona
@@ -257,7 +257,7 @@ export default function ServicesPage() {
 
       {/* Testimonials */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               O Que Dizem Nossos Clientes
