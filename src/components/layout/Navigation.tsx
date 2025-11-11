@@ -13,7 +13,21 @@ const navigationItems: NavItem[] = [
   },
   {
     label: 'Sobre Nós',
-    href: '/about'
+    href: '/about',
+    submenu: [
+      {
+        label: 'História',
+        href: '/about/historia'
+      },
+      {
+        label: 'Estatutos',
+        href: '/about/estatutos'
+      },
+      {
+        label: 'Corpos Sociais',
+        href: '/about/corpos-sociais'
+      }
+    ]
   },
   {
     label: 'Serviços',

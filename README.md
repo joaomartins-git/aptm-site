@@ -50,6 +50,9 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 ### ✅ Páginas Principais
 - **Home** (`/`) - Hero secção, serviços destacados, eventos, CTA
 - **About** (`/about`) - Missão, visão, equipa, histórico, estatísticas
+  - **História** (`/about/historia`) - Linha temporal com marcos importantes da APTM
+  - **Estatutos** (`/about/estatutos`) - Download e visualização dos estatutos da associação
+  - **Corpos Sociais** (`/about/corpos-sociais`) - Equipa diretiva atual organizada por cargos
 - **Services** (`/services`) - Catálogo completo de serviços e preços
 - **Events** (`/events`) - Placeholder com tipos de eventos e calendário
 - **Trainings** (`/trainings`) - Placeholder com programa de certificação
@@ -70,6 +73,15 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - `Input` - Com labels e validation
 - `Textarea` - Para formulários
 - `Badge` - Para tags e status
+
+## About Section Structure
+
+- **PDF Documents**: Official documents stored in `public/docs/`
+  - `estatutos.pdf`: Association statutes (downloadable)
+- **Board Data**: Board members information in `src/data/board.json`
+  - Uses `BoardMember` and `BoardRole` types from `src/types/index.ts`
+  - Grouped by role: Presidente, Vice-Presidente, Secretário, Tesoureiro, Vogal
+- **Navigation**: About section has dropdown submenu with three pages
 
 ## 🚀 Setup e Instalação
 

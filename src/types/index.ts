@@ -93,3 +93,22 @@ export interface SiteMetadata {
   description: string;
   keywords: string[];
 }
+
+export const BOARD_ROLES = [
+  'Presidente',
+  'Vice-Presidente',
+  'Secretário',
+  'Tesoureiro',
+  'Vogal',
+] as const;
+
+export type BoardRole = typeof BOARD_ROLES[number];
+
+export interface BoardMember {
+  id: string;
+  name: string;
+  role: BoardRole;
+  term?: string;        // e.g., "2025–2027"
+  photo?: string;       // e.g., "/board/presidente.jpg"
+  email?: string;
+}
