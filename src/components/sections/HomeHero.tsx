@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
+import Container from '@/components/ui/Container'
 
 interface Slide {
   id: number
