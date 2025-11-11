@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { cn } from '@/lib/utils'
+import Container from '@/components/ui/Container'
 
 interface NavCard {
   id: string
