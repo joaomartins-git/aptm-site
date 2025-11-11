@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
-import Container from '@/components/ui/Container'
 
 interface Slide {
   id: number
@@ -144,7 +143,7 @@ export function HomeHero() {
 
       {/* Content */}
       <div className="relative z-10 h-full flex items-center">
-        <Container>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center text-white">
             {/* Slide content with transitions */}
             <div className="transition-all duration-700 ease-in-out">
@@ -164,12 +163,12 @@ export function HomeHero() {
               </Link>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
 
       {/* Navigation Controls */}
       <div className="absolute bottom-8 left-0 right-0 z-20">
-        <Container>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Previous Button */}
             <button
@@ -234,7 +233,7 @@ export function HomeHero() {
               </svg>
             </button>
           </div>
-        </Container>
+        </div>
       </div>
 
       {/* Screen reader announcements */}

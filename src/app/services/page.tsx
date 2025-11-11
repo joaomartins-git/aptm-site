@@ -6,7 +6,6 @@ import { Hero } from '@/components/sections/Hero'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import Container from '@/components/ui/Container'
 import { Users, Search, Handshake, Award, BookOpen, Target, CheckCircle, Clock } from 'lucide-react'
 import { getServices } from '@/lib/content'
 import type { Service, ServicesData  } from '@/types'
@@ -71,7 +70,7 @@ export default function ServicesPage() {
 
       {/* Main Services */}
       <section className="py-20 bg-background" id="consulting">
-        <Container>
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Serviços Principais
@@ -137,12 +136,12 @@ export default function ServicesPage() {
               )
             })}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Additional Services */}
       <section className="py-20 bg-muted/30" id="additional-services">
-        <Container>
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Serviços Adicionais
@@ -191,12 +190,12 @@ export default function ServicesPage() {
               )
             })}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Process */}
       <section className="py-20 bg-background" id="process">
-        <Container>
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Como Funciona
@@ -252,12 +251,12 @@ export default function ServicesPage() {
               )
             })}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Testimonials */}
       <section className="py-20 bg-muted/30">
-        <Container>
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               O Que Dizem Nossos Clientes
@@ -310,12 +309,12 @@ export default function ServicesPage() {
               </Card>
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Call to Action */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <Container className="text-center">
+        <div className="container text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Pronto para Elevar Sua Prática?
           </h2>
@@ -340,7 +339,7 @@ export default function ServicesPage() {
               Saber Mais
             </Button>
           </div>
-        </Container>
+        </div>
       </section>
     </>
   )

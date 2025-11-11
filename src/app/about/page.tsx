@@ -6,7 +6,6 @@ import { Hero } from '@/components/sections/Hero'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import Container from '@/components/ui/Container'
 import { Heart, Target, Award, Users, Calendar, MapPin } from 'lucide-react'
 
 const teamMembers = [
@@ -118,7 +117,7 @@ export default function AboutPage() {
 
       {/* Mission & Vision */}
       <section className="py-20 bg-background" id="mission">
-        <Container>
+        <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
@@ -256,12 +255,12 @@ export default function AboutPage() {
               </Card>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Statistics */}
       <section className="py-20 bg-muted/30">
-        <Container>
+        <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               APTM em Números
@@ -289,12 +288,12 @@ export default function AboutPage() {
               )
             })}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Team */}
       <section className="py-20 bg-background" id="team">
-        <Container>
+        <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Nossa Equipa
@@ -330,12 +329,12 @@ export default function AboutPage() {
               Contactar a Equipa
             </Button>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Timeline */}
       <section className="py-20 bg-muted/30">
-        <Container>
+        <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Nossa História
@@ -381,12 +380,12 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Call to Action */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <Container className="text-center">
+        <div className="container text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Junte-se à Nossa Comunidade
           </h2>
@@ -411,7 +410,7 @@ export default function AboutPage() {
               Saber Mais
             </Button>
           </div>
-        </Container>
+        </div>
       </section>
     </>
   )
