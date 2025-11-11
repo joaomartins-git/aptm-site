@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Input } from '@/components/ui/Input'
+import Container from '@/components/ui/Container'
 import { Video, Users, MapPin, Calendar, Clock, Search, Star, Bell } from 'lucide-react'
 import { getEvents } from '@/lib/content'
 
@@ -68,7 +69,7 @@ export default function EventsPage() {
 
       {/* Event Types Overview */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Tipos de Eventos
@@ -106,12 +107,12 @@ export default function EventsPage() {
               )
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Search and Filter */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
+        <Container>
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -161,12 +162,12 @@ export default function EventsPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Upcoming Events */}
       <section className="py-20 bg-background" id="upcoming-events">
-        <div className="container">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Próximos Eventos
@@ -259,12 +260,12 @@ export default function EventsPage() {
               Ver Calendário Completo
             </Button>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Coming Soon Notice */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
+        <Container>
           <div className="max-w-4xl mx-auto text-center bg-background rounded-2xl p-8 md:p-12 shadow-sm border">
             <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
               <Star className="h-8 w-8 text-primary" />
@@ -285,12 +286,12 @@ export default function EventsPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Newsletter */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <Container>
           <div className="max-w-2xl mx-auto text-center">
             <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
               <Bell className="h-8 w-8 text-primary" />
@@ -313,7 +314,7 @@ export default function EventsPage() {
               </Button>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   )

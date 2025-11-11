@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
+import Container from '@/components/ui/Container'
 import {
   Users,
   Search,
@@ -78,7 +79,7 @@ export function ServicesOverview() {
 
   return (
     <section className="py-20 bg-muted/30">
-      <div className="container">
+      <Container>
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Os Nossos Serviços
@@ -143,7 +144,7 @@ export function ServicesOverview() {
             Ver Todos os Serviços
           </Button>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
