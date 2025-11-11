@@ -6,6 +6,7 @@ import { Hero } from '@/components/sections/Hero'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
+import Container from '@/components/ui/Container'
 import { Heart, Target, Award, Users, Calendar, MapPin } from 'lucide-react'
 
 const teamMembers = [
