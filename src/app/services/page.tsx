@@ -315,7 +315,7 @@ export default function ServicesPage() {
 
       {/* Call to Action */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container text-center">
+        <Container className="text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Pronto para Elevar Sua Prática?
           </h2>
