@@ -2,37 +2,77 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Camera } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+
+// Instagram post interface
+interface InstagramPost {
+  id: string
+  image: string
+  caption: string
+  date: string
+  permalink: string
+  type: 'image' | 'video'
+  username: string
+}
+
+// Placeholder image interface
+interface PlaceholderImage {
+  id: number
+  src: string
+  alt: string
+  href: string
+}
+
+// Union type for posts (real Instagram or placeholder)
+type PostItem = InstagramPost | PlaceholderImage
+
+// API response interface
+interface InstagramApiResponse {
+  ok: boolean
+  posts?: InstagramPost[]
+  error?: string
+}
 
 /**
  * HomeInstagram Component
  *
- * Static placeholder Instagram gallery with future integration notes.
+ * Instagram gallery with real posts from Instagram Basic Display API.
+ * Falls back to placeholder images when API is not available.
  *
- * Future Instagram Basic Display API Integration:
- *
- * Required environment variables:
- * - IG_APP_ID: Instagram app ID
- * - IG_APP_SECRET: Instagram app secret
- * - IG_REDIRECT_URI: OAuth redirect URL
- * - IG_ACCESS_TOKEN: Long-lived access token
- *
- * Integration approach:
- * 1. Implement OAuth2 flow for user authentication
- * 2. Use Instagram Basic Display API to fetch media
- * 3. Cache media data to avoid rate limits
- * 4. Display actual Instagram posts with captions
- * 5. Link posts to Instagram for engagement
+ * Fetches 4 Instagram posts and displays them in a 2x2 grid.
+ * Each post links to its Instagram permalink in a new tab.
  */
-export function HomeInstagram() {
-  // Placeholder images - in production these would be fetched from Instagram API
-  const instagramImages = Array.from({ length: 6 }, (_, i) => ({
+export async function HomeInstagram() {
+  // Fetch Instagram data from our API route
+  let instagramResponse: InstagramApiResponse | null = null
+  let useFallback = false
+
+  try {
+    const response = await fetch('/api/instagram', {
+      // Use no-store to always get fresh data when not cached
+      cache: 'no-store'
+    })
+
+    if (response.ok) {
+      instagramResponse = await response.json()
+    }
+  } catch (error) {
+    console.error('Failed to fetch Instagram data:', error)
+  }
+
+  // Determine if we should use fallback (placeholder) behavior
+  useFallback = !instagramResponse?.ok || !instagramResponse?.posts || instagramResponse.posts.length === 0
+
+  // Fallback placeholder images when API fails or not configured
+  const placeholderImages = Array.from({ length: 6 }, (_, i) => ({
     id: i + 1,
     src: `/ig-${i + 1}.jpg`,
     alt: `Publicação APTM ${i + 1}`,
-    href: 'https://instagram.com/aptm' // Placeholder Instagram profile URL
+    href: 'https://instagram.com/aptm'
   }))
+
+  // Real Instagram posts or fallback - properly typed
+  const instagramPosts: PostItem[] = !useFallback ? instagramResponse!.posts! : placeholderImages
 
   return (
     <section className="py-20 bg-background">
@@ -74,32 +114,58 @@ export function HomeInstagram() {
 
         {/* Instagram Gallery Grid */}
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
-            {instagramImages.map((image) => (
-              <Link
-                key={image.id}
-                href={image.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative aspect-square group block overflow-hidden"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
+          <div className={cn(
+            "grid gap-1",
+            // Use 2-column grid for real Instagram posts, 2-3 columns for placeholders
+            useFallback
+              ? "grid-cols-2 md:grid-cols-3"
+              : "grid-cols-2"
+          )}>
+            {instagramPosts.map((post) => {
+              // Handle different post types (real Instagram vs placeholders)
+              const isRealPost = 'image' in post
+              const postImage = isRealPost ? post.image : post.src
+              const postAlt = isRealPost
+                ? (post.caption
+                    ? (post.caption.length > 100
+                        ? `${post.caption.slice(0, 100)}...`
+                        : post.caption)
+                    : `Instagram post by ${post.username}`)
+                : post.alt
+              const postLink = isRealPost ? post.permalink : post.href
 
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <Camera className="w-8 h-8 mx-auto mb-2" />
-                    <p className="text-sm font-medium">Ver no Instagram</p>
+              return (
+                <Link
+                  key={post.id}
+                  href={postLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-square group block overflow-hidden"
+                >
+                  <Image
+                    src={postImage}
+                    alt={postAlt}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    // Use appropriate sizes based on grid layout
+                    sizes={useFallback
+                      ? "(max-width: 768px) 50vw, 33vw"
+                      : "(max-width: 768px) 50vw, 50vw"
+                    }
+                  />
+
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="text-white text-center">
+                      <Camera className="w-8 h-8 mx-auto mb-2" />
+                      <p className="text-sm font-medium">
+                        {isRealPost ? 'Ver no Instagram' : 'Ver no Instagram'}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              )
+            })}
           </div>
         </div>
 
