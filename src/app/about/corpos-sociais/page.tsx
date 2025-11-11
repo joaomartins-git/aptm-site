@@ -1,15 +1,27 @@
 import { Metadata } from 'next'
 import { Card, CardContent } from '@/components/ui/Card'
-import boardMembers from '@/data/board.json'
-import type { BoardMember, BoardRole } from '@/types'
+import rawBoard from '@/data/board.json'
+import { BOARD_ROLES, type BoardMember, type BoardRole } from '@/types';
 
 const roleOrder: BoardRole[] = ['Presidente', 'Vice-Presidente', 'Secretário', 'Tesoureiro', 'Vogal']
 
+// Turn the raw JSON (role: string) into typed BoardMember (role: BoardRole)
+const boardMembers: BoardMember[] = (rawBoard as Array<
+  Omit<BoardMember, 'role'> & { role: string }
+>).map((m) => ({
+  ...m,
+  role: (BOARD_ROLES as readonly string[]).includes(m.role as BoardRole)
+    ? (m.role as BoardRole)
+    : 'Vogal',
+}));
+
+
+
 function groupMembersByRole(members: BoardMember[]) {
-  return roleOrder.map(role => ({
+  return BOARD_ROLES.map((role) => ({
     role,
-    members: members.filter(member => member.role === role)
-  }))
+    members: members.filter((m) => m.role === role),
+  }));
 }
 
 function getInitials(name: string): string {

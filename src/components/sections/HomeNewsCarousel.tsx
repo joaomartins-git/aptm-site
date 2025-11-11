@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getNews } from '@/lib/content'
 import { Card, CardContent } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { NewsItem } from '@/types/index'
 

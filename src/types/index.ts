@@ -94,12 +94,15 @@ export interface SiteMetadata {
   keywords: string[];
 }
 
-export type BoardRole =
-  | 'Presidente'
-  | 'Vice-Presidente'
-  | 'Secretário'
-  | 'Tesoureiro'
-  | 'Vogal';
+export const BOARD_ROLES = [
+  'Presidente',
+  'Vice-Presidente',
+  'Secretário',
+  'Tesoureiro',
+  'Vogal',
+] as const;
+
+export type BoardRole = typeof BOARD_ROLES[number];
 
 export interface BoardMember {
   id: string;

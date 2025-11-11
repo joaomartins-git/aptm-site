@@ -9,7 +9,7 @@ import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { EventsOverview } from "@/components/sections/EventsOverview";
 import { CallToAction } from "@/components/sections/CallToAction";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Heart, Target, Award, Users } from "lucide-react";
 

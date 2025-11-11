@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Hero } from '@/components/sections/Hero'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { Users, Award, Clock, MessageCircle } from 'lucide-react'
 
 const benefits = [

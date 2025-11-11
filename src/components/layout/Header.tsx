@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Menu, X, Search } from 'lucide-react'
 import Image from 'next/image'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { Navigation } from './Navigation'
 import { SearchBar } from './SearchBar'
 import { cn } from '@/lib/utils'
