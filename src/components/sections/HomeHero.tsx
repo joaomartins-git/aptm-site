@@ -138,9 +138,9 @@ export function HomeHero() {
             />
             {/* Dark overlay for text readability */}
             <div className="absolute inset-0 bg-black/40" />
-          </div>
+          </Container>
         ))}
-      </div>
+      </Container>
 
       {/* Content */}
       <div className="relative z-10 h-full flex items-center">
@@ -162,10 +162,10 @@ export function HomeHero() {
                   {currentSlideData.ctaLabel}
                 </Button>
               </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+            </Container>
+          </Container>
+        </Container>
+      </Container>
 
       {/* Navigation Controls */}
       <div className="absolute bottom-8 left-0 right-0 z-20">
@@ -210,7 +210,7 @@ export function HomeHero() {
                   )}
                 />
               ))}
-            </div>
+            </Container>
 
             {/* Next Button */}
             <button
@@ -233,9 +233,9 @@ export function HomeHero() {
                 />
               </svg>
             </button>
-          </div>
-        </div>
-      </div>
+          </Container>
+        </Container>
+      </Container>
 
       {/* Screen reader announcements */}
       <div
@@ -244,7 +244,7 @@ export function HomeHero() {
         className="sr-only"
       >
         Slide {currentSlide + 1} de {slides.length}: {currentSlideData.title}
-      </div>
+      </Container>
 
       {/* Gradient overlay at bottom for better transition to next section */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
