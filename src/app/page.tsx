@@ -34,7 +34,7 @@ export default function Home() {
       
       {/* About Preview Section */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
