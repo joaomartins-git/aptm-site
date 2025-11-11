@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "name": "Nome Apelido",
+    "role": "Presidente",
+    "term": "2025–2027",
+    "photo": "/board/presidente.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Nome Apelido",
+    "role": "Vice-Presidente",
+    "term": "2025–2027",
+    "photo": "/board/vice.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Nome Apelido",
+    "role": "Secretário",
+    "term": "2025–2027"
+  },
+  {
+    "id": "4",
+    "name": "Nome Apelido",
+    "role": "Tesoureiro",
+    "term": "2025–2027"
+  },
+  {
+    "id": "5",
+    "name": "Nome Apelido",
+    "role": "Vogal",
+    "term": "2025–2027"
+  }
+]
