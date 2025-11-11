@@ -177,8 +177,8 @@ export default function AboutPage() {
                     <p className="text-muted-foreground text-sm">
                       Referência nacional e internacional na área
                     </p>
-                  </Container>
-                </Container>
+                  </div>
+                </div>
                 <div className="flex items-start space-x-3">
                   <Target className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                   <div>
@@ -186,8 +186,8 @@ export default function AboutPage() {
                     <p className="text-muted-foreground text-sm">
                       Desenvolvimento constante de novas técnicas e abordagens
                     </p>
-                  </Container>
-                </Container>
+                  </div>
+                </div>
                 <div className="flex items-start space-x-3">
                   <Heart className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                   <div>
@@ -195,11 +195,11 @@ export default function AboutPage() {
                     <p className="text-muted-foreground text-sm">
                       Melhoria significativa na qualidade de vida dos pacientes
                     </p>
-                  </Container>
-                </Container>
-              </Container>
-            </Container>
-          </Container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Values */}
           <div className="text-center mb-20">
@@ -254,8 +254,8 @@ export default function AboutPage() {
                   </CardDescription>
                 </CardContent>
               </Card>
-            </Container>
-          </Container>
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -269,7 +269,7 @@ export default function AboutPage() {
             <p className="text-lg text-muted-foreground">
               O nosso crescimento e impacto ao longo dos anos
             </p>
-          </Container>
+          </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {statistics.map((stat, index) => {
@@ -278,17 +278,17 @@ export default function AboutPage() {
                 <div key={index} className="text-center">
                   <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                     <IconComponent className="h-8 w-8 text-primary" />
-                  </Container>
+                  </div>
                   <div className="text-3xl font-bold text-primary mb-2">
                     {stat.number}
-                  </Container>
+                  </div>
                   <div className="text-sm text-muted-foreground">
                     {stat.label}
-                  </Container>
-                </Container>
+                  </div>
+                </div>
               )
             })}
-          </Container>
+          </div>
         </Container>
       </section>
 
@@ -302,7 +302,7 @@ export default function AboutPage() {
             <p className="text-lg text-muted-foreground">
               Conheça os profissionais que lideram a APTM
             </p>
-          </Container>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {teamMembers.map((member) => (
@@ -310,7 +310,7 @@ export default function AboutPage() {
                 <CardHeader>
                   <div className="mx-auto w-24 h-24 bg-muted rounded-full flex items-center justify-center mb-4">
                     <Users className="h-12 w-12 text-muted-foreground" />
-                  </Container>
+                  </div>
                   <CardTitle className="text-xl">{member.name}</CardTitle>
                   <Badge variant="secondary" className="w-fit mx-auto">
                     {member.title}
@@ -323,13 +323,13 @@ export default function AboutPage() {
                 </CardContent>
               </Card>
             ))}
-          </Container>
+          </div>
 
           <div className="text-center">
             <Button onClick={() => router.push('/contact')}>
               Contactar a Equipa
             </Button>
-          </Container>
+          </div>
         </Container>
       </section>
 
@@ -343,7 +343,7 @@ export default function AboutPage() {
             <p className="text-lg text-muted-foreground">
               Principais marcos na nossa jornada de excelência
             </p>
-          </Container>
+          </div>
 
           <div className="max-w-4xl mx-auto">
             <div className="relative">
@@ -369,24 +369,24 @@ export default function AboutPage() {
                           ) : (
                             <div className="w-4 h-4 bg-primary rounded-full absolute left-0 transform -translate-x-8"></div>
                           )}
-                        </Container>
+                        </div>
                         <CardTitle className="text-lg">{milestone.title}</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <CardDescription>{milestone.description}</CardDescription>
                       </CardContent>
                     </Card>
-                  </Container>
-                </Container>
+                  </div>
+                </div>
               ))}
-            </Container>
-          </Container>
+            </div>
+          </div>
         </Container>
       </section>
 
       {/* Call to Action */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container text-center">
+        <Container className="text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Junte-se à Nossa Comunidade
           </h2>
@@ -410,7 +410,7 @@ export default function AboutPage() {
             >
               Saber Mais
             </Button>
-          </Container>
+          </div>
         </Container>
       </section>
     </>
