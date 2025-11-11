@@ -26,31 +26,43 @@ interface InstagramApiResponse {
 /**
  * HomeInstagram Component
  *
- * Static placeholder Instagram gallery with future integration notes.
+ * Instagram gallery with real posts from Instagram Basic Display API.
+ * Falls back to placeholder images when API is not available.
  *
- * Future Instagram Basic Display API Integration:
- *
- * Required environment variables:
- * - IG_APP_ID: Instagram app ID
- * - IG_APP_SECRET: Instagram app secret
- * - IG_REDIRECT_URI: OAuth redirect URL
- * - IG_ACCESS_TOKEN: Long-lived access token
- *
- * Integration approach:
- * 1. Implement OAuth2 flow for user authentication
- * 2. Use Instagram Basic Display API to fetch media
- * 3. Cache media data to avoid rate limits
- * 4. Display actual Instagram posts with captions
- * 5. Link posts to Instagram for engagement
+ * Fetches 4 Instagram posts and displays them in a 2x2 grid.
+ * Each post links to its Instagram permalink in a new tab.
  */
-export function HomeInstagram() {
-  // Placeholder images - in production these would be fetched from Instagram API
-  const instagramImages = Array.from({ length: 6 }, (_, i) => ({
+export async function HomeInstagram() {
+  // Fetch Instagram data from our API route
+  let instagramResponse: InstagramApiResponse | null = null
+  let useFallback = false
+
+  try {
+    const response = await fetch('/api/instagram', {
+      // Use no-store to always get fresh data when not cached
+      cache: 'no-store'
+    })
+
+    if (response.ok) {
+      instagramResponse = await response.json()
+    }
+  } catch (error) {
+    console.error('Failed to fetch Instagram data:', error)
+  }
+
+  // Determine if we should use fallback (placeholder) behavior
+  useFallback = !instagramResponse?.ok || !instagramResponse?.posts || instagramResponse.posts.length === 0
+
+  // Fallback placeholder images when API fails or not configured
+  const placeholderImages = Array.from({ length: 6 }, (_, i) => ({
     id: i + 1,
     src: `/ig-${i + 1}.jpg`,
     alt: `Publicação APTM ${i + 1}`,
-    href: 'https://instagram.com/aptm' // Placeholder Instagram profile URL
+    href: 'https://instagram.com/aptm'
   }))
+
+  // Real Instagram posts or fallback
+  const instagramPosts = !useFallback ? instagramResponse!.posts! : placeholderImages
 
   return (
     <section className="py-20 bg-background">
