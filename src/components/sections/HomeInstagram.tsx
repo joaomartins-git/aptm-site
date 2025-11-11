@@ -16,6 +16,17 @@ interface InstagramPost {
   username: string
 }
 
+// Placeholder image interface
+interface PlaceholderImage {
+  id: number
+  src: string
+  alt: string
+  href: string
+}
+
+// Union type for posts (real Instagram or placeholder)
+type PostItem = InstagramPost | PlaceholderImage
+
 // API response interface
 interface InstagramApiResponse {
   ok: boolean
