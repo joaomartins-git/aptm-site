@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
   title: 'Estatutos | APTM',
@@ -22,7 +22,8 @@ export default function EstatutosPage() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <Button asChild size="lg">
+          {/* Download button */}
+          {/* <Button asChild size="lg"> */}
             <a
               href="/docs/estatutos.pdf"
               download
@@ -30,9 +31,10 @@ export default function EstatutosPage() {
             >
               📄 Descarregar PDF
             </a>
-          </Button>
+          {/* </Button> */}
 
-          <Button variant="outline" size="lg" asChild>
+          {/* <Button variant="outline" size="lg" asChild> */}
+          {/* View online (outline style) */}
             <a
               href="/docs/estatutos.pdf"
               target="_blank"
@@ -41,7 +43,7 @@ export default function EstatutosPage() {
             >
               👁️ Ver Online
             </a>
-          </Button>
+          {/* </Button> */}
         </div>
 
         <div className="bg-muted/30 rounded-lg p-8">
