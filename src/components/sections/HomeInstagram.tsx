@@ -104,32 +104,58 @@ export async function HomeInstagram() {
 
         {/* Instagram Gallery Grid */}
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
-            {instagramImages.map((image) => (
-              <Link
-                key={image.id}
-                href={image.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative aspect-square group block overflow-hidden"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
+          <div className={cn(
+            "grid gap-1",
+            // Use 2-column grid for real Instagram posts, 2-3 columns for placeholders
+            useFallback
+              ? "grid-cols-2 md:grid-cols-3"
+              : "grid-cols-2"
+          )}>
+            {instagramPosts.map((post) => {
+              // Handle different post types (real Instagram vs placeholders)
+              const isRealPost = !useFallback && 'image' in post
+              const postImage = isRealPost ? post.image : post.src
+              const postAlt = isRealPost
+                ? (post.caption
+                    ? (post.caption.length > 100
+                        ? `${post.caption.slice(0, 100)}...`
+                        : post.caption)
+                    : `Instagram post by ${post.username}`)
+                : post.alt
+              const postLink = isRealPost ? post.permalink : post.href
 
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <Camera className="w-8 h-8 mx-auto mb-2" />
-                    <p className="text-sm font-medium">Ver no Instagram</p>
+              return (
+                <Link
+                  key={post.id}
+                  href={postLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-square group block overflow-hidden"
+                >
+                  <Image
+                    src={postImage}
+                    alt={postAlt}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    // Use appropriate sizes based on grid layout
+                    sizes={useFallback
+                      ? "(max-width: 768px) 50vw, 33vw"
+                      : "(max-width: 768px) 50vw, 50vw"
+                    }
+                  />
+
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="text-white text-center">
+                      <Camera className="w-8 h-8 mx-auto mb-2" />
+                      <p className="text-sm font-medium">
+                        {isRealPost ? 'Ver no Instagram' : 'Ver no Instagram'}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              )
+            })}
           </div>
         </div>
 
