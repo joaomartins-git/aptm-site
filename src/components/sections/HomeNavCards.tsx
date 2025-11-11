@@ -97,7 +97,7 @@ export function HomeNavCards() {
             )
           })}
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
