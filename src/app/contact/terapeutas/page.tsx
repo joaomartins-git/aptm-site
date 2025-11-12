@@ -129,7 +129,7 @@ export default function TherapistFinderPage() {
             placeholder="Filtrar por nome..."
             value={nameFilter}
             onChange={(e) => setNameFilter(e.target.value)}
-            icon={Search}
+            leftIcon={<Search className="h-4 w-4" />}
             label="Pesquisar por nome"
           />
         </div>
