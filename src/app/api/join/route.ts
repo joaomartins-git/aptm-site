@@ -25,8 +25,7 @@ const joinFormSchema = z.object({
     .or(z.literal('')),
   profissao: z
     .enum(PROFESSIONS, {
-      required_error: "Por favor, selecione uma profissão",
-      invalid_type_error: "Profissão inválida"
+      message: "Por favor, selecione uma profissão"
     }),
   numCedula: z
     .string()
