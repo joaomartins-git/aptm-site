@@ -23,21 +23,21 @@ const navCards: NavCard[] = [
   {
     id: 'events',
     title: 'Eventos',
-    description: 'Próximos eventos e workshops especializados',
+    description: 'Acompanhe nossa agenda e participe dos próximos eventos científicos',
     href: '/events',
     icon: Calendar
   },
   {
     id: 'trainings',
     title: 'Formações',
-    description: 'Cursos e certificações profissionais',
+    description: 'Consulte o calendário de formações e invista na sua atualização profissional',
     href: '/trainings',
     icon: GraduationCap
   },
   {
     id: 'services',
     title: 'Serviços',
-    description: 'Terapia da mão e membro superior',
+    description: 'O nosso compromisso é promover a excelência no cuidado e na reeducação, fortalecendo o papel transformador da Terapia da Mão na vida das pessoas',
     href: '/services',
     icon: Hand
   },

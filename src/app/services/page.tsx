@@ -57,7 +57,7 @@ export default function ServicesPage() {
       <Hero
         subtitle="Nossos Serviços"
         title="Excelência em Terapia da Mão"
-        description="Oferecemos uma gama completa de serviços especializados para profissionais e instituições de saúde, promovendo a excelência clínica e desenvolvimento profissional contínuo."
+        description="A Associação disponibiliza apoio técnico, científico e educativo aos seus associados e à comunidade."
         primaryAction={{
           label: "Contactar-nos",
           href: "/contact"

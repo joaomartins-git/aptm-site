@@ -55,7 +55,7 @@ export default function EventsPage() {
       <Hero
         subtitle="Eventos"
         title="Aprendizagem e Desenvolvimento Contínuo"
-        description="Participe nos nossos eventos, webinars e workshops para manter-se atualizado com as mais recentes developões e melhores práticas em terapia da mão."
+        description="A APTM organiza periodicamente congressos, simpósios e jornadas científicas com o objetivo de promover o intercâmbio de conhecimentos entre especialista na área da mão. Esses encontros visam fortalecer a prática baseada em evidências, estimular a produção científica e incentivar o networking entre terapeutas e instituições."
         primaryAction={{
           label: "Inscrever-se em Eventos",
           href: "/contact"

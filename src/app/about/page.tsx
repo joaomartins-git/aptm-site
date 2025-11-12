@@ -104,7 +104,7 @@ export default function AboutPage() {
       <Hero
         subtitle="Sobre Nós"
         title="Conheça a APTM"
-        description="Líderes em excelência e desenvolvimento da terapia da mão em Portugal, promovendo educação, investigação e colaboração profissional."
+        description="Excelência e desenvolvimento da terapia da mão em Portugal, promovendo educação, investigação e colaboração profissional."
         primaryAction={{
           label: "Tornar-se Membro",
           href: "/contact"
@@ -121,12 +121,10 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                Nossa Missão
+                Missão
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Promover a excelência no tratamento da mão e membro superior através de educação
-                contínua, investigação científica e prática baseada em evidências. Representamos e
-                apoiamos os profissionais de terapia da mão em Portugal.
+                Promover o desenvolvimento científico, técnico e humano da Terapia da Mão, através da formação contínua, da investigação e da divulgação de conhecimento e do apoio aos profissionais e à comunidade. Trabalhamos para elevar os padrões de qualidade no cuidado e na reeducação do membro superior e mão, contribuindo para a melhoria da funcionalidade e qualidade de vida das pessoas.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
@@ -161,12 +159,10 @@ export default function AboutPage() {
 
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                Nossa Visão
+                Visão
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Ser a referência nacional e internacional em terapia da mão,
-                reconhecida pela qualidade, inovação e impacto dos nossos profissionais
-                na saúde e bem-estar dos pacientes.
+                Ser uma referência nacional e internacional na promoção, formação e valorização da Terapia da Mão, reconhecida pela excelência, ética e compromisso com a inovação e o bem-estar humano.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
@@ -203,7 +199,7 @@ export default function AboutPage() {
           {/* Values */}
           <div className="text-center mb-20">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-              Os Nossos Valores
+              Valores
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <Card className="text-center">

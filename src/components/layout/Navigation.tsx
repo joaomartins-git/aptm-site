@@ -184,7 +184,7 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
               onMouseEnter={() => handleMouseEnter(item.label)}
               onMouseLeave={handleMouseLeave}
             >
-              <button
+              {/* <button
                 id={dropdownId}
                 onClick={() => handleDropdownToggle(item.label)}
                 onKeyDown={(e) => handleDropdownKeyDown(e, item.label)}
@@ -205,7 +205,50 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
                   )}
                   aria-hidden="true"
                 />
-              </button>
+              </button> */}
+              <div
+  className={cn(
+    itemClasses(item.href, isActive),
+    "flex items-center justify-between w-full"
+  )}
+>
+  {/* Parent link now navigates to the item's page (e.g., /about) */}
+  <Link
+    href={item.href}
+    className={cn("flex-1 text-left", mobile && "pr-2")}
+    onClick={() => {
+      if (mobile) onCloseMenu?.()
+    }}
+  >
+    {item.label}
+  </Link>
+
+  {/* Separate caret button only toggles the submenu */}
+  <button
+    type="button"
+    id={dropdownId}
+    aria-haspopup="menu"
+    aria-expanded={activeDropdown === item.label}
+    aria-controls={activeDropdown === item.label ? `${dropdownId}-menu` : undefined}
+    onClick={(e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      handleDropdownToggle(item.label)
+    }}
+    onKeyDown={(e) => handleDropdownKeyDown(e, item.label)}
+    className="ml-2 p-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+  >
+    <ChevronDown
+      className={cn(
+        "h-4 w-4 transition-transform duration-200",
+        activeDropdown === item.label ? "rotate-180" : ""
+      )}
+      aria-hidden="true"
+    />
+    <span className="sr-only">Abrir submenu de {item.label}</span>
+  </button>
+</div>
+
 
               {activeDropdown === item.label && item.submenu && (
                 <div
