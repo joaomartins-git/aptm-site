@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
         const resend = new Resend(resendApiKey)
 
         // Read file content for attachment
-        let attachment: any = undefined
+        let attachment: { filename: string; content: Buffer } | undefined = undefined
         try {
           const fileBuffer = await file.arrayBuffer()
           attachment = {
