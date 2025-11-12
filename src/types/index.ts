@@ -112,3 +112,24 @@ export interface BoardMember {
   photo?: string;       // e.g., "/board/presidente.jpg"
   email?: string;
 }
+
+export type District =
+  | 'Aveiro' | 'Beja' | 'Braga' | 'Bragança' | 'Castelo Branco' | 'Coimbra'
+  | 'Évora' | 'Faro' | 'Guarda' | 'Leiria' | 'Lisboa' | 'Portalegre'
+  | 'Porto' | 'Santarém' | 'Setúbal' | 'Viana do Castelo'
+  | 'Vila Real' | 'Viseu' | 'Açores' | 'Madeira';
+
+export interface Therapist {
+  id: string;
+  name: string;
+  district: District;
+  profession: 'Terapeuta da Mão' | 'TO' | 'FT' | 'Cirurgião' | 'Outro';
+  institution?: string;
+  address?: string;
+  email?: string;
+  phone?: string;
+  website?: string;
+  lat?: number;
+  lng?: number;
+  specialties?: string[];
+}

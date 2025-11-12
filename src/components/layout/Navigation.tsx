@@ -74,8 +74,18 @@ const navigationItems: NavItem[] = [
     ]
   },
   {
-    label: 'Contacto',
-    href: '/contact'
+    label: 'Contactos',
+    href: '/contact',
+    submenu: [
+      {
+        label: 'Geral',
+        href: '/contact'
+      },
+      {
+        label: 'Encontrar Terapeuta',
+        href: '/contact/terapeutas'
+      }
+    ]
   }
 ]
 
