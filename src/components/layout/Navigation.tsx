@@ -60,6 +60,20 @@ const navigationItems: NavItem[] = [
     href: '/trainings'
   },
   {
+    label: 'Sócios',
+    href: '/join',
+    submenu: [
+      {
+        label: 'Tornar-se Sócio',
+        href: '/join'
+      },
+      {
+        label: 'Benefícios',
+        href: '/join/beneficios'
+      }
+    ]
+  },
+  {
     label: 'Contacto',
     href: '/contact'
   }
