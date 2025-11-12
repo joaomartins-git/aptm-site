@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { Camera } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
+const INSTAGRAM_ENABLED = !!process.env.IG_ACCESS_TOKEN && !!process.env.IG_USER_ID && !process.env.DISABLE_INSTAGRAM
+const REVALIDATE_IG = 900;
+
 // Instagram post interface
 interface InstagramPost {
   id: string
@@ -47,14 +50,24 @@ export async function HomeInstagram() {
   let instagramResponse: InstagramApiResponse | null = null
   let useFallback = false
 
-  try {
-    const response = await fetch('/api/instagram', {
-      // Use no-store to always get fresh data when not cached
-      cache: 'no-store'
-    })
+  // try {
+  //   const response = await fetch('/api/instagram', {
+  //     // Use no-store to always get fresh data when not cached
+  //     cache: 'no-store'
+  //   })
 
-    if (response.ok) {
-      instagramResponse = await response.json()
+  //   if (response.ok) {
+  //     instagramResponse = await response.json()
+  //   }
+  // } catch (error) {
+  //   console.error('Failed to fetch Instagram data:', error)
+  // }
+
+  try {
+    if (INSTAGRAM_ENABLED) {
+      const base = process.env.NEXT_PUBLIC_SITE_URL ?? ''
+      const res = await fetch(`${base}/api/instagram`, { next: { revalidate: REVALIDATE_IG } })
+      if (res.ok) instagramResponse = await res.json()
     }
   } catch (error) {
     console.error('Failed to fetch Instagram data:', error)
@@ -68,7 +81,7 @@ export async function HomeInstagram() {
     id: i + 1,
     src: `/ig-${i + 1}.jpg`,
     alt: `Publicação APTM ${i + 1}`,
-    href: 'https://instagram.com/aptm'
+    href: 'https://instagram.com/apterapiamao'
   }))
 
   // Real Instagram posts or fallback - properly typed
@@ -93,7 +106,7 @@ export async function HomeInstagram() {
 
           {/* Instagram Follow Button */}
           <Link
-            href="https://instagram.com/aptm"
+            href="https://instagram.com/apterapiamao"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"

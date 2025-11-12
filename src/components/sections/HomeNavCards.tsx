@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import {
@@ -58,7 +60,7 @@ export function HomeNavCards() {
             Explorar APTM
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Descubra os nossos serviços, eventos, formações e como podemos ajudar no seu desenvolvimento profissional.
+            Descubra os nossos eventos, formações e serviços e como podemos potenciar o seu desenvolvimento profissional.
           </p>
         </div>
 

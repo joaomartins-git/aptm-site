@@ -44,7 +44,8 @@ async function fetchInstagramMedia(): Promise<InstagramPost[]> {
 
   // Validate environment variables
   if (!accessToken || !userId) {
-    throw new Error('Missing environment variables: IG_ACCESS_TOKEN and IG_USER_ID are required')
+    //throw new Error('Missing environment variables: IG_ACCESS_TOKEN and IG_USER_ID are required')
+    return [];
   }
 
   const url = `https://graph.instagram.com/${userId}/media?fields=id,caption,media_url,thumbnail_url,permalink,media_type,timestamp,username&limit=8&access_token=${accessToken}`
