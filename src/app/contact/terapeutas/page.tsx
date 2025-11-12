@@ -16,6 +16,44 @@ const districts: District[] = [
   'Viseu', 'Açores', 'Madeira'
 ]
 
+// Move GoogleMapEmbed component outside of render function
+const GoogleMapEmbed = ({ therapist }: { therapist: Therapist }) => {
+  const hasCoordinates = therapist.lat && therapist.lng
+  const hasApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
+
+  if (hasCoordinates && hasApiKey) {
+    return (
+      <iframe
+        src={`https://www.google.com/maps/embed/v1/place?key=${hasApiKey}&q=${therapist.lat},${therapist.lng}`}
+        width="100%"
+        height="300"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title={`Localização de ${therapist.name}`}
+        className="rounded-lg"
+      />
+    )
+  }
+
+  const mapQuery = therapist.address
+    ? encodeURIComponent(`${therapist.name}, ${therapist.address}`)
+    : encodeURIComponent(`${therapist.name}, ${therapist.district}`)
+
+  return (
+    <a
+      href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center text-primary hover:underline"
+    >
+      <MapPin className="h-4 w-4 mr-2" aria-hidden="true" />
+      Ver no Google Maps
+    </a>
+  )
+}
+
 export default function TherapistFinderPage() {
   const [selectedDistrict, setSelectedDistrict] = useState<District | ''>('')
   const [selectedTherapist, setSelectedTherapist] = useState<string>('')
@@ -43,45 +81,10 @@ export default function TherapistFinderPage() {
 
   // Reset therapist selection when district changes
   useEffect(() => {
-    setSelectedTherapist('')
-  }, [selectedDistrict])
-
-  const GoogleMapEmbed = ({ therapist }: { therapist: Therapist }) => {
-    const hasCoordinates = therapist.lat && therapist.lng
-    const hasApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
-
-    if (hasCoordinates && hasApiKey) {
-      return (
-        <iframe
-          src={`https://www.google.com/maps/embed/v1/place?key=${hasApiKey}&q=${therapist.lat},${therapist.lng}`}
-          width="100%"
-          height="300"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title={`Localização de ${therapist.name}`}
-          className="rounded-lg"
-        />
-      )
+    if (selectedDistrict) {
+      setSelectedTherapist('')
     }
-
-    const mapQuery = therapist.address
-      ? encodeURIComponent(`${therapist.name}, ${therapist.address}`)
-      : encodeURIComponent(`${therapist.name}, ${therapist.district}`)
-
-    return (
-      <a
-        href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center text-primary hover:underline"
-      >
-        <MapPin className="h-4 w-4 mr-2" aria-hidden="true" />
-        Ver no Google Maps
-      </a>
-    )
-  }
+  }, [selectedDistrict])
 
   return (
     <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 py-16">
