@@ -231,7 +231,14 @@ export async function POST(request: NextRequest) {
           </div>
         `
 
-        const emailPayload: any = {
+        const emailPayload: {
+          from: string
+          to: string[]
+          subject: string
+          html: string
+          reply_to: string
+          attachments?: { filename: string; content: Buffer }[]
+        } = {
           from: 'APTM Join Form <onboarding@resend.dev>',
           to: [contactRecipient],
           subject: `Nova candidatura de sócio: ${data.nome}`,
