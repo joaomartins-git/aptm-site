@@ -63,8 +63,7 @@ export const joinFormSchema = z.object({
     .optional(),
   plano: z
     .enum(["semestral", "anual"], {
-      required_error: "Por favor, selecione um plano",
-      invalid_type_error: "Plano inválido"
+      message: "Por favor, selecione um plano"
     }),
   comprovativo: z
     .instanceof(File, { message: "Por favor, selecione um ficheiro" })
