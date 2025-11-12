@@ -81,9 +81,6 @@ export default function JoinPage() {
           })
         }
       }
-    } catch (error) {
-      setSubmitStatus('error')
-      setSubmitMessage('Ocorreu um erro ao submeter a candidatura. Por favor, tente novamente.')
     } finally {
       setIsSubmitting(false)
     }
