@@ -36,7 +36,7 @@ export default function JoinPage() {
     }
   })
 
-  watch('plano')
+  const { watch } = useForm<JoinFormInput>({
 
   const onSubmit = async (data: JoinFormInput) => {
     setIsSubmitting(true)
