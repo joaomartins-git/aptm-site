@@ -7,14 +7,14 @@ import type { SelectHTMLAttributes } from 'react'
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string
   error?: string
-  options: Array<{
+  options?: Array<{
     value: string
     label: string
   }>
 }
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, label, error, id, options, children, ...props }, ref) => {
+  ({ className, label, error, id, options = [], children, ...props }, ref) => {
     const [generatedId] = React.useState(() => `select-${Math.random().toString(36).substr(2, 9)}`)
     const selectId = id || generatedId
     const errorId = error ? `${selectId}-error` : undefined
