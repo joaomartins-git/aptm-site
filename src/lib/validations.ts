@@ -51,8 +51,7 @@ export const joinFormSchema = z.object({
     .optional(),
   distrito: z
     .enum(PORTUGUESE_DISTRICTS, {
-      required_error: "Por favor, selecione um distrito",
-      invalid_type_error: "Distrito inválido"
+      message: "Por favor, selecione um distrito"
     }),
   instituicao: z
     .string()
