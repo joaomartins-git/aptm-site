@@ -36,8 +36,6 @@ export default function JoinPage() {
     }
   })
 
-  const { watch } = useForm<JoinFormInput>({
-
   const onSubmit = async (data: JoinFormInput) => {
     setIsSubmitting(true)
     setSubmitStatus('idle')
