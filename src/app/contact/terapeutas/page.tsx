@@ -116,7 +116,7 @@ export default function TherapistFinderPage() {
           <Select
             id="therapist-select"
             label="Terapeuta"
-            value={selectedTherapist}
+            value={validSelectedTherapist}
             onChange={(e) => setSelectedTherapist(e.target.value)}
             disabled={!selectedDistrict}
             options={filteredTherapists.map(therapist => ({
