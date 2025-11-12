@@ -76,8 +76,8 @@ export default function TherapistFinderPage() {
   }, [selectedDistrict, nameFilter])
 
   const selectedTherapistData = useMemo(() => {
-    return filteredTherapists.find(t => t.id === selectedTherapist)
-  }, [filteredTherapists, selectedTherapist])
+    return filteredTherapists.find(t => t.id === validSelectedTherapist)
+  }, [filteredTherapists, validSelectedTherapist])
 
   // Reset therapist selection when district changes - using derived state approach
   const validSelectedTherapist = useMemo(() => {
