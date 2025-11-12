@@ -79,12 +79,13 @@ export default function TherapistFinderPage() {
     return filteredTherapists.find(t => t.id === selectedTherapist)
   }, [filteredTherapists, selectedTherapist])
 
-  // Reset therapist selection when district changes
-  useEffect(() => {
-    if (selectedDistrict) {
-      setSelectedTherapist('')
-    }
-  }, [selectedDistrict])
+  // Reset therapist selection when district changes - using derived state approach
+  const validSelectedTherapist = useMemo(() => {
+    if (!selectedTherapist) return ''
+    // Check if selected therapist is still in the filtered list
+    const therapistExists = filteredTherapists.some(t => t.id === selectedTherapist)
+    return therapistExists ? selectedTherapist : ''
+  }, [filteredTherapists, selectedTherapist])
 
   return (
     <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 py-16">
