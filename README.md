@@ -161,6 +161,55 @@ If `RESEND_API_KEY` or `CONTACT_RECIPIENT` are not set, the form will:
 
 The contact API includes basic rate limiting (1 request per minute per IP) to prevent abuse.
 
+## Sócios / Inscrições
+
+The membership application system allows users to apply for APTM membership with form validation, file upload, and email notifications.
+
+### Site Configuration
+
+Membership fees and payment information are configured in `src/lib/site.ts`:
+
+```typescript
+export const IBAN = 'PT50 0035 0000 0001234567 89'
+export const MBWAY_PHONE = '+351 912 345 678'
+export const MEMBERSHIP_FEES = {
+  semestral: 85,
+  anual: 150,
+}
+```
+
+### Environment Variables
+
+Configure the following variables to enable real email delivery for membership applications:
+
+```env
+# Email delivery for join applications (optional)
+RESEND_API_KEY=re_your_api_key_here
+CONTACT_RECIPIENT=your-email@example.com
+
+# File upload configuration (optional)
+MAX_UPLOAD_MB=5
+```
+
+### Features
+
+- **Form Validation**: React Hook Form + Zod validation with Portuguese error messages
+- **File Upload**: Receipt upload (PDF, JPG, PNG) with 5MB limit
+- **Rate Limiting**: 1 request per minute per IP to prevent abuse
+- **Email Delivery**: Automatic email with application details and file attachment
+- **Development Mode**: Console logging when email credentials not configured
+
+### Pages
+
+- `/join` - Main membership application form
+- `/join/beneficios` - Benefits information page
+
+### Navigation
+
+The "Sócios" menu item appears in the main navigation with:
+- Tornar-se Sócio → `/join`
+- Benefícios → `/join/beneficios`
+
 ## Instagram Integration
 
 ### Instagram Basic Display API Setup
