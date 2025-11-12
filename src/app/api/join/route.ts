@@ -48,8 +48,7 @@ const joinFormSchema = z.object({
     .or(z.literal('')),
   plano: z
     .enum(["semestral", "anual"], {
-      required_error: "Por favor, selecione um plano",
-      invalid_type_error: "Plano inválido"
+      message: "Por favor, selecione um plano"
     })
 })
 
