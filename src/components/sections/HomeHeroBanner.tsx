@@ -13,12 +13,12 @@ export function HomeHeroBanner() {
         <div className="max-w-4xl mx-auto text-center py-24 lg:py-32">
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-            APTM — Terapia da Mão
+            Associação Portuguesa de Terapia da Mão
           </h1>
 
           {/* Description */}
           <p className="text-lg sm:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Excelência em reabilitação da mão e membro superior. Junte-se à comunidade de profissionais especializados.
+            Excelência em Reeducação da Mão e Membro Superior. 
           </p>
 
           {/* Primary CTA */}
@@ -28,7 +28,7 @@ export function HomeHeroBanner() {
                 size="lg"
                 className="w-full sm:w-auto bg-background text-foreground hover:bg-background/90 focus-visible:ring-background"
               >
-                Tornar-me membro
+                Junte-se à Comunidade de Terapeutas da Mão 
               </Button>
             </Link>
           </div>

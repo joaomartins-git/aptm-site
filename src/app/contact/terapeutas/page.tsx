@@ -20,8 +20,9 @@ const districts: District[] = [
 const GoogleMapEmbed = ({ therapist }: { therapist: Therapist }) => {
   const hasCoordinates = therapist.lat && therapist.lng
   const hasApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
-
-  if (hasCoordinates && hasApiKey) {
+  const enableMaps = process.env.NEXT_PUBLIC_ENABLE_MAPS === 'true' // used for disabeling the Googgle Maps, for fast rendering
+  
+  if (enableMaps && hasCoordinates && hasApiKey) {
     return (
       <iframe
         src={`https://www.google.com/maps/embed/v1/place?key=${hasApiKey}&q=${therapist.lat},${therapist.lng}`}

@@ -72,7 +72,7 @@ export default function TrainingsPage() {
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Por que Escolher Nossas Formações?
+              Porquê Escolher Nossas Formações?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Oferecemos programas de alta qualidade com reconhecimento e benefícios para sua carreira

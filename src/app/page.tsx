@@ -1,4 +1,4 @@
-'use client'
+//'use client'
 
 import { HomeHeroBanner } from "@/components/sections/HomeHeroBanner";
 import { HomeNewsCarousel } from "@/components/sections/HomeNewsCarousel";
@@ -12,6 +12,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Heart, Target, Award, Users } from "lucide-react";
+
+export const dynamic = 'force-static';
+export const revalidate = 60; // or your preferred number
 
 export default function Home() {
   return (
@@ -70,9 +73,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Button onClick={() => window.location.href = '/about'}>
-                Saber Mais Sobre Nós
-              </Button>
+              <Link href="/about" className="inline-block">
+                <Button>Saber Mais Sobre Nós</Button>
+              </Link>
+              {/* <Button asChild>
+                <Link href={'/about'}></Link>Saber Mais Sobre Nós
+              </Button> */}
+
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
