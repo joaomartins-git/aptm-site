@@ -240,6 +240,39 @@ If `IG_ACCESS_TOKEN` or `IG_USER_ID` are not set, the section will:
 - Link to your static Instagram profile URL
 - Perfect for development and testing
 
+## Therapist Finder Feature
+
+### Overview
+The therapist finder allows users to search for hand therapy professionals by district and name, with detailed profiles and optional Google Maps integration.
+
+### Data Management
+- **Location:** `src/data/therapists.json`
+- **Format:** Array of Therapist objects with id, name, district, profession, contact info
+- **Districts:** All 20 Portuguese districts plus Açores and Madeira
+- **Update:** Direct JSON file editing for therapist information management
+
+### Filtering Logic
+1. **District Filter:** Required - enables therapist dropdown selection
+2. **Name Search:** Optional - text-based filtering of therapist names
+3. **Combined Filters:** Both filters work together for precise searching
+
+### Map Integration
+- **With API Key:** Embedded Google Maps iframe using coordinates
+- **Without API Key:** Google Maps search link using address/name
+- **Environment Variable:** `NEXT_PUBLIC_GOOGLE_MAPS_KEY` (optional)
+
+### Accessibility
+- Full keyboard navigation (Tab, Arrow, Escape keys)
+- Screen reader announcements via aria-live regions
+- Proper ARIA labels and descriptions
+- High contrast color compliance
+- Touch-friendly interface elements
+
+### Navigation
+- **Main Menu:** Contactos → Encontrar Terapeuta
+- **Direct URL:** `/contact/terapeutas`
+- **Breadcrumb:** Início → Contactos → Encontrar Terapeuta
+
 ## 📊 SEO e Performance
 
 ### Meta Tags
