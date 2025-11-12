@@ -1,5 +1,6 @@
 import { z } from "zod"
 import type { ContactForm } from "@/types"
+import { PROFESSIONS, PORTUGUESE_DISTRICTS } from "./site"
 
 export const contactFormSchema = z.object({
   name: z
