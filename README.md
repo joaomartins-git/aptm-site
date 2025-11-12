@@ -57,6 +57,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - **Events** (`/events`) - Placeholder com tipos de eventos e calendário
 - **Trainings** (`/trainings`) - Placeholder com programa de certificação
 - **Contact** (`/contact`) - Formulário de contacto, FAQ, localização
+  - **Encontrar Terapeuta** (`/contact/terapeutas`) - Busca de terapeutas por distrito
 
 ### ✅ Componentes e Funcionalidades
 - **Header** - Navegação responsiva com dropdowns
