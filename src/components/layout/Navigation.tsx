@@ -95,7 +95,7 @@ const navigationItems: NavItem[] = [
 ]
 
 // Function to get auth-dependent navigation items
-const getNavigationItems = (): NavItem[] => {
+const getNavigationItems = (session: any): NavItem[] => {
   return navigationItems.map(item => {
     if (item.label === 'Área de Sócios') {
       return {
