@@ -188,7 +188,7 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
       : "mt-1"
   )
 
-  const currentNavigationItems = getNavigationItems()
+  const currentNavigationItems = getNavigationItems(session)
 
   return (
     <nav className={navClasses}>
