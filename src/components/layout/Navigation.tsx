@@ -188,9 +188,11 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
       : "mt-1"
   )
 
+  const currentNavigationItems = getNavigationItems()
+
   return (
     <nav className={navClasses}>
-      {navigationItems.map((item) => {
+      {currentNavigationItems.map((item) => {
         const hasSubmenu = item.submenu && item.submenu.length > 0
         const isActive = false // TODO: Implement active page detection
 
