@@ -1,4 +1,4 @@
-import { auth } from '@/auth'
+import { auth } from '../app/api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
 
 export async function requireAuth() {
