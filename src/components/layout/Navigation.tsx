@@ -102,6 +102,7 @@ interface NavigationProps {
 export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const { data: session } = useSession()
 
   const handleMouseEnter = (label: string) => {
     if (mobile) return
