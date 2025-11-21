@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { NavItem } from '@/types'
+import { useSession } from 'next-auth/react'
 
 const navigationItems: NavItem[] = [
   {
