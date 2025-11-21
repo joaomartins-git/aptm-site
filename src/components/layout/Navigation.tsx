@@ -75,6 +75,10 @@ const navigationItems: NavItem[] = [
     ]
   },
   {
+    label: 'Área de Sócios',
+    href: '/socio/area'
+  },
+  {
     label: 'Contactos',
     href: '/contact',
     submenu: [
