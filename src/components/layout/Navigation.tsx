@@ -94,6 +94,19 @@ const navigationItems: NavItem[] = [
   }
 ]
 
+// Function to get auth-dependent navigation items
+const getNavigationItems = (): NavItem[] => {
+  return navigationItems.map(item => {
+    if (item.label === 'Área de Sócios') {
+      return {
+        ...item,
+        label: session ? 'Área de Sócios (Perfil)' : 'Área de Sócios (Login)'
+      }
+    }
+    return item
+  })
+}
+
 interface NavigationProps {
   mobile?: boolean
   onCloseMenu?: () => void
