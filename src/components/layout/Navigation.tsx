@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { NavItem } from '@/types'
+import { useSession } from 'next-auth/react'
 
 const navigationItems: NavItem[] = [
   {
@@ -74,6 +75,10 @@ const navigationItems: NavItem[] = [
     ]
   },
   {
+    label: 'Área de Sócios',
+    href: '/socio/area'
+  },
+  {
     label: 'Contactos',
     href: '/contact',
     submenu: [
@@ -89,6 +94,21 @@ const navigationItems: NavItem[] = [
   }
 ]
 
+// Function to get auth-dependent navigation items
+const getNavigationItems = (isAuthenticated: boolean): NavItem[] => {
+  return navigationItems.map((item) => {
+    if (item.label === 'Área de Sócios') {
+      return {
+        ...item,
+        label: isAuthenticated
+          ? 'Área de Sócios (Perfil)'
+          : 'Área de Sócios (Login)',
+      }
+    }
+    return item
+  })
+}
+
 interface NavigationProps {
   mobile?: boolean
   onCloseMenu?: () => void
@@ -97,6 +117,7 @@ interface NavigationProps {
 export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const { data: session } = useSession()
 
   const handleMouseEnter = (label: string) => {
     if (mobile) return
@@ -168,10 +189,12 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
       ? "relative top-0 left-0 mt-1 w-full shadow-none border border-border"
       : "mt-1"
   )
+  const isAuthenticated = !!session
+  const currentNavigationItems = getNavigationItems(isAuthenticated)
 
   return (
     <nav className={navClasses}>
-      {navigationItems.map((item) => {
+      {currentNavigationItems.map((item) => {
         const hasSubmenu = item.submenu && item.submenu.length > 0
         const isActive = false // TODO: Implement active page detection
 

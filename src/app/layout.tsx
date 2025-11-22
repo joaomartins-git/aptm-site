@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SkipLink } from "@/components/ui/SkipLink";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,12 +82,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <div className="flex-1">
-          <SkipLink href="#main">Skip to content</SkipLink>
-          <Header />
-          <main id="main" role="main">{children}</main>
-        </div>
-        <Footer />
+        <SessionProvider>
+          <div className="flex-1">
+            <SkipLink href="#main">Skip to content</SkipLink>
+            <Header />
+            <main id="main" role="main">{children}</main>
+          </div>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );
