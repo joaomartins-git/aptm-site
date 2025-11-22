@@ -95,12 +95,14 @@ const navigationItems: NavItem[] = [
 ]
 
 // Function to get auth-dependent navigation items
-const getNavigationItems = (session: any): NavItem[] => {
-  return navigationItems.map(item => {
+const getNavigationItems = (isAuthenticated: boolean): NavItem[] => {
+  return navigationItems.map((item) => {
     if (item.label === 'Área de Sócios') {
       return {
         ...item,
-        label: session ? 'Área de Sócios (Perfil)' : 'Área de Sócios (Login)'
+        label: isAuthenticated
+          ? 'Área de Sócios (Perfil)'
+          : 'Área de Sócios (Login)',
       }
     }
     return item
@@ -187,8 +189,8 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
       ? "relative top-0 left-0 mt-1 w-full shadow-none border border-border"
       : "mt-1"
   )
-
-  const currentNavigationItems = getNavigationItems(session)
+  const isAuthenticated = !!session
+  const currentNavigationItems = getNavigationItems(isAuthenticated)
 
   return (
     <nav className={navClasses}>
