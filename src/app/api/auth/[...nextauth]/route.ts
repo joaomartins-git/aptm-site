@@ -18,7 +18,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         try {
           const { email, password } = credentialsSchema.parse(credentials)
 
-          // Check against environment variables
+          // First, check environment variables (existing behavior)
           if (
             email === process.env.AUTH_USER_EMAIL &&
             password === process.env.AUTH_USER_PASSWORD
@@ -26,8 +26,28 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return {
               id: 'member-1',
               name: 'Sócio',
-              email: process.env.AUTH_USER_EMAIL!
+              email: process.env.AUTH_USER_EMAIL!,
+              role: 'admin', // Add role for consistency
+              source: 'env' // Mark authentication source
             }
+          }
+
+          // If not env match, try database authentication
+          try {
+            const { memberService } = await import('@/lib/services/memberService')
+            const member = await memberService.authenticateMember(email, password)
+            if (member) {
+              return {
+                id: member.id,
+                name: member.name,
+                email: member.email,
+                role: member.role,
+                source: 'database'
+              }
+            }
+          } catch (error) {
+            console.error('Database authentication error:', error)
+            // Continue with null return if database is not available
           }
 
           return null
@@ -42,6 +62,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   pages: {
     signIn: '/login'
+  },
+  callbacks: {
+    session: async ({ session, token }) => {
+      if (session.user) {
+        session.user.id = token.sub!
+        session.user.role = token.role as string
+        session.user.source = token.source as string
+      }
+      return session
+    },
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.role = user.role
+        token.source = user.source
+      }
+      return token
+    }
   }
 })
 
