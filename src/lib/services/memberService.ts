@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import { memberRepository } from '@/lib/repositories/memberRepository';
 import { type Member, type NewMember } from '@/db/schema';
+import type { MemberRole, MemberStatus } from '@/types';
 
 export class MemberService {
   private readonly SALT_ROUNDS = 12;
@@ -64,12 +65,16 @@ export class MemberService {
 
       console.log(`Member created successfully: ${member.id}`);
       return member;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error creating member with password:', error);
 
-      if (error.message === 'Email already exists') {
+      if (error instanceof Error && error.message === 'Email already exists') {
         throw error;
       }
+
+      // if (error.message === 'Email already exists') {
+      //   throw error;
+      // }
 
       throw new Error('Failed to create member');
     }
@@ -84,8 +89,8 @@ export class MemberService {
   }
 
   async listMembers(options?: {
-    status?: string;
-    role?: string;
+    status?: MemberStatus;
+    role?: MemberRole;
     limit?: number;
     offset?: number;
   }): Promise<{ members: Member[]; total: number }> {

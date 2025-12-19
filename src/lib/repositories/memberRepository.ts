@@ -1,6 +1,7 @@
 import { eq, and, count } from 'drizzle-orm';
 import { db } from '@/db';
 import { members, type Member, type NewMember } from '@/db/schema';
+import type { MemberRole, MemberStatus } from '@/types';
 
 export class MemberRepository {
   async getMemberByEmail(email: string): Promise<Member | null> {
@@ -41,10 +42,10 @@ export class MemberRepository {
         .returning();
 
       return result[0];
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error creating member:', error);
 
-      if (error.code === '23505') {
+      if (typeof error === 'object' && error !== null && 'code' in error && (error as { code: string }).code === '23505'){
         throw new Error('Email already exists');
       }
 
@@ -53,8 +54,8 @@ export class MemberRepository {
   }
 
   async listMembers(options?: {
-    status?: string;
-    role?: string;
+    status?: MemberStatus;
+    role?: MemberRole;
     limit?: number;
     offset?: number;
   }): Promise<{ members: Member[]; total: number }> {
@@ -63,10 +64,10 @@ export class MemberRepository {
 
       const conditions = [];
       if (status) {
-        conditions.push(eq(members.status, status as any));
+        conditions.push(eq(members.status, status));
       }
       if (role) {
-        conditions.push(eq(members.role, role as any));
+        conditions.push(eq(members.role, role));
       }
 
       const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
