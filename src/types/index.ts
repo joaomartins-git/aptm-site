@@ -133,3 +133,33 @@ export interface Therapist {
   lng?: number;
   specialties?: string[];
 }
+
+export const MEMBER_ROLES = [
+  'admin',
+  'member',
+  'board'
+] as const;
+
+export type MemberRole = typeof MEMBER_ROLES[number];
+
+export const MEMBER_STATUS = [
+  'active',
+  'inactive',
+  'pending'
+] as const;
+
+export type MemberStatus = typeof MEMBER_STATUS[number];
+
+export interface Member {
+  id: string;
+  email: string;
+  passwordHash: string;
+  name: string;
+  profession?: string;
+  district?: string;
+  institution?: string;
+  role: MemberRole;
+  status: MemberStatus;
+  createdAt: string;
+  updatedAt: string;
+}
