@@ -31,7 +31,7 @@ const navigationItems: NavItem[] = [
     ]
   },
   {
-    label: 'Serviços',
+    label: 'Atividades',
     href: '/services',
     submenu: [
       {

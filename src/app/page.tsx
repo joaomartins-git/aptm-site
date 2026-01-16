@@ -35,7 +35,7 @@ export default function Home() {
       <HomeCalendarAgenda />
       
       {/* About Preview Section */}
-      <section className="py-20 bg-background">
+      {/*<section className="py-20 bg-background">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -80,7 +80,7 @@ export default function Home() {
                 <Link href={'/about'}></Link>Saber Mais Sobre Nós
               </Button> */}
 
-            </div>
+           {/* </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <Card>
@@ -138,6 +138,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Services Overview */}
       <ServicesOverview />
