@@ -263,7 +263,7 @@ export default function EventsPage() {
       </section>
 
       {/* Coming Soon Notice */}
-      <section className="py-20 bg-muted/30">
+      {/*<section className="py-20 bg-muted/30">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center bg-background rounded-2xl p-8 md:p-12 shadow-sm border">
             <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
@@ -286,10 +286,10 @@ export default function EventsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Newsletter */}
-      <section className="py-20 bg-background">
+      {/*<section className="py-20 bg-background">
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
             <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
@@ -314,7 +314,7 @@ export default function EventsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
     </>
   )
 }

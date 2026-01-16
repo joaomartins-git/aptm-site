@@ -81,20 +81,36 @@ const socialMedia = [
 
 const faqItems = [
   {
-    question: 'Como me tornar membro da APTM?',
-    answer: 'Para se tornar membro, preencha o formulário de contato selecionando "Informações sobre Membros" ou envie um email para geral@aptm.pt. Enviaremos o formulário de inscrição e informações sobre os benefícios.'
+    question: 'O que é a Terapia da Mão?',
+    answer: 'É uma área especializada na reabilitação que trata lesões e condições do membro superior (ombro,cotovelo, antebraço, punho e mão ) promovendo a recuperação da mobilidade e funcionalidade, visando a adaptação familiar, social e profissional.'
   },
   {
-    question: 'Quais são os benefícios de ser membro?',
-    answer: 'Os membros têm acesso a descontos em formações, eventos exclusivos, recursos educacionais, plataforma de networking, certificação APTM e muito mais.'
+    question: 'Quem pode beneficiar deste tipo de terapia?',
+    answer: '● Qualquer pessoa com: .Fraturas ou luxações da mão e punho; Lesões de tendinosas, ligamentares ou nervosas;Pós-operatórios; Tendinites, síndrome do túnel cárpico ou dedo em gatilho; Doenças reumáticas (ex. artrite); Limitações funcionais no dia a dia causadas por dor ou rigidez; amputações membro superior; lesões congénitas.'
   },
   {
-    question: 'Como posso participar dos eventos?',
-    answer: 'Nossos eventos são abertos tanto para membros quanto para não membros. Membros têm descontos especiais. Verifique nosso calendário de eventos ou entre em contato para mais informações.'
+    question: 'Preciso de prescrição médica para marcar uma consulta?',
+    answer: 'Depende do local onde realiza o acompanhamento. Em contexto privado: não é obrigatória contudo, deverá ser observado/a em consulta, inicialmente, por um médico ortopedista/cirurgião plástico com especialização em punho. mão, cotovelo ou ombro. Em contexto hospitalar ou por seguros de saúde: poderá ser necessária.'
   },
   {
-    question: 'Oferecem formação à distância?',
-    answer: 'Sim, oferecemos cursos online e programas híbridos. Nossa plataforma de ensino online está em desenvolvimento e será lançada em breve.'
+    question: 'Quem são os profissionais que exercem Terapia da Mão?',
+    answer: 'Terapeutas Ocupacionais e Fisioterapeutas com formação específica e experiência no tratamento de patologias do membro superior.'
+  },
+    {
+    question: 'Como posso encontrar um terapeuta especializado?',
+    answer: 'Pode consultar a lista de profissionais e clínicas na nossa secção “Encontra um Terapeuta”, ou enviar-nos uma mensagem através do formulário de contacto para receber uma sugestão personalizada.'
+  },
+    {
+    question: 'A APTM oferece formações?',
+    answer: 'Sim. Promovemos regularmente: ● Workshops presenciais e online ● Cursos de especialização ● Eventos científicos A informação está sempre atualizada na nossa secção “Formações”.'
+  },
+    {
+    question: 'Quem pode ser membro da Associação?',
+    answer: 'Terapeutas Ocupacionais e Fisioterapeutas com interesse ou prática na área da Terapia da Mão. Consulta a página “Torna-te associado” para saber as vantagens e como te inscrever.'
+  },
+    {
+    question: 'Posso contactar-vos diretamente?',
+    answer: 'Claro! Estamos disponíveis para esclarecer dúvidas, orientar utentes ou apoiar profissionais. Usa o formulário na seção “Contatos” e responderemos com brevidade.Pode ser disponibilizado o contacto do Presidente +351 962932972'
   }
 ]
 
@@ -435,7 +451,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-muted/30">
+      {/*<section className="py-20 bg-muted/30">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -466,7 +482,7 @@ export default function ContactPage() {
             </Card>
           </div>
         </div>
-      </section>
+      </section>*/}
     </>
   )
 }

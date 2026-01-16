@@ -363,12 +363,20 @@ export default function TrainingsPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">
-              Torne-se um Instrutor APTM
+              Diagnóstico de Necessidades Formativas 
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Compartilhe seu conhecimento e experiência com a comunidade de terapia da mão
+              Ajude-nos a identificar as suas necessidades formativas e a promover o seu desenvolvimento profissional no âmbito da terapia da mão
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeC_nIG2HBD9wAR-q_-BsXCA9_tjsZLeWp383M-foglcmaJ6Q/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2"
+            >
+              👁️ Ver Formulário
+            </a>
+            {/*<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <Card>
                 <CardContent className="pt-6 text-center">
                   <Users className="h-12 w-12 text-primary mx-auto mb-4" />
@@ -399,7 +407,7 @@ export default function TrainingsPage() {
             </div>
             <Button size="lg" onClick={() => router.push('/contact')}>
               Candidate-se como Instrutor
-            </Button>
+            </Button>*/}
           </div>
         </div>
       </section>
