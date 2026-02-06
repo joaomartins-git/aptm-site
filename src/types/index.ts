@@ -163,3 +163,29 @@ export interface Member {
   createdAt: string;
   updatedAt: string;
 }
+
+export const SOCIAL_CORPS_TYPES = [
+  'Assembleia Geral',
+  'Direção',
+  'Conselho Fiscal',
+] as const;
+
+export type SocialCorpsType = typeof SOCIAL_CORPS_TYPES[number];
+
+export interface SocialCorpsMember {
+  id: string;
+  name: string;
+  role: string;          // "Presidente", "Primeiro Secretário", etc.
+  photo?: string;        // optional for now
+  email?: string;
+  term?: string;         // e.g. "2025–2027"
+}
+
+export interface SocialCorpsGroup {
+  type: SocialCorpsType;
+  members: SocialCorpsMember[];
+}
+
+
+
+

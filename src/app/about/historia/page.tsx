@@ -33,7 +33,7 @@ const milestones = [
   },
   {
     year: '2003',
-    title: 'Atualização dos Estatutos',
+    title: 'Ativo na comunidade internacional',
     description: 'Junho de 2003, Portugal assumiu um papel ativo na comunidade internacional ao organizar o Meeting da E.F.S.H.T. em Lisboa.'
   }
 ]

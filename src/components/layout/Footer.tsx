@@ -28,22 +28,22 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Facebook, href: 'https://www.facebook.com/groups/126735657407362/', label: 'Facebook' },
   { icon: Twitter, href: '#', label: 'Twitter' },
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Instagram, href: '#', label: 'Instagram' }
+  { icon: Instagram, href: 'https://instagram.com/apterapiamao', label: 'Instagram' }
 ]
 
 export function Footer() {
   return (
     <footer className="bg-muted border-t border-border">
-      <div className="container py-12">
+      <div className="container py-12 max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2" aria-label="Ir para a página inicial">
               <Image
-                src="/aptm-logo.svg"
+                src="/logotipo-aptm.png"
                 alt="APTM – Associação Portuguesa de Terapia da Mão"
                 width={120}
                 height={32}

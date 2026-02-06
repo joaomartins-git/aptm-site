@@ -29,7 +29,7 @@ export function CallToAction() {
 
   return (
     <section className="py-20 bg-primary text-primary-foreground">
-      <div className="container">
+      <div className="container max-w-7xl mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Junte-se à Comunidade APTM
