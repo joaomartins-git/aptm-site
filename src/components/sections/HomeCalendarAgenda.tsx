@@ -241,7 +241,7 @@ export function HomeCalendarAgenda() {
   if (upcomingEvents.length === 0) {
     return (
       <section className="py-20 bg-background">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="text-center py-16">
             <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <Calendar className="w-10 h-10 text-slate-400" />

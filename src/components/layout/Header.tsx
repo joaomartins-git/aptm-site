@@ -77,7 +77,7 @@ export function Header() {
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center gap-2" aria-label="Ir para a página inicial">
             <Image
-              src="/aptm-logo.svg"
+              src="/logotipo-aptm.png"
               alt="APTM – Associação Portuguesa de Terapia da Mão"
               width={120}
               height={32}

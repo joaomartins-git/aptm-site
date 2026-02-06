@@ -24,6 +24,14 @@ import {
   AlertCircle
 } from 'lucide-react'
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+
 const contactInfo = {
   address: {
     title: 'Endereço',
@@ -426,7 +434,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="space-y-4">
+          {/*  <div className="space-y-4">
               {faqItems.map((item, index) => (
                 <Card key={index}>
                   <CardContent className="pt-6">
@@ -439,7 +447,20 @@ export default function ContactPage() {
                   </CardContent>
                 </Card>
               ))}
-            </div>
+            </div>*/}
+
+            <Accordion type="single" collapsible className="w-full border rounded-lg px-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
 
             <div className="text-center mt-12">
               <Button onClick={() => router.push('/contact')}>

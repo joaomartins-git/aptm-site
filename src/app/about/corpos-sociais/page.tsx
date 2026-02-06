@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { Card, CardContent } from '@/components/ui/Card'
 import rawBoard from '@/data/board.json'
 import { BOARD_ROLES, type BoardMember, type BoardRole } from '@/types';
+import { SOCIAL_CORPS } from '@/data/socialCorps';
 
 const roleOrder: BoardRole[] = ['Presidente', 'Vice-Presidente', 'Secretário', 'Tesoureiro', 'Vogal']
 
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
 }
 
 export default function CorposSociaisPage() {
-  const groupedMembers = groupMembersByRole(boardMembers)
+  //const groupedMembers = groupMembersByRole(boardMembers)
 
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
@@ -53,45 +54,46 @@ export default function CorposSociaisPage() {
       </div>
 
       <div className="space-y-12">
-        {groupedMembers.map((group, index) => (
-          group.members.length > 0 && (
-            <div key={group.role}>
-              <h2 className="text-2xl font-bold mb-6 text-center">{group.role}</h2>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {group.members.map((member) => (
-                  <Card key={member.id} className="text-center">
-                    <CardContent className="pt-6">
-                      <div className="w-20 h-20 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center">
-                        {member.photo ? (
-                          <img
-                            src={member.photo}
-                            alt={member.name}
-                            className="w-full h-full rounded-full object-cover"
-                          />
-                        ) : (
-                          <span className="text-2xl font-bold text-muted-foreground">
-                            {getInitials(member.name)}
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
-                      {member.term && (
-                        <p className="text-sm text-muted-foreground mb-2">{member.term}</p>
+        {SOCIAL_CORPS.map((group) => (
+          <section key={group.type} className="space-y-8">
+            <h2 className="text-2xl font-semibold text-center">
+              {group.type}
+            </h2>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {group.members.map((member) => (
+                <Card key={member.id} className="text-center">
+                  <CardContent className="pt-6">
+                    <div className="h-20 w-20 mx-auto mb-4 bg-muted rounded-full flex items-center justify-center">
+                      {member.photo ? (
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          className="h-full w-full rounded-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-xl font-bold text-muted-foreground">
+                          {member.name
+                            .split(' ')
+                            .map((n) => n[0])
+                            .slice(0, 2)
+                            .join('')}
+                        </span>
                       )}
-                      {member.email && (
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="text-sm text-primary hover:underline"
-                        >
-                          {member.email}
-                        </a>
-                      )}
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                    </div>
+
+                    <h3 className="font-semibold text-lg">
+                      {member.name}
+                    </h3>
+
+                    <p className="text-sm text-muted-foreground">
+                      {member.role}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          )
+          </section>
         ))}
       </div>
     </main>

@@ -90,9 +90,9 @@ export function HomeNewsCarousel() {
 
   return (
     <section className="py-20 bg-background">
-      <div className="container">
+      <div className="container max-w-7xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 ">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Notícias e Destaques
           </h2>
