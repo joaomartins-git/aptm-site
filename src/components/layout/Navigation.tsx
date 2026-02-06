@@ -30,28 +30,28 @@ const navigationItems: NavItem[] = [
       }
     ]
   },
-  {
-    label: 'Atividades',
-    href: '/services',
-    submenu: [
-      {
-        label: 'Consultoria',
-        href: '/services#consulting'
-      },
-      {
-        label: 'Investigação',
-        href: '/services#research'
-      },
-      {
-        label: 'Parcerias',
-        href: '/services#partnerships'
-      },
-      {
-        label: 'Benefícios para Membros',
-        href: '/services#member-benefits'
-      }
-    ]
-  },
+  // {
+  //   label: 'Atividades',
+  //   href: '/services',
+  //   submenu: [
+  //     {
+  //       label: 'Consultoria',
+  //       href: '/services#consulting'
+  //     },
+  //     {
+  //       label: 'Investigação',
+  //       href: '/services#research'
+  //     },
+  //     {
+  //       label: 'Parcerias',
+  //       href: '/services#partnerships'
+  //     },
+  //     {
+  //       label: 'Benefícios para Membros',
+  //       href: '/services#member-benefits'
+  //     }
+  //   ]
+  // },
   {
     label: 'Eventos',
     href: '/events'
@@ -101,7 +101,7 @@ const getNavigationItems = (isAuthenticated: boolean): NavItem[] => {
     })
   } else {
     items.push({
-      label: 'Área de Sócios (Login)',
+      label: 'Área de Sócios',
       href: '/login'
     })
   }

@@ -211,7 +211,7 @@ export default function ContactPage() {
 
       {/* Contact Information */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <div className="container text-center max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Informações de Contacto
@@ -250,7 +250,7 @@ export default function ContactPage() {
 
       {/* Contact Form */}
       <section className="py-20 bg-muted/30" id="contact-form">
-        <div className="container">
+        <div className="container text-center max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -423,7 +423,7 @@ export default function ContactPage() {
 
       {/* FAQ Section */}
       <section className="py-20 bg-background" id="faq">
-        <div className="container">
+        <div className="container text-center max-w-7xl mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">

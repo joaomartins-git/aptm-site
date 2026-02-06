@@ -117,7 +117,7 @@ export default function AboutPage() {
 
       {/* Mission & Vision */}
       <section className="py-20 bg-background" id="mission">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
@@ -255,8 +255,8 @@ export default function AboutPage() {
       </section>
 
       {/* Statistics */}
-      <section className="py-20 bg-muted/30">
-        <div className="container">
+      {/* <section className="py-20 bg-muted/30">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               APTM em Números
@@ -285,11 +285,11 @@ export default function AboutPage() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team */}
-      <section className="py-20 bg-background" id="team">
-        <div className="container">
+      {/* <section className="py-20 bg-background" id="team">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Nossa Equipa
@@ -326,33 +326,33 @@ export default function AboutPage() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Timeline */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-12">
+        <div className="container max-w-7xl mx-auto px-4">
+          {/* <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Nossa História
             </h2>
             <p className="text-lg text-muted-foreground">
               Principais marcos na nossa jornada de excelência
             </p>
-          </div>
+          </div> */}
 
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-primary/20"></div>
 
-              {milestones.map((milestone, index) => (
+              {/* {milestones.map((milestone, index) => (
                 <div
                   key={index}
                   className={`flex items-center mb-8 ${
                     index % 2 === 0 ? 'justify-start' : 'justify-end'
                   }`}
-                >
-                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'text-right' : 'text-left ml-auto'}`}>
+                > */}
+                  {/* <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'text-right' : 'text-left ml-auto'}`}>
                     <Card>
                       <CardHeader>
                         <div className="flex items-center justify-between">
@@ -373,7 +373,7 @@ export default function AboutPage() {
                     </Card>
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
@@ -381,7 +381,7 @@ export default function AboutPage() {
 
       {/* Call to Action */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container text-center">
+        <div className="container text-center max-w-7xl mx-auto px-4">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">
             Junte-se à Nossa Comunidade
           </h2>

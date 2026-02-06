@@ -73,19 +73,19 @@ export function getNews(): NewsItem[] {
   return [
     {
       id: '1',
-      title: 'Nova Técnica de Reabilitação Pós-Cirúrgica Apresentada no Congresso Internacional',
-      excerpt: 'Investigadores portugueses apresentam abordagem inovadora para recuperação funcional após cirurgia da mão, reduzindo tempo de reabilitação em 40%.',
-      date: '2024-10-15',
-      href: '/news/1',
-      image: '/news/congresso-2024.jpg'
+      title: 'Jornadas de Sant’Ana, dedicadas ao tema "Instabilidade do Punho e Cotovelo"',
+      excerpt: 'A “Instabilidade Punho e Cotovelo” foi o tema que juntou cerca de duas dezenas de especialistas em mais uma edição das Jornadas de Sant´Ana, que decorreram na passada sexta-feira, em Alcoitão. ',
+      date: '2026-01-23',
+      href: 'https://scml.pt/media/noticias/oito-debates-e-dezenas-de-especialistas-nas-jornadas-de-santana/',
+      image: '/news/jornadas-santana.jpg'
     },
     {
       id: '2',
-      title: 'APTM Lança Programa de Formação Contínua em Terapia da Mão',
-      excerpt: 'Novo programa oferece certificação internacional e acesso às mais recentes técnicas e evidências científicas na área.',
-      date: '2024-10-08',
-      href: '/news/2',
-      image: '/news/formacao-continua.jpg'
+      title: 'Occupational therapy approach in a specific case of extensor tenorrhaphy in zone VII',
+      excerpt: 'Terapeutas da mão apresentam um estudo de caso que reflete sobre a intervenção da Terapia Ocupacional, em contexto hospitalar, com um doente submetido a tenorrafia dos extensores da zona VII, durante um período de 13 semanas consecutivas.',
+      date: '2023-06-06',
+      href: 'https://medcraveonline.com/IPMRJ/occupational-therapy-approach-in-a-specific-case-of-extensor-tenorrhaphy-in-zone-vii.html',
+      image: '/news/tenorrafia.jpg'
     },
     {
       id: '3',
