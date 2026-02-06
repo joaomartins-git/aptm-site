@@ -68,7 +68,7 @@ export default function EventsPage() {
 
       {/* Event Types Overview */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Tipos de Eventos
@@ -111,7 +111,7 @@ export default function EventsPage() {
 
       {/* Search and Filter */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -166,7 +166,7 @@ export default function EventsPage() {
 
       {/* Upcoming Events */}
       <section className="py-20 bg-background" id="upcoming-events">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Próximos Eventos

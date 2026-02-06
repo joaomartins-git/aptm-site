@@ -91,10 +91,10 @@ export default function TherapistFinderPage() {
   return (
     <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 py-16">
       {/* Header Section */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Encontrar Terapeuta</h1>
+      <div className="mb-8 text-center max-w-7xl mx-auto px-4">
+        <h1 className="text-4xl font-bold mb-4">Encontrar o seu Terapeuta</h1>
         <p className="text-lg text-muted-foreground">
-          Use os filtros abaixo para encontrar um terapeuta de hand therapy na sua região.
+          Use os filtros abaixo para encontrar um terapeuta da mão no seu distrito.
         </p>
       </div>
 
@@ -214,7 +214,7 @@ export default function TherapistFinderPage() {
                 </a>
               )}
 
-              {selectedTherapistData.phone && (
+              {/* {selectedTherapistData.phone && (
                 <a
                   href={`tel:${selectedTherapistData.phone}`}
                   className="inline-flex items-center text-primary hover:underline"
@@ -222,7 +222,7 @@ export default function TherapistFinderPage() {
                   <Phone className="h-4 w-4 mr-2" aria-hidden="true" />
                   {selectedTherapistData.phone}
                 </a>
-              )}
+              )} */}
 
               {selectedTherapistData.website && (
                 <a

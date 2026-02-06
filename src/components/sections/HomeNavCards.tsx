@@ -36,9 +36,9 @@ const navCards: NavCard[] = [
   },
   {
     id: 'services',
-    title: 'Serviços',
-    description: 'O nosso compromisso é promover a excelência no cuidado e na reeducação, fortalecendo o papel transformador da Terapia da Mão na vida das pessoas',
-    href: '/services',
+    title: 'Atividades',
+    description: 'O nosso compromisso é promover a excelência no cuidado e na reeducação, fortalecendo o papel transformador da Terapia da Mão na vida das pessoas (Em Manutenção)',
+    href: '',
     icon: Hand
   },
   {

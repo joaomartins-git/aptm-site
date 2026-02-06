@@ -69,7 +69,7 @@ export default function TrainingsPage() {
 
       {/* Benefits Section */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Porquê Escolher Nossas Formações?
@@ -102,7 +102,7 @@ export default function TrainingsPage() {
 
       {/* Course Catalog */}
       <section className="py-20 bg-muted/30" id="courses">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Catálogo de Formações
@@ -240,7 +240,7 @@ export default function TrainingsPage() {
 
       {/* Certification Program */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -319,7 +319,7 @@ export default function TrainingsPage() {
 
       {/* Coming Soon Notice */}
       <section className="py-20 bg-muted/30">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center bg-background rounded-2xl p-8 md:p-12 shadow-sm border">
             <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
               <BookOpen className="h-8 w-8 text-primary" />
@@ -360,7 +360,7 @@ export default function TrainingsPage() {
 
       {/* Instructor Opportunities */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-foreground mb-6">
               Diagnóstico de Necessidades Formativas 

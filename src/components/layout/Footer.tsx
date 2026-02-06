@@ -3,16 +3,16 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react'
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, Mailbox } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const footerLinks = {
-  serviços: [
-    { label: 'Consultoria', href: '/services#consulting' },
-    { label: 'Investigação', href: '/services#research' },
-    { label: 'Parcerias', href: '/services#partnerships' },
-    { label: 'Benefícios para Membros', href: '/services#member-benefits' }
-  ],
+  // serviços: [
+  //   { label: 'Consultoria', href: '/services#consulting' },
+  //   { label: 'Investigação', href: '/services#research' },
+  //   { label: 'Parcerias', href: '/services#partnerships' },
+  //   { label: 'Benefícios para Membros', href: '/services#member-benefits' }
+  // ],
   recursos: [
     { label: 'Eventos', href: '/events' },
     { label: 'Formações', href: '/trainings' },
@@ -47,7 +47,7 @@ export function Footer() {
                 alt="APTM – Associação Portuguesa de Terapia da Mão"
                 width={120}
                 height={32}
-                className="h-8 w-auto"
+                className="h-16 w-auto"
                 priority
               />
             </Link>
@@ -70,7 +70,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          {/* <div>
             <h3 className="font-semibold text-foreground mb-4">Serviços</h3>
             <ul className="space-y-2">
               {footerLinks.serviços.map((link) => (
@@ -84,7 +84,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Resources */}
           <div>
@@ -110,18 +110,27 @@ export function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div className="text-sm text-muted-foreground">
-                  <p>Rua Exemplo, 123</p>
-                  <p>1000-001 Lisboa</p>
+                  <p>Apartado 92</p>
+                  <p>8001-908 Faro</p>
                   <p>Portugal</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" aria-hidden="true" />
                 <a
-                  href="tel:+351210000000"
+                  href="tel:+351962932972"
                   className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                 >
-                  +351 210 000 000
+                  +351962932972
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mailbox className="h-5 w-5 text-primary flex-shrink-0" aria-hidden="true" />
+                <a
+                  href="tel:289 82 56 26"
+                  className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+                >
+                  289 82 56 26
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -131,6 +140,12 @@ export function Footer() {
                   className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                 >
                   geral@aptm.pt
+                </a>
+                <a
+                  href="mailto:secretariado.aptm@gmail.com"
+                  className="text-sm text-muted-foreground hover:text-primary focus-visible:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+                >
+                  secretariado.aptm@gmail.com
                 </a>
               </div>
             </div>
