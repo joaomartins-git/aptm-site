@@ -152,16 +152,17 @@ export type MemberStatus = typeof MEMBER_STATUS[number];
 
 export interface Member {
   id: string;
+  memberNumber: number;
   email: string;
   passwordHash: string;
   name: string;
-  profession?: string;
-  district?: string;
-  institution?: string;
+  profession?: string | null;
+  district?: string | null;
+  institution?: string | null;
   role: MemberRole;
   status: MemberStatus;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export const SOCIAL_CORPS_TYPES = [

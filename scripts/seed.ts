@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { config } from 'dotenv';
 import { db } from '../src/db';
 import { members } from '../src/db/schema';
@@ -26,6 +27,7 @@ async function seed() {
 
     // Create admin member with environment credentials
     const adminMember = await memberService.createMemberWithPassword({
+      memberNumber: 1,
       email: adminEmail,
       password: adminPassword,
       name: 'Administrador',
