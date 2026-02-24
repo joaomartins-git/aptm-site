@@ -1,4 +1,4 @@
-import { pgTable, uuid, varchar, timestamp } from 'drizzle-orm/pg-core';
+import { pgTable, uuid, varchar, timestamp, integer} from 'drizzle-orm/pg-core';
 
 export const memberRoleEnum = ['admin', 'member', 'board'] as const;
 export type MemberRole = typeof memberRoleEnum[number];
@@ -8,6 +8,7 @@ export type MemberStatus = typeof memberStatusEnum[number];
 
 export const members = pgTable('members', {
   id: uuid('id').primaryKey().defaultRandom(),
+  memberNumber: integer("member_number").notNull().unique(),
   email: varchar('email', { length: 255 }).notNull().unique(),
   passwordHash: varchar('password_hash', { length: 255 }).notNull(),
   name: varchar('name', { length: 255 }).notNull(),

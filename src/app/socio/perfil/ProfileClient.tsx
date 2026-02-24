@@ -6,6 +6,9 @@ import { Tabs } from '@/components/ui/Tabs'
 import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
 import type { District } from '@/types'
+import type { Member } from '@/types'
+
+
 
 // Mock data interfaces
 interface PersonalData {
@@ -68,9 +71,10 @@ const tabs = [
 
 interface ProfileClientProps {
   userEmail: string
+  member: Member | null
 }
 
-export default function ProfileClient({ userEmail }: ProfileClientProps) {
+export default function ProfileClient({ userEmail, member }: ProfileClientProps) {
   const [activeTab, setActiveTab] = useState('dados')
 
   const formatDateString = (dateString: string) => {
@@ -93,23 +97,23 @@ export default function ProfileClient({ userEmail }: ProfileClientProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">Nome</label>
-                  <p className="text-base font-medium">{mockPersonalData.name}</p>
+                  <p className="text-base font-medium">{member?.name}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">Número de Sócio</label>
-                  <p className="text-base font-medium">{mockPersonalData.memberNumber}</p>
+                  <p className="text-base font-medium">{member?.memberNumber}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">Profissão</label>
-                  <p className="text-base font-medium">{mockPersonalData.profession}</p>
+                  <p className="text-base font-medium">{member?.profession}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">Distrito</label>
-                  <p className="text-base font-medium">{mockPersonalData.district}</p>
+                  <p className="text-base font-medium">{member?.district}</p>
                 </div>
                 <div className="md:col-span-2">
                   <label className="text-sm font-medium text-muted-foreground">Instituição</label>
-                  <p className="text-base font-medium">{mockPersonalData.institution}</p>
+                  <p className="text-base font-medium">{member?.institution}</p>
                 </div>
               </div>
             </CardContent>
