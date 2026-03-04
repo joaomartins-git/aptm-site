@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
 import type { District } from '@/types'
 import type { Member } from '@/types'
-
-
+// import type { MemberWithMemberships } from '@/lib/repositories/memberRepository'
+import type { MemberWithMemberships } from '@/lib/services/memberService'
 
 // Mock data interfaces
 interface PersonalData {
@@ -71,7 +71,31 @@ const tabs = [
 
 interface ProfileClientProps {
   userEmail: string
-  member: Member | null
+  member: MemberWithMemberships  | null
+}
+
+type MembershipStatus = 'active' | 'expired' | 'expiring_soon';
+
+function MembershipStatusBadge({ status }: { status: MembershipStatus }) {
+  const styles = {
+    active: 'bg-green-100 text-green-800',
+    expiring_soon: 'bg-yellow-100 text-yellow-800',
+    expired: 'bg-red-100 text-red-800',
+  };
+
+  const labels = {
+    active: 'Ativo',
+    expiring_soon: 'Expira em breve',
+    expired: 'Expirado',
+  };
+
+  return (
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[status]}`}
+    >
+      {labels[status]}
+    </span>
+  );
 }
 
 export default function ProfileClient({ userEmail, member }: ProfileClientProps) {
@@ -128,23 +152,35 @@ export default function ProfileClient({ userEmail, member }: ProfileClientProps)
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {mockQuotas.map((quota, index) => (
-                  <div key={index} className="border-l-4 border-primary pl-4 py-2">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="font-medium">
-                          {quota.year} - {quota.semester === 1 ? '1º' : '2º'} Semestre
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Pago em {formatDateString(quota.paidAt)}
-                        </p>
+                {member?.memberships && member.memberships.length > 0 ? (
+                member.memberships.map((membership, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="border-l-4 border-primary pl-4 py-2"
+                    >
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="font-medium">
+                            {membership.type === 'yearly'
+                              ? 'Quota Anual'
+                              : 'Quota Semestral'}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Válido até{' '}
+                            {formatDateString(membership.endDate)}
+                          </p>
+                        </div>
+                        <MembershipStatusBadge status={membership.status} />
                       </div>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        {quota.status}
-                      </span>
                     </div>
-                  </div>
-                ))}
+                  );
+                })
+              ) : (
+                <p className="text-muted-foreground">
+                  Nenhuma quota encontrada.
+                </p>
+              )}
               </div>
             </CardContent>
           </Card>

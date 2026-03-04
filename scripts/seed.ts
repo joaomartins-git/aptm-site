@@ -1,8 +1,9 @@
 import 'dotenv/config';
 import { config } from 'dotenv';
 import { db } from '../src/db';
-import { members } from '../src/db/schema';
+import { members, memberships } from '../src/db/schema';
 import { memberService } from '../src/lib/services/memberService';
+import { eq } from 'drizzle-orm';
 
 config({ path: '.env.local' });
 
@@ -19,24 +20,74 @@ async function seed() {
     }
 
     // Check if admin member already exists
-    const existingAdmin = await memberService.getMemberByEmail(adminEmail);
-    if (existingAdmin) {
-      console.log('Admin member already exists. Skipping seeding.');
-      return;
+    // const existingAdmin = await memberService.getMemberByEmail(adminEmail);
+    // if (existingAdmin) {
+    //   console.log('Admin member already exists. Skipping seeding.');
+    //   return;
+    // }
+
+    // 1️⃣ Ensure admin exists
+    let admin = await memberService.getMemberByEmail(adminEmail);
+
+    if (!admin) {
+      await memberService.createMemberWithPassword({
+        memberNumber: 1,
+        email: adminEmail,
+        password: adminPassword,
+        name: 'Administrador',
+        profession: 'Administrator',
+        role: 'admin',
+        status: 'active'
+      });
+
+      console.log(`✅ Admin member created.`);
+
+      admin = await memberService.getMemberByEmail(adminEmail);
+    } 
+    // else {
+    //   console.log('ℹ️ Admin already exists.');
+    // }
+
+    if (!admin) {
+      throw new Error('Failed to create or retrieve admin.');
+    }
+
+    // 2️⃣ Ensure admin has at least one membership
+    const existingMembership = await db.query.memberships.findFirst({
+      where: (memberships, { eq }) =>
+        eq(memberships.memberId, admin.id),
+    });
+
+    if (!existingMembership) {
+      const now = new Date();
+      const oneYearLater = new Date();
+      oneYearLater.setFullYear(now.getFullYear() + 1);
+
+      await db.insert(memberships).values({
+        memberId: admin.id,
+        type: 'yearly',
+        startDate: now.toISOString().split('T')[0],
+        endDate: oneYearLater.toISOString().split('T')[0],
+        amount: '70.00',
+      });
+
+      console.log('✅ Admin membership created.');
+    } else {
+      console.log('ℹ️ Admin already has a membership.');
     }
 
     // Create admin member with environment credentials
-    const adminMember = await memberService.createMemberWithPassword({
-      memberNumber: 1,
-      email: adminEmail,
-      password: adminPassword,
-      name: 'Administrador',
-      profession: 'Administrator',
-      role: 'admin',
-      status: 'active'
-    });
+    // const adminMember = await memberService.createMemberWithPassword({
+    //   memberNumber: 1,
+    //   email: adminEmail,
+    //   password: adminPassword,
+    //   name: 'Administrador',
+    //   profession: 'Administrator',
+    //   role: 'admin',
+    //   status: 'active'
+    // });
 
-    console.log(`✅ Admin member created successfully: ${adminMember.name} (${adminMember.email})`);
+    // console.log(`✅ Admin member created successfully: ${adminMember.name} (${adminMember.email})`);
 
   } catch (error) {
     console.error('❌ Error during database seeding:', error);
