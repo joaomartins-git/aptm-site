@@ -1,4 +1,5 @@
-import { pgTable, uuid, varchar, timestamp, integer} from 'drizzle-orm/pg-core';
+import { pgTable, uuid, varchar, timestamp, integer, pgEnum, date, numeric} from 'drizzle-orm/pg-core';
+import { relations } from "drizzle-orm";
 
 export const memberRoleEnum = ['admin', 'member', 'board'] as const;
 export type MemberRole = typeof memberRoleEnum[number];
@@ -23,3 +24,41 @@ export const members = pgTable('members', {
 
 export type Member = typeof members.$inferSelect;
 export type NewMember = typeof members.$inferInsert;
+
+
+export const membershipTypeEnum = pgEnum('membership_type', [
+  'yearly',
+  'semester'
+]);
+
+export const memberships = pgTable('memberships', {
+  id: uuid('id').defaultRandom().primaryKey(),
+
+  memberId: uuid('member_id')
+    .notNull()
+    .references(() => members.id, { onDelete: 'cascade' }),
+
+  startDate: date('start_date').notNull(),
+  endDate: date('end_date').notNull(),
+
+  type: membershipTypeEnum('type').notNull(),
+
+  amount: numeric('amount', { precision: 10, scale: 2 }).notNull(),
+
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at')
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull()
+});
+
+export const membershipsRelations = relations(memberships, ({ one }) => ({
+  member: one(members, {
+    fields: [memberships.memberId],
+    references: [members.id]
+  })
+}));
+
+export const membersRelations = relations(members, ({ many }) => ({
+  memberships: many(memberships),
+}));

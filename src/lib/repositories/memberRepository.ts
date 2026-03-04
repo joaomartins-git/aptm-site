@@ -1,18 +1,26 @@
-import { eq, and, count } from 'drizzle-orm';
+import { eq, and, count, InferSelectModel } from 'drizzle-orm';
 import { db } from '@/db';
-import { members, type Member, type NewMember } from '@/db/schema';
+import { members, memberships, type Member, type NewMember } from '@/db/schema';
 import type { MemberRole, MemberStatus } from '@/types';
 
-export class MemberRepository {
-  async getMemberByEmail(email: string): Promise<Member | null> {
-    try {
-      const result = await db
-        .select()
-        .from(members)
-        .where(eq(members.email, email))
-        .limit(1);
+export type MemberWithMemberships =
+  InferSelectModel<typeof members> & {
+    memberships: InferSelectModel<typeof memberships>[]
+  }
 
-      return result[0] || null;
+export class MemberRepository {
+  async getMemberByEmail(email: string): Promise<MemberWithMemberships  | null> {
+    try {
+      const result = await db.query.members.findFirst({
+        where: (members, { eq }) => eq(members.email, email),
+        with: {
+          memberships: {
+            orderBy: (memberships, { desc }) => [desc(memberships.startDate)],
+          },
+        },
+      });
+
+      return result ?? null;
     } catch (error) {
       console.error('Error fetching member by email:', error);
       throw new Error('Failed to fetch member by email');

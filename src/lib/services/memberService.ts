@@ -1,7 +1,33 @@
 import bcrypt from 'bcrypt';
 import { memberRepository } from '@/lib/repositories/memberRepository';
-import { type Member, type NewMember } from '@/db/schema';
+import { type Member, type NewMember, memberships  } from '@/db/schema';
 import type { MemberRole, MemberStatus } from '@/types';
+import type { MemberWithMemberships as RawMemberWithMemberships } from '@/lib/repositories/memberRepository';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type Membership = InferSelectModel<typeof memberships>;
+
+export type MembershipWithStatus = Membership & {
+  status: 'active' | 'expired' | 'expiring_soon';
+};
+
+export type MemberWithMemberships = Omit<RawMemberWithMemberships,'memberships'> & {
+  memberships: MembershipWithStatus[];
+};
+
+
+
+function getMembershipStatus(endDate: string): 'active' | 'expired' | 'expiring_soon' {
+  const today = new Date();
+  const end = new Date(endDate);
+
+  const diffTime = end.getTime() - today.getTime();
+  const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+  if (diffDays < 0) return 'expired';
+  if (diffDays <= 30) return 'expiring_soon';
+  return 'active';
+}
 
 export class MemberService {
   private readonly SALT_ROUNDS = 12;
@@ -80,9 +106,25 @@ export class MemberService {
     }
   }
 
-  async getMemberByEmail(email: string): Promise<Member | null> {
-    return memberRepository.getMemberByEmail(email);
-  }
+  // async getMemberByEmail(email: string): Promise<MemberWithMemberships | null> {
+  //   return memberRepository.getMemberByEmail(email);
+  // }
+
+async getMemberByEmail(email: string): Promise<MemberWithMemberships | null> {
+  const member = await memberRepository.getMemberByEmail(email);
+
+  if (!member) return null;
+
+  const membershipsWithStatus = member.memberships.map((membership) => ({
+    ...membership,
+    status: getMembershipStatus(membership.endDate),
+  }));
+
+  return {
+    ...member,
+    memberships: membershipsWithStatus,
+  };
+}
 
   async getMemberById(id: string): Promise<Member | null> {
     return memberRepository.getMemberById(id);

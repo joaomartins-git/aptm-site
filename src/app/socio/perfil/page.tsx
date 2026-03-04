@@ -10,7 +10,6 @@ export default async function SocioPerfilPage() {
   const member = await memberService.getMemberByEmail(email)
 
   //return <ProfileClient userEmail={session.user?.email || ''} />
-    return (<ProfileClient userEmail={email} member={member}/>
-  )
+  return (<ProfileClient userEmail={email} member={member}/>)
 
 }
