@@ -10,3 +10,21 @@ export async function requireAuth() {
 
   return session
 }
+
+export async function requireAdmin() {
+  const session = await requireAuth()
+
+  // if (!session?.user?.email) {
+  //   redirect('/login')
+  // }
+
+  const { memberService } = await import('@/lib/services/memberService')
+
+  const member = await memberService.getMemberByEmail(session.user.email)
+
+  if (!member || member.role !== 'admin') {
+    redirect('/')
+  }
+
+  return { session, member }
+}

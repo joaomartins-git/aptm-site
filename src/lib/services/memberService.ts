@@ -138,6 +138,19 @@ async getMemberByEmail(email: string): Promise<MemberWithMemberships | null> {
   }): Promise<{ members: Member[]; total: number }> {
     return memberRepository.listMembers(options);
   }
+
+async getAllMembersWithStatus() {
+  const members = await memberRepository.getAllMembersWithMemberships()
+
+  return members.map(member => ({
+    ...member,
+    memberships: member.memberships.map(membership => ({
+      ...membership,
+      status: getMembershipStatus(membership.endDate)
+    }))
+  }))
+}
+
 }
 
 export const memberService = new MemberService();
