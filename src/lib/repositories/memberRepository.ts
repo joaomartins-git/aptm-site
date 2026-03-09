@@ -104,6 +104,26 @@ export class MemberRepository {
       throw new Error('Failed to list members');
     }
   }
+
+  async getAllMembersWithMemberships(): Promise<MemberWithMemberships[]> {
+    try {
+      const result = await db.query.members.findMany({
+        with: {
+          memberships: {
+            orderBy: (memberships, { desc }) => [desc(memberships.startDate)],
+          },
+        },
+        orderBy: (members, { asc }) => [asc(members.name)],
+      });
+
+      return result;
+    } catch (error) {
+      console.error('Error fetching all members with memberships:', error);
+      throw new Error('Failed to fetch members');
+    }
+  }
+
+
 }
 
 export const memberRepository = new MemberRepository();
