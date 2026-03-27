@@ -3,6 +3,7 @@ import { memberService } from '@/lib/services/memberService'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { notFound } from 'next/navigation'
+import RenewMembershipButton from "@/components/admin/RenewMembershipButton"
 
 type Props = {
   params: {
@@ -26,7 +27,7 @@ export default async function AdminMemberDetail({ params }: { params: Promise<{ 
 
   const { memberId } = await params
 
-  const member = await memberService.getMemberById(memberId)
+  const member = await memberService.getMemberWithMemberships(memberId)
 
   if (!member) {
     notFound()
@@ -45,8 +46,39 @@ export default async function AdminMemberDetail({ params }: { params: Promise<{ 
           <p><strong>Nº de Sócio:</strong> {member.memberNumber}</p>
           <p><strong>Função:</strong> {member.role}</p>
           <p><strong>Estado:</strong> {member.status}</p>
+          <p><RenewMembershipButton memberId={member.id} /></p>
         </CardContent>
       </Card>
+      <h2 className="text-xl font-semibold mt-8 mb-4">
+        Histórico de Quotas
+      </h2>
+
+      <table className="w-full border">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="p-2 text-left">Tipo</th>
+            <th className="p-2 text-left">Início</th>
+            <th className="p-2 text-left">Fim</th>
+            <th className="p-2 text-left">Estado</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {member.memberships.map((membership) => (
+            <tr key={membership.id} className="border-t">
+              <td className="p-2">{membership.type}</td>
+              <td className="p-2">{membership.startDate}</td>
+              <td className="p-2">{membership.endDate}</td>
+              <td className="p-2">
+                {membership.status === "active" && "🟢 Ativa"}
+                {membership.status === "expired" && "🔴 Expirada"}
+                {membership.status === "upcoming" && "🔵 Próxima"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+
   )
 }

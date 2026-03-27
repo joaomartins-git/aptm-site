@@ -15,10 +15,34 @@ function getStatusBadge(status: 'active' | 'expired' | 'expiring_soon') {
   }
 }
 
-export default async function AdminMembersPage() {
+function calculateMembershipStatus(endDate: string) {
+  const today = new Date()
+  const end = new Date(endDate)
+
+  const diffDays = Math.ceil(
+    (end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+  )
+
+  if (diffDays < 0) return 'expired'
+  if (diffDays <= 30) return 'expiring_soon'
+  return 'active'
+}
+
+export default async function AdminMembersPage({
+  searchParams
+}: {
+  searchParams: Promise<{ search?: string, status?: string, page?: string}>
+}) {
   await requireAdmin()
 
-  const members = await memberService.getAllMembersWithStatus()
+  const params = await searchParams
+
+  const search = params.search ?? ""
+  const status = params.status ?? "all"
+  
+  const page = Number(params.page ?? 1)
+  const pageSize = 10
+  const {data: members, totalPages} = await memberService.searchMembers(search, status, page, pageSize)
 
   return (
     <div className="container mx-auto px-6 py-20">
@@ -29,6 +53,40 @@ export default async function AdminMembersPage() {
 
         <CardContent>
           <div className="overflow-x-auto">
+            <form className="mb-6 flex gap-2">
+              <input
+                name="search"
+                defaultValue={search}
+                placeholder="Search members..."
+                className="border p-2 rounded w-80"
+              />
+
+              <select
+                name="status"
+                defaultValue={status}
+                className="border p-2 rounded"
+              >
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="expiring_soon">Expiring Soon</option>
+                <option value="expired">Expired</option>
+              </select>
+
+              <button
+                type="submit"
+                className="bg-black text-white px-4 py-2 rounded"
+              >
+                Search
+              </button>
+            </form>
+            <div className="mb-4">
+              <a
+                href="/api/admin/members/export"
+                className="bg-blue-600 text-white px-4 py-2 rounded"
+              >
+                Export Members CSV
+              </a>
+            </div>
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b">
@@ -44,7 +102,9 @@ export default async function AdminMembersPage() {
               <tbody>
                 {members.map(member => {
                   const membership = member.memberships[0]
-                  const status = membership?.status
+                  const status = membership
+                    ? calculateMembershipStatus(membership.endDate)
+                    : null
 
                   const badge = status ? getStatusBadge(status) : null
 
@@ -82,6 +142,32 @@ export default async function AdminMembersPage() {
                 })}
               </tbody>
             </table>
+            <div className="flex gap-2 mt-4">
+              <Link href={`?page=${page - 1}`} className="px-3 py-1 border">
+                Previous
+              </Link>
+
+              <Link href={`?page=${page + 1}`} className="px-3 py-1 border">
+                Next
+              </Link>
+            </div>
+            <div className="flex justify-center mt-6 gap-2">
+              {Array.from({ length: totalPages || 1 }).map((_, i) => {
+                const pageNumber = i + 1
+
+                return (
+                  <Link
+                    key={pageNumber}
+                    href={`?search=${search}&status=${status}&page=${pageNumber}`}
+                    className={`px-3 py-1 border rounded ${
+                      page === pageNumber ? 'bg-black text-white' : ''
+                    }`}
+                  >
+                    {pageNumber}
+                  </Link>
+                )
+              })}
+            </div>
           </div>
         </CardContent>
       </Card>

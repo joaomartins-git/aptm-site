@@ -6,6 +6,8 @@ import { ChevronDown, User, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { NavItem } from '@/types'
 import { useSession, signOut } from 'next-auth/react'
+import { Member } from '@/db/schema'
+import { Role } from '@/types/roles'
 
 const navigationItems: NavItem[] = [
   {
@@ -87,18 +89,27 @@ const navigationItems: NavItem[] = [
         href: '/contact/terapeutas'
       }
     ]
-  }
+  },
+
+
 ]
 
 // Function to get auth-dependent navigation items
-const getNavigationItems = (isAuthenticated: boolean): NavItem[] => {
+const getNavigationItems = (isAuthenticated: boolean, role?: Role): NavItem[] => {
   const items = navigationItems.filter(item => item.label !== 'Área de Sócios')
+  // const adminItems = navigationItems.filter(item => item.label !== 'Admin' && Member?.role === "admin")
 
   if (isAuthenticated) {
     items.push({
       label: 'Área de Sócios',
       href: '/socio/area'
     })
+    if(role === 'admin'){
+      items.push({
+        label: 'Admin',
+        href: '/admin'
+      })
+    }
   } else {
     items.push({
       label: 'Área de Sócios',
@@ -306,7 +317,8 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
   )
 
   const isAuthenticated = !!session
-  const currentNavigationItems = getNavigationItems(isAuthenticated)
+  const role = session?.user?.role
+  const currentNavigationItems = getNavigationItems(isAuthenticated, role)
 
   return (
     <nav className={navClasses}>
