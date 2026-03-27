@@ -1,4 +1,4 @@
-import { eq, and, count, InferSelectModel } from 'drizzle-orm';
+import { eq, and, count, InferSelectModel, ilike, or } from 'drizzle-orm';
 import { db } from '@/db';
 import { members, memberships, type Member, type NewMember } from '@/db/schema';
 import type { MemberRole, MemberStatus } from '@/types';
@@ -121,6 +121,97 @@ export class MemberRepository {
       console.error('Error fetching all members with memberships:', error);
       throw new Error('Failed to fetch members');
     }
+  }
+
+  async getMemberWithMemberships(memberId: string) {
+    return db.query.members.findFirst({
+      where: (members, { eq }) => eq(members.id, memberId),
+      with: {
+        memberships: true
+      }
+    })
+  }
+
+  async searchMembers(
+    search: string,
+    status: string,
+    page: number,
+    pageSize: number
+  ) {
+    const members = await db.query.members.findMany({
+      with: {
+        memberships: true
+      }
+    })
+
+    let filtered = members
+
+    // SEARCH FILTER
+    if (search) {
+      const searchLower = search.toLowerCase()
+
+      filtered = filtered.filter(member =>
+        member.name.toLowerCase().includes(searchLower) ||
+        member.email.toLowerCase().includes(searchLower)
+      )
+    }
+
+    // STATUS FILTER
+    if (status !== "all") {
+      const today = new Date()
+
+      filtered = filtered.filter(member => {
+        const membership = member.memberships[0]
+        if (!membership) return false
+
+        const endDate = new Date(membership.endDate)
+
+        const diffDays = Math.ceil(
+          (endDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+        )
+
+        let membershipStatus: "active" | "expired" | "expiring_soon"
+
+        if (diffDays < 0) membershipStatus = "expired"
+        else if (diffDays <= 30) membershipStatus = "expiring_soon"
+        else membershipStatus = "active"
+
+        return membershipStatus === status
+      })
+    }
+
+    const total = filtered.length
+
+    const paginated = filtered.slice(
+      (page - 1) * pageSize,
+      page * pageSize
+    )
+
+    return {
+      data: paginated,
+      total: total,
+      totalPages: Math.ceil(total / pageSize)
+    }
+  }
+
+  async getAllMembers(){
+    return db.query.members.findMany({
+      with: {
+        memberships: true
+      }
+    })
+  }
+
+  async getPaginatedMembers(page: number, limit: number){
+    const offset = (page - 1) * limit
+
+    return db.query.members.findMany({
+      limit,
+      offset,
+      with: {
+        memberships: true
+      }
+    })
   }
 
 

@@ -1,3 +1,4 @@
+import { Role } from '@/types/roles'
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import { z } from 'zod'
@@ -41,7 +42,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 id: member.id,
                 name: member.name,
                 email: member.email,
-                role: member.role,
+                role: member.role as Role,
                 source: 'database'
               }
             }
@@ -67,7 +68,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     session: async ({ session, token }) => {
       if (session.user) {
         session.user.id = token.sub!
-        session.user.role = token.role as string
+        session.user.role = token.role as Role
         session.user.source = token.source as string
       }
       return session

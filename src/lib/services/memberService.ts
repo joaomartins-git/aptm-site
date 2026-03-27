@@ -4,6 +4,7 @@ import { type Member, type NewMember, memberships  } from '@/db/schema';
 import type { MemberRole, MemberStatus } from '@/types';
 import type { MemberWithMemberships as RawMemberWithMemberships } from '@/lib/repositories/memberRepository';
 import type { InferSelectModel } from 'drizzle-orm';
+import { membershipRepository } from '@/lib/repositories/membershipRepository'
 
 type Membership = InferSelectModel<typeof memberships>;
 
@@ -110,21 +111,21 @@ export class MemberService {
   //   return memberRepository.getMemberByEmail(email);
   // }
 
-async getMemberByEmail(email: string): Promise<MemberWithMemberships | null> {
-  const member = await memberRepository.getMemberByEmail(email);
+  async getMemberByEmail(email: string): Promise<MemberWithMemberships | null> {
+    const member = await memberRepository.getMemberByEmail(email);
 
-  if (!member) return null;
+    if (!member) return null;
 
-  const membershipsWithStatus = member.memberships.map((membership) => ({
-    ...membership,
-    status: getMembershipStatus(membership.endDate),
-  }));
+    const membershipsWithStatus = member.memberships.map((membership) => ({
+      ...membership,
+      status: getMembershipStatus(membership.endDate),
+    }));
 
-  return {
-    ...member,
-    memberships: membershipsWithStatus,
-  };
-}
+    return {
+      ...member,
+      memberships: membershipsWithStatus,
+    };
+  }
 
   async getMemberById(id: string): Promise<Member | null> {
     return memberRepository.getMemberById(id);
@@ -139,17 +140,116 @@ async getMemberByEmail(email: string): Promise<MemberWithMemberships | null> {
     return memberRepository.listMembers(options);
   }
 
-async getAllMembersWithStatus() {
-  const members = await memberRepository.getAllMembersWithMemberships()
+  async getAllMembersWithStatus() {
+    const members = await memberRepository.getAllMembersWithMemberships()
 
-  return members.map(member => ({
-    ...member,
-    memberships: member.memberships.map(membership => ({
-      ...membership,
-      status: getMembershipStatus(membership.endDate)
+    return members.map(member => ({
+      ...member,
+      memberships: member.memberships.map(membership => ({
+        ...membership,
+        status: getMembershipStatus(membership.endDate)
+      }))
     }))
-  }))
-}
+  }
+
+  async renewMembership(memberId: string, type: 'yearly' | 'semester') {
+
+    const latest = await membershipRepository.getLatestMembership(memberId)
+
+    const startDate = latest
+      ? new Date(`${latest.endDate}T00:00:00`)
+      : new Date()
+
+    const endDate = new Date(startDate)
+
+    if (type === 'yearly') {
+      endDate.setFullYear(endDate.getFullYear() + 1)
+    }
+
+    if (type === 'semester') {
+      endDate.setMonth(endDate.getMonth() + 6)
+    }
+
+    const amount = type === 'yearly' ? '70' : '36'
+
+    const startDateStr = startDate.toISOString().split('T')[0]
+    const endDateStr = endDate.toISOString().split('T')[0]
+
+    return membershipRepository.createMembership({
+      memberId,
+      startDate: startDateStr,
+      endDate: endDateStr,
+      type,
+      amount
+    })
+  }
+
+  async getMemberWithMemberships(memberId: string) {
+    const member = await memberRepository.getMemberWithMemberships(memberId)
+
+    if (!member) return null
+
+    const today = new Date()
+
+    const memberships = member.memberships.map((membership) => {
+      const start = new Date(membership.startDate)
+      const end = new Date(membership.endDate)
+
+      let status: "active" | "expired" | "upcoming"
+
+      if (today < start) {
+        status = "upcoming"
+      } else if (today > end) {
+        status = "expired"
+      } else {
+        status = "active"
+      }
+
+      return {
+        ...membership,
+        status
+      }
+    })
+
+    return {
+      ...member,
+      memberships
+    }
+  }
+
+  async searchMembers(search: string, status: string, page: number, pageSize: number) {
+    return memberRepository.searchMembers(search, status, page, pageSize)
+  }
+
+  async getAllMembers(){
+    return memberRepository.getAllMembers()
+  }
+
+  async getPaginatedMembers(page: number, limit: number){
+    return memberRepository.getPaginatedMembers(page, limit)
+  }
+
+  // async searchMembersPaginated(
+  //   search: string,
+  //   status: string,
+  //   page: number,
+  //   pageSize: number
+  // ) {
+  //   const allMembers = await this.searchMembers(search, status, page, pageSize)
+
+  //   const total = allMembers.length
+
+  //   const paginated = allMembers.slice(
+  //     (page - 1) * pageSize,
+  //     page * pageSize
+  //   )
+
+  //   return {
+  //     data: paginated,
+  //     total,
+  //     totalPages: Math.ceil(total / pageSize),
+  //   }
+  // }
 
 }
 
