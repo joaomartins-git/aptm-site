@@ -41,6 +41,7 @@ export default async function AdminMembersPage({
   const status = params.status ?? "all"
   
   const page = Number(params.page ?? 1)
+  
   const pageSize = 10
   const {data: members, totalPages} = await memberService.searchMembers(search, status, page, pageSize)
 
@@ -70,6 +71,7 @@ export default async function AdminMembersPage({
                 <option value="active">Active</option>
                 <option value="expiring_soon">Expiring Soon</option>
                 <option value="expired">Expired</option>
+                <option value="pending">Pending</option>
               </select>
 
               <button
@@ -142,25 +144,47 @@ export default async function AdminMembersPage({
                 })}
               </tbody>
             </table>
-            <div className="flex gap-2 mt-4">
-              <Link href={`?page=${page - 1}`} className="px-3 py-1 border">
+            <div className="flex gap-2 mt-4 items-center">
+              <Link
+                href={`?search=${search}&status=${status}&page=${page - 1}`}
+                className={`px-3 py-1 border rounded ${
+                  page <= 1 ? 'pointer-events-none opacity-50' : ''
+                }`}
+              >
                 Previous
               </Link>
 
-              <Link href={`?page=${page + 1}`} className="px-3 py-1 border">
+              <span className="px-3 py-1">
+                Page {page} of {totalPages}
+              </span>
+
+              <Link
+                href={`?search=${search}&status=${status}&page=${page + 1}`}
+                className={`px-3 py-1 border rounded ${
+                  page >= totalPages ? 'pointer-events-none opacity-50' : ''
+                }`}
+              >
                 Next
               </Link>
             </div>
-            <div className="flex justify-center mt-6 gap-2">
+            <div className="flex justify-center mt-6 gap-2 flex-wrap">
               {Array.from({ length: totalPages || 1 }).map((_, i) => {
                 const pageNumber = i + 1
+
+                // Limit visible pages (nice UX)
+                if (
+                  pageNumber < page - 2 ||
+                  pageNumber > page + 2
+                ) return null
 
                 return (
                   <Link
                     key={pageNumber}
                     href={`?search=${search}&status=${status}&page=${pageNumber}`}
                     className={`px-3 py-1 border rounded ${
-                      page === pageNumber ? 'bg-black text-white' : ''
+                      page === pageNumber
+                        ? 'bg-black text-white'
+                        : 'hover:bg-gray-100'
                     }`}
                   >
                     {pageNumber}

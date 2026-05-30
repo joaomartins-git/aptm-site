@@ -176,7 +176,8 @@ export default function EventsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+{/* Mock data for events*/}
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {upcomingEvents.map((event) => {
               const typeInfo = eventTypeInfo[event.type as keyof typeof eventTypeInfo]
               const IconComponent = typeInfo.icon
@@ -252,7 +253,7 @@ export default function EventsPage() {
                 </Card>
               )
             })}
-          </div>
+          </div> */}
 
           <div className="text-center">
             <Button variant="outline" size="lg">

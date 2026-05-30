@@ -37,20 +37,22 @@ const contactInfo = {
     title: 'Endereço',
     icon: MapPin,
     lines: [
-      'Rua da Saúde, 123',
-      '1000-001 Lisboa',
+      'Apartado 92',
+      '8001-908 Faro',
       'Portugal'
     ]
   },
   phone: {
     title: 'Telefone',
     icon: Phone,
-    lines: ['+351 210 000 000']
+    lines: ['+351 962 932 972']
   },
   email: {
     title: 'Email',
     icon: Mail,
-    lines: ['geral@aptm.pt']
+    lines: ['geral@aptm.pt',
+      'secretariado.aptm@gmail.com'
+    ]
   },
   hours: {
     title: 'Horário',
@@ -72,12 +74,12 @@ const socialMedia = [
   },
   {
     name: 'Facebook',
-    href: '#',
+    href: 'https://www.facebook.com/groups/126735657407362/',
     description: 'Siga-nos no Facebook'
   },
   {
     name: 'Instagram',
-    href: '#',
+    href: 'https://instagram.com/apterapiamao',
     description: 'Acompanhe nosso Instagram'
   },
   {
@@ -353,7 +355,7 @@ export default function ContactPage() {
                       <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
                       <div>
                         <div className="font-medium">Telefone</div>
-                        <div className="text-sm text-muted-foreground">+351 210 000 000</div>
+                        <div className="text-sm text-muted-foreground">+351 962 932 972</div>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">

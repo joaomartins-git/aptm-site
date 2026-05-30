@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { Resend } from 'resend'
 import { PROFESSIONS, PORTUGUESE_DISTRICTS } from '@/lib/site'
+import { db } from "@/db"
+import { members } from "@/db/schema"
 
 // Simple in-memory rate limiting store
 const rateLimitStore = new Map<string, { timestamp: number; count: number }>()
@@ -14,6 +16,18 @@ const joinFormSchema = z.object({
     .string()
     .min(2, "O nome deve ter pelo menos 2 caracteres")
     .max(100, "O nome não pode ter mais de 100 caracteres"),
+  dataNascimento: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), {
+      message: "Data inválida"
+    }),
+  morada: z
+    .string()
+    .min(5, "Morada inválida")
+    .max(255),
+  nif: z
+    .string()
+    .regex(/^\d{9}$/, "NIF deve ter 9 dígitos"),
   email: z
     .string()
     .email("Por favor, introduza um email válido")
@@ -41,6 +55,9 @@ const joinFormSchema = z.object({
     .max(200, "A instituição não pode ter mais de 200 caracteres")
     .optional()
     .or(z.literal('')),
+  habilitacoes: z
+    .array(z.string())
+    .min(1, "Selecione pelo menos uma habilitação"),
   mensagem: z
     .string()
     .max(1000, "A mensagem não pode ter mais de 1000 caracteres")
@@ -49,7 +66,22 @@ const joinFormSchema = z.object({
   plano: z
     .enum(["semestral", "anual"], {
       message: "Por favor, selecione um plano"
-    })
+    }),
+  paymentProofUrl: z
+    .string()
+    .url("URL inválido"),
+  photoUrl: z
+    .string()
+    .url("URL inválido")
+    .optional(),
+  professionalCardUrl: z
+    .string()
+    .url("URL inválido")
+    .optional(),
+  certificatesUrls: z
+    .array(z.string().url())
+    .optional()
+
 })
 
 // File validation
@@ -117,40 +149,88 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse form data
-    const formData = await request.formData()
+    // const formData = await request.formData()
+    
+    const body = await request.json()
+
+    const {
+      nome,
+      dataNascimento,
+      morada,
+      nif,
+      email,
+      telemovel,
+      profissao,
+      numCedula,
+      distrito,
+      instituicao,
+      habilitacoes,
+      mensagem,
+      plano,
+      paymentProofUrl,
+      photoUrl,
+      professionalCardUrl,
+      certificatesUrls
+    } = body
 
     // Extract form fields
-    const fields = {
-      nome: formData.get('nome') as string,
-      email: formData.get('email') as string,
-      telemovel: formData.get('telemovel') as string || '',
-      profissao: formData.get('profissao') as string,
-      numCedula: formData.get('numCedula') as string || '',
-      distrito: formData.get('distrito') as string,
-      instituicao: formData.get('instituicao') as string || '',
-      mensagem: formData.get('mensagem') as string || '',
-      plano: formData.get('plano') as string
+    // const fields = {
+    //   nome: formData.get('nome') as string,
+    //   email: formData.get('email') as string,
+    //   telemovel: formData.get('telemovel') as string || '',
+    //   profissao: formData.get('profissao') as string,
+    //   numCedula: formData.get('numCedula') as string || '',
+    //   distrito: formData.get('distrito') as string,
+    //   instituicao: formData.get('instituicao') as string || '',
+    //   mensagem: formData.get('mensagem') as string || '',
+    //   plano: formData.get('plano') as string
+    // }
+
+    if (!paymentProofUrl) {
+      return NextResponse.json(
+        { error: "Comprovativo é obrigatório" },
+        { status: 400 }
+      )
     }
+    const validationResult = joinFormSchema.safeParse({
+      nome,
+      dataNascimento,
+      morada,
+      nif,
+      email,
+      telemovel,
+      profissao,
+      numCedula,
+      distrito,
+      instituicao,
+      habilitacoes,
+      mensagem,
+      plano,
+      paymentProofUrl,
+      photoUrl,
+      professionalCardUrl,
+      certificatesUrls
+    })
 
     // Extract and validate file
-    const file = formData.get('comprovativo') as File
-    if (!file || file.size === 0) {
-      return NextResponse.json(
-        { error: "Por favor, selecione um comprovativo de pagamento" },
-        { status: 400 }
-      )
-    }
+    // const file = formData.get('comprovativo') as File
+    // if (!file || file.size === 0) {
+    //   return NextResponse.json(
+    //     { error: "Por favor, selecione um comprovativo de pagamento" },
+    //     { status: 400 }
+    //   )
+    // }
 
-    const fileError = validateFile(file)
-    if (fileError) {
-      return NextResponse.json(
-        { error: fileError },
-        { status: 400 }
-      )
-    }
+    // const fileError = validateFile(file)
+    // if (fileError) {
+    //   return NextResponse.json(
+    //     { error: fileError },
+    //     { status: 400 }
+    //   )
+    // }
 
     // Validate form fields
-    const validationResult = joinFormSchema.safeParse(fields)
+    // const validationResult = joinFormSchema.safeParse(fields)
 
     if (!validationResult.success) {
       const fieldErrors: Record<string, string> = {}
@@ -171,6 +251,47 @@ export async function POST(request: NextRequest) {
 
     const data = validationResult.data
 
+    await db.insert(members).values({
+      memberNumber: Math.floor(100000 + Math.random() * 900000),
+
+      email: data.email,
+
+      passwordHash: null,
+
+      name: data.nome,
+
+      profession: data.profissao,
+
+      district: data.distrito,
+
+      institution: data.instituicao || null,
+
+      role: "member",
+
+      status: "pending",
+
+      receiptProofUrl: data.paymentProofUrl,
+
+      birthDate: data.dataNascimento,
+
+      address: data.morada,
+
+      nif: data.nif,
+
+      phone: data.telemovel || null,
+
+      professionalLicenseNumber: data.numCedula || null,
+
+      habilitacoes: data.habilitacoes,
+
+      certificatesUrls: data.certificatesUrls || [],
+
+      profilePhotoUrl: data.photoUrl || null,
+
+      professionalCardUrl: data.professionalCardUrl || null,
+    })
+
+
     // Check if we should send real email or mock
     const resendApiKey = process.env.RESEND_API_KEY
     const contactRecipient = process.env.CONTACT_RECIPIENT
@@ -181,16 +302,16 @@ export async function POST(request: NextRequest) {
         const resend = new Resend(resendApiKey)
 
         // Read file content for attachment
-        let attachment: { filename: string; content: Buffer } | undefined = undefined
-        try {
-          const fileBuffer = await file.arrayBuffer()
-          attachment = {
-            filename: file.name,
-            content: Buffer.from(fileBuffer),
-          }
-        } catch (fileError) {
-          console.error('Failed to process file attachment:', fileError)
-        }
+        // let attachment: { filename: string; content: Buffer } | undefined = undefined
+        // try {
+        //   const fileBuffer = await file.arrayBuffer()
+        //   attachment = {
+        //     filename: file.name,
+        //     content: Buffer.from(fileBuffer),
+        //   }
+        // } catch (fileError) {
+        //   console.error('Failed to process file attachment:', fileError)
+        // }
 
         const emailHtml = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -201,18 +322,23 @@ export async function POST(request: NextRequest) {
             <div style="margin: 20px 0;">
               <h3 style="color: #555; margin-bottom: 15px;">Dados Pessoais</h3>
               <p><strong>Nome:</strong> ${data.nome}</p>
+              <p><strong>Data de Nascimento:</strong> ${data.dataNascimento}</p>
+              <p><strong>Morada:</strong> ${data.morada}</p>
+              <p><strong>NIF:</strong> ${data.nif}</p>
               <p><strong>Email:</strong> ${data.email}</p>
               ${data.telemovel ? `<p><strong>Telemóvel:</strong> ${data.telemovel}</p>` : ''}
               <p><strong>Profissão:</strong> ${data.profissao}</p>
               ${data.numCedula ? `<p><strong>Número da Cédula:</strong> ${data.numCedula}</p>` : ''}
               <p><strong>Distrito:</strong> ${data.distrito}</p>
               ${data.instituicao ? `<p><strong>Instituição:</strong> ${data.instituicao}</p>` : ''}
+              <p><strong>Habilitações:</strong> ${data.habilitacoes.join(', ')}</p>
             </div>
 
             <div style="margin: 20px 0;">
               <h3 style="color: #555; margin-bottom: 15px;">Dados da Adesão</h3>
               <p><strong>Plano Escolhido:</strong> ${data.plano === 'semestral' ? 'Semestral (€85)' : 'Anual (€150)'}</p>
-              ${attachment ? '<p><strong>Comprovativo:</strong> Em anexo</p>' : '<p style="color: #d9534f;"><strong>Comprovativo:</strong> Falha ao processar anexo</p>'}
+              <p><strong>Comprovativo:</strong> <a href="${paymentProofUrl}" target="_blank">Ver comprovativo</a>
+                </p> : '<p style="color: #d9534f;"><strong>Comprovativo:</strong> Falha ao processar anexo</p>'}
             </div>
 
             ${data.mensagem ? `
@@ -222,6 +348,38 @@ export async function POST(request: NextRequest) {
                 ${data.mensagem.replace(/\n/g, '<br>')}
               </div>
             </div>
+            ` : ''}
+
+            ${data.photoUrl ? `
+            <p>
+              <strong>Fotografia:</strong>
+              <a href="${data.photoUrl}" target="_blank">
+                Ver fotografia
+              </a>
+            </p>
+            ` : ''}
+
+            ${data.professionalCardUrl ? `
+            <p>
+              <strong>Cédula Profissional:</strong>
+              <a href="${data.professionalCardUrl}" target="_blank">
+                Ver cédula
+              </a>
+            </p>
+            ` : ''}
+
+            ${data.certificatesUrls?.length ? `
+              <div>
+                <strong>Certificados:</strong>
+                <ul>
+                  ${data.certificatesUrls
+                    .map(
+                      (url, index) =>
+                        `<li><a href="${url}" target="_blank">Certificado ${index + 1}</a></li>`
+                    )
+                    .join('')}
+                </ul>
+              </div>
             ` : ''}
 
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 12px;">
@@ -247,9 +405,9 @@ export async function POST(request: NextRequest) {
         }
 
         // Add attachment if available
-        if (attachment) {
-          emailPayload.attachments = [attachment]
-        }
+        // if (attachment) {
+        //   emailPayload.attachments = [attachment]
+        // }
 
         const { data: emailData, error } = await resend.emails.send(emailPayload)
 
@@ -279,17 +437,22 @@ export async function POST(request: NextRequest) {
       console.log('=== JOIN FORM SUBMISSION (MOCK MODE) ===')
       console.log('Timestamp:', new Date().toISOString())
       console.log('Nome:', data.nome)
+      console.log('Data de Nascimento:', data.dataNascimento)
+      console.log('Morada Fiscal:', data.morada)
+      console.log('NIF:', data.nif)
       console.log('Email:', data.email)
       console.log('Telemóvel:', data.telemovel || 'N/A')
       console.log('Profissão:', data.profissao)
       console.log('Número da Cédula:', data.numCedula || 'N/A')
       console.log('Distrito:', data.distrito)
       console.log('Instituição:', data.instituicao || 'N/A')
+      console.log('Habilitações Académicas:', data.habilitacoes)
       console.log('Plano:', data.plano)
       console.log('Mensagem:', data.mensagem || 'N/A')
-      console.log('File name:', file.name)
-      console.log('File size:', file.size, 'bytes')
-      console.log('File type:', file.type)
+      console.log('Comprovativo de Pagamento:', paymentProofUrl)
+      console.log('Foto:', photoUrl)
+      console.log('Cédula Profissional:', professionalCardUrl)
+      console.log('Habilitações Académicas (certificados) URLs:', certificatesUrls)
       console.log('==============================================')
 
       return NextResponse.json({

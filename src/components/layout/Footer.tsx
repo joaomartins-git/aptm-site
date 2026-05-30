@@ -16,8 +16,8 @@ const footerLinks = {
   recursos: [
     { label: 'Eventos', href: '/events' },
     { label: 'Formações', href: '/trainings' },
-    { label: 'Publicações', href: '#' },
-    { label: 'Notícias', href: '#' }
+    { label: 'Publicações', href: '/publications' },
+    { label: 'Notícias', href: '/news' }
   ],
   empresa: [
     { label: 'Sobre Nós', href: '/about' },
@@ -29,8 +29,8 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Facebook, href: 'https://www.facebook.com/groups/126735657407362/', label: 'Facebook' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  //{ icon: Twitter, href: '#', label: 'Twitter' },
+  //{ icon: Linkedin, href: '#', label: 'LinkedIn' },
   { icon: Instagram, href: 'https://instagram.com/apterapiamao', label: 'Instagram' }
 ]
 

@@ -9,7 +9,7 @@ import { membershipRepository } from '@/lib/repositories/membershipRepository'
 type Membership = InferSelectModel<typeof memberships>;
 
 export type MembershipWithStatus = Membership & {
-  status: 'active' | 'expired' | 'expiring_soon';
+  status: 'active' | 'expired' | 'expiring_soon' | 'pending';
 };
 
 export type MemberWithMemberships = Omit<RawMemberWithMemberships,'memberships'> & {
@@ -59,6 +59,12 @@ export class MemberService {
 
       if (!member) {
         console.log('Authentication failed: member not found');
+        return null;
+      }
+
+      // NEW CHECK for the password
+      if (!member.passwordHash) {
+        console.log('Authentication failed: no password set');
         return null;
       }
 
@@ -228,6 +234,22 @@ export class MemberService {
   async getPaginatedMembers(page: number, limit: number){
     return memberRepository.getPaginatedMembers(page, limit)
   }
+
+  async approveMember(memberId: string) {
+    return memberRepository.updateMemberStatus(
+      memberId,
+      'active'
+    )
+  }
+
+  async rejectMember(memberId: string) {
+    return memberRepository.updateMemberStatus(
+      memberId,
+      'rejected'
+    )
+  }
+
+
 
   // async searchMembersPaginated(
   //   search: string,

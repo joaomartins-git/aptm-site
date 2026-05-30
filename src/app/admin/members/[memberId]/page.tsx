@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { notFound } from 'next/navigation'
 import RenewMembershipButton from "@/components/admin/RenewMembershipButton"
+import Image from "next/image"
 
 type Props = {
   params: {
@@ -46,9 +47,61 @@ export default async function AdminMemberDetail({ params }: { params: Promise<{ 
           <p><strong>Nº de Sócio:</strong> {member.memberNumber}</p>
           <p><strong>Função:</strong> {member.role}</p>
           <p><strong>Estado:</strong> {member.status}</p>
-          <p><RenewMembershipButton memberId={member.id} /></p>
+          <div className="pt-4">
+          <RenewMembershipButton memberId={member.id} />
+          </div>
         </CardContent>
       </Card>
+
+      <h2>Documentos Submetidos:</h2>
+
+      {member.profilePhotoUrl && (
+        <Image 
+        src={member.profilePhotoUrl} 
+        alt={`Foto de perfil de ${member.name}`}
+        width={160}
+        height={160}
+        className="rounded-lg object-cover"
+        />
+      )}
+
+      <p>
+      {member.receiptProofUrl && (
+        <a href={member.receiptProofUrl}>
+          Ver Comprovativo de Pagamento
+        </a>
+      )}
+      </p>
+      <p>
+      {member.professionalCardUrl && (
+        <a href={member.professionalCardUrl}>
+          Ver Cédula Profissional
+        </a>
+      )}
+      </p>
+
+      <div className="pt-4">
+      {member.certificatesUrls && member.certificatesUrls.length > 0 && (
+        <div className="space-y-2">
+          <h3 className="font-semibold">
+            Certificados
+          </h3>
+
+          {member.certificatesUrls.map((url, index) => (
+            <a
+            key={index}
+            href={url}
+            target="_blank"
+            className="block text-blue-600 underline"
+            >
+              Ver Certificado {index + 1}
+            </a>
+          ))}
+        </div>
+      )}
+      </div>
+
+
       <h2 className="text-xl font-semibold mt-8 mb-4">
         Histórico de Quotas
       </h2>
