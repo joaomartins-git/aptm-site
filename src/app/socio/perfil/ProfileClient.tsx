@@ -74,19 +74,27 @@ interface ProfileClientProps {
   member: MemberWithMemberships  | null
 }
 
-type MembershipStatus = 'active' | 'expired' | 'expiring_soon';
+type MembershipStatus = 'active' | 'expired' | 'expiring_soon' | 'pending' | 'inactive' | 'rejected' | 'suspended';
 
 function MembershipStatusBadge({ status }: { status: MembershipStatus }) {
   const styles = {
     active: 'bg-green-100 text-green-800',
     expiring_soon: 'bg-yellow-100 text-yellow-800',
     expired: 'bg-red-100 text-red-800',
+    pending: 'bg-yellow-50 text-yellow-800',
+    inactive: 'bg-grey-100 text-grey-800',
+    rejected: 'bg-red-100 text-red-800',
+    suspended: 'bg-red-70 text-red-800'
   };
 
   const labels = {
     active: 'Ativo',
     expiring_soon: 'Expira em breve',
     expired: 'Expirado',
+    pending: 'Pendente',
+    inactive: 'Inativo',
+    rejected: 'Rejeitado',
+    suspended: 'Suspenso'
   };
 
   return (
