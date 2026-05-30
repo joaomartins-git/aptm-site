@@ -145,7 +145,9 @@ export type MemberRole = typeof MEMBER_ROLES[number];
 export const MEMBER_STATUS = [
   'active',
   'inactive',
-  'pending'
+  'pending',
+  'rejected',
+  'suspended'
 ] as const;
 
 export type MemberStatus = typeof MEMBER_STATUS[number];

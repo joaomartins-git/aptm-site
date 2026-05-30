@@ -31,7 +31,13 @@ export default async function AdminLayout({
           >
             Members
           </Link>
-
+          
+          <Link
+            href="/admin/applications"
+            className="text-gray-700 hover:text-black"
+          >
+            Applications
+          </Link>
         </nav>
       </aside>
 

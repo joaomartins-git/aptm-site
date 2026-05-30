@@ -15,6 +15,20 @@
       "when": 1771846504738,
       "tag": "0001_sad_stingray",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1775495404119,
+      "tag": "0002_outgoing_groot",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1778533757978,
+      "tag": "0003_dapper_psylocke",
+      "breakpoints": true
     }
   ]
 }

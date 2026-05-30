@@ -11,7 +11,8 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, error, id, ...props }, ref) => {
-    const [generatedId] = React.useState(() => `textarea-${Math.random().toString(36).substr(2, 9)}`)
+    const [generatedId] = React.useId()
+    //React.useState(() => `textarea-${Math.random().toString(36).substr(2, 9)}`)
     const textareaId = id || generatedId
     const errorId = error ? `${textareaId}-error` : undefined
 

@@ -33,6 +33,18 @@ export const joinFormSchema = z.object({
     .string()
     .min(2, "O nome deve ter pelo menos 2 caracteres")
     .max(100, "O nome não pode ter mais de 100 caracteres"),
+  dataNascimento: z
+    .string()
+    .refine((date) => !isNaN(Date.parse(date)), {
+      message: "Data inválida"
+    }),
+  morada: z
+    .string()
+    .min(5, "Morada inválida")
+    .max(255, "Morada demasiado longa"),
+  nif: z
+    .string()
+    .regex(/^\d{9}$/, "NIF deve ter 9 dígitos"),
   email: z
     .string()
     .email("Por favor, introduza um email válido")
@@ -57,6 +69,9 @@ export const joinFormSchema = z.object({
     .string()
     .max(200, "A instituição não pode ter mais de 200 caracteres")
     .optional(),
+  habilitacoes: z
+    .array(z.string())
+    .min(1, "Selecione pelo menos uma habilitação"),
   mensagem: z
     .string()
     .max(1000, "A mensagem não pode ter mais de 1000 caracteres")
@@ -65,36 +80,49 @@ export const joinFormSchema = z.object({
     .enum(["semestral", "anual"], {
       message: "Por favor, selecione um plano"
     }),
-  comprovativo: z
-    .instanceof(File, { message: "Por favor, selecione um ficheiro" })
-    .refine(
-      (file) => file.size <= 5 * 1024 * 1024, // 5MB
-      "O ficheiro não pode ter mais de 5MB"
-    )
-    .refine(
-      (file) => ["application/pdf", "image/jpeg", "image/jpg", "image/png"].includes(file.type),
-      "Apenas ficheiros PDF, JPG e PNG são permitidos"
-    )
+  paymentProofUrl: z
+    .string()
+    .url("URL inválido"),
+
+  certificatesUrls: z
+    .array(z.string().url()),
+
+  photoUrl: z
+    .string()
+    .url(),
+
+  professionalCardUrl: z
+    .string()
+    .url(),
 })
 
 export type JoinFormInput = z.infer<typeof joinFormSchema>
 
 export function validateJoinForm(data: FormData) {
   // Extract file from FormData
-  const comprovativoFile = data.get('comprovativo') as File
+  //const comprovativoFile = data.get('comprovativo') as File
 
   // Convert FormData to object for validation
   const formData = {
     nome: data.get('nome'),
+    morada: data.get('morada'),
+    nif: data.get('nif'),
+    dataNascimento: data.get('dataNascimento'),
     email: data.get('email'),
     telemovel: data.get('telemovel') || undefined,
     profissao: data.get('profissao'),
     numCedula: data.get('numCedula') || undefined,
     distrito: data.get('distrito'),
     instituicao: data.get('instituicao') || undefined,
+    habilitacoes: data.getAll('habilitacoes'),
     mensagem: data.get('mensagem') || undefined,
     plano: data.get('plano'),
-    comprovativo: comprovativoFile
+    paymentProofUrl: data.get('paymentProofUrl'),
+    photoUrl: data.get('photoUrl'),
+    professionalCardUrl: data.get('professionalCardUrl'),
+    certificatesUrls: data.get('certificatesUrls')
+    
+    // comprovativo: comprovativoFile
   }
 
   return joinFormSchema.parse(formData)
@@ -102,20 +130,28 @@ export function validateJoinForm(data: FormData) {
 
 export function validateJoinFormSafe(data: FormData) {
   // Extract file from FormData
-  const comprovativoFile = data.get('comprovativo') as File
+  // const comprovativoFile = data.get('comprovativo') as File
 
   // Convert FormData to object for validation
   const formData = {
     nome: data.get('nome'),
+    morada: data.get('morada'),
+    nif: data.get('nif'),
+    dataNascimento: data.get('dataNascimento'),
     email: data.get('email'),
     telemovel: data.get('telemovel') || undefined,
     profissao: data.get('profissao'),
     numCedula: data.get('numCedula') || undefined,
     distrito: data.get('distrito'),
     instituicao: data.get('instituicao') || undefined,
+    habilitacoes: data.getAll('habilitacoes'),
     mensagem: data.get('mensagem') || undefined,
     plano: data.get('plano'),
-    comprovativo: comprovativoFile
+    paymentProofUrl: data.get('paymentProofUrl'),
+    photoUrl: data.get('photoUrl'),
+    professionalCardUrl: data.get('professionalCardUrl'),
+    certificatesUrls: data.get('certificatesUrls')
+    // comprovativo: comprovativoFile
   }
 
   return joinFormSchema.safeParse(formData)

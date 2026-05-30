@@ -141,10 +141,10 @@ export default function Home() {
       */}
 
       {/* Services Overview */}
-      <ServicesOverview />
+      {/* <ServicesOverview /> */}
 
       {/* Events Overview */}
-      <EventsOverview />
+      {/* <EventsOverview /> */}
 
       {/* Call to Action */}
       <CallToAction />

@@ -1,11 +1,11 @@
 // Site configuration constants for APTM
 
-export const IBAN = 'PT50 0035 0000 0001234567 89' as const;
+export const IBAN = 'PT50 0010 0000 2296 3770 0013 3' as const;
 export const MBWAY_PHONE = '+351 912 345 678' as const;
 
 export const MEMBERSHIP_FEES = {
-  semestral: 85,
-  anual: 150,
+  semestral: 36,
+  anual: 70,
 } as const;
 
 export const PORTUGUESE_DISTRICTS = [
@@ -43,7 +43,7 @@ export const PORTUGUESE_DISTRICTS = [
   'Funchal',
 ] as const;
 
-export const PROFESSIONS = [
+export const  PROFESSIONS = [
   'Terapeuta da Mão',
   'Terapeuta Ocupacional',
   'Fisioterapeuta',
@@ -51,6 +51,15 @@ export const PROFESSIONS = [
   'Outro',
 ] as const;
 
+export const  HABILITATIONS = [
+  'Estudante',
+  'Licenciatura',
+  'Pós-Graduação',
+  'Mestrado',
+  'Doutoramento',
+] as const;
+
 // Type definitions
 export type District = typeof PORTUGUESE_DISTRICTS[number];
 export type Profession = typeof PROFESSIONS[number];
+export type Habilitation = typeof HABILITATIONS[number];

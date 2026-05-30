@@ -3,6 +3,7 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 import type { InputHTMLAttributes } from 'react'
+import { useId } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
@@ -12,7 +13,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, label, error, id, leftIcon, ...props }, ref) => {
-    const [generatedId] = React.useState(() => `input-${Math.random().toString(36).substr(2, 9)}`)
+    const [generatedId] = React.useId()
+    //React.useState(() => `input-${Math.random().toString(36).substr(2, 9)}`)
     const inputId = id || generatedId
     const errorId = error ? `${inputId}-error` : undefined
 

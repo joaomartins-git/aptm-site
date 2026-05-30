@@ -9,15 +9,21 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/Input'
 import { Textarea } from '@/components/ui/Textarea'
 import { Select } from '@/components/ui/Select'
-import { IBAN, MBWAY_PHONE, MEMBERSHIP_FEES, PROFESSIONS, PORTUGUESE_DISTRICTS } from '@/lib/site'
+import { IBAN, MBWAY_PHONE, MEMBERSHIP_FEES, PROFESSIONS, PORTUGUESE_DISTRICTS, HABILITATIONS } from '@/lib/site'
 import { joinFormSchema } from '@/lib/validations'
 import { CheckCircle, Upload, CreditCard, Phone } from 'lucide-react'
 import type { JoinFormInput } from '@/lib/validations'
+import UploadPayment from '@/components/UploadPayment'
 
 export default function JoinPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [submitMessage, setSubmitMessage] = useState('')
+  const [paymentProofUrl, setPaymentProofUrl] = useState("")
+
+  const [photoUrl, setPhotoUrl] = useState("")
+  const [professionalCardUrl, setProfessionalCardUrl] = useState("")
+  const [certificatesUrls, setCertificatesUrls] = useState<string[]>([])
 
   const {
     register,
@@ -32,11 +38,16 @@ export default function JoinPage() {
       telemovel: '',
       numCedula: '',
       instituicao: '',
-      mensagem: ''
+      mensagem: '',
+      paymentProofUrl: "",
+      photoUrl: "",
+      professionalCardUrl: "",
+      certificatesUrls: [],
     }
   })
 
   const onSubmit = async (data: JoinFormInput) => {
+    console.log("SUBMIT FIRED", data)
     setIsSubmitting(true)
     setSubmitStatus('idle')
     setSubmitMessage('')
@@ -52,13 +63,31 @@ export default function JoinPage() {
       })
 
       // Handle file upload
-      if (data.comprovativo) {
-        formData.append('comprovativo', data.comprovativo)
+      // if (data.comprovativo) {
+      //   formData.append('comprovativo', data.comprovativo)
+      // }
+
+      const payload = {
+        ...data,
+        paymentProofUrl,
+        photoUrl,
+        professionalCardUrl,
+        certificatesUrls
+      }
+
+      if (!paymentProofUrl) {
+        setSubmitStatus('error')
+        setSubmitMessage('Por favor carregue o comprovativo de pagamento.')
+        setIsSubmitting(false)
+        return
       }
 
       const response = await fetch('/api/join', {
         method: 'POST',
-        body: formData
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
       })
 
       const result = await response.json()
@@ -84,12 +113,12 @@ export default function JoinPage() {
     }
   }
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file) {
-      setValue('comprovativo', file)
-    }
-  }
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0]
+  //   if (file) {
+  //     setValue('comprovativo', file)
+  //   }
+  // }
 
   return (
     <>
@@ -195,7 +224,7 @@ export default function JoinPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit, (errors) => {console.log("FORM ERRORS", errors)})} className="space-y-6">
 
                   {/* Personal Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -206,6 +235,27 @@ export default function JoinPage() {
                       required
                     />
                     <Input
+                      label="Data de Nascimento *"
+                      type="date"
+                      {...register('dataNascimento')}
+                      error={errors.dataNascimento?.message}
+                      required
+                    />
+                    <Input
+                      label="Morada Fiscal *"
+                      type="address"
+                      {...register('morada')}
+                      error={errors.morada?.message}
+                      required
+                    />
+                    <Input
+                      label="NIF *"
+                      type="NIF"
+                      {...register('nif')}
+                      error={errors.nif?.message}
+                      required
+                    />                    
+                    <Input
                       label="Email *"
                       type="email"
                       {...register('email')}
@@ -213,7 +263,7 @@ export default function JoinPage() {
                       required
                     />
                     <Input
-                      label="Telemóvel"
+                      label="Contacto Telefónico"
                       type="tel"
                       placeholder="912345678"
                       {...register('telemovel')}
@@ -249,7 +299,84 @@ export default function JoinPage() {
                       {...register('instituicao')}
                       error={errors.instituicao?.message}
                     />
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Habilitações Académicas *
+                      </label>
+
+                      {["Estudante", "Licenciatura", "Pós-Graduação", "Mestrado", "Doutoramento"].map((item) => (
+                        <label key={item} className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            value={item}
+                            {...register("habilitacoes")}
+                          />
+                          {item}
+                        </label>
+                      ))}
+                    </div>
                   </div>
+                  <div>
+                    <label className="text-sm font-medium mb-3 block">
+                      Habilitações Académicas (submeter certificados de formação) *
+                    </label>
+                    <UploadPayment
+                      // multiple
+                      onUpload={(urls) => {
+                        console.log(urls)
+                        setCertificatesUrls(urls as string[])
+                        setValue("certificatesUrls", urls as string[], {
+                          shouldValidate: true,
+                        })
+                      }}
+                    />
+                  </div>
+
+                  <input
+                    type="hidden"
+                    {...register("certificatesUrls")}
+                  />
+
+
+                  <div className="text-sm font-medium mb-3 block">
+                    <label>
+                      Foto (submeter fotografia) *
+                    </label>
+                      <UploadPayment
+                        onUpload={(url) => {
+                          console.log(url)
+                          setPhotoUrl(url[0])
+                          setValue("photoUrl", url[0], {
+                            shouldValidate: true,
+                          })
+                        }}
+                      />
+                  </div>
+
+                  <input
+                    type="hidden"
+                    {...register("photoUrl")}
+                  />
+
+                  <div className="text-sm font-medium mb-3 block">
+                    <label>
+                      Cédula Profissional (submeter ficheiro)
+                    </label>
+                    <UploadPayment
+                      onUpload={(url) => {
+                        console.log(url)
+                        setProfessionalCardUrl(url[0])
+                        setValue("professionalCardUrl", url[0], {
+                          shouldValidate: true,
+                        })
+                      }}
+                    />
+                  </div>
+
+                  <input
+                    type="hidden"
+                    {...register("professionalCardUrl")}
+                  />
 
                   {/* Message */}
                   <Textarea
@@ -305,7 +432,7 @@ export default function JoinPage() {
                   </div>
 
                   {/* File Upload */}
-                  <div>
+                  {/* <div>
                     <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-3 block">
                       Comprovativo de Pagamento *
                     </label>
@@ -337,7 +464,40 @@ export default function JoinPage() {
                         {errors.comprovativo.message}
                       </p>
                     )}
+                  </div> */}
+                  {/* Upload Payment Proof */}
+                  <div>
+                    <label className="text-sm font-medium mb-3 block">
+                      Comprovativo de Pagamento *
+                    </label>
+
+                    <UploadPayment
+                      onUpload={(url) => {
+                        console.log(url)
+                        setPaymentProofUrl(url[0])
+
+                          setValue("paymentProofUrl", url[0], {
+                            shouldValidate: true,
+                          })
+                      }}
+                    />
+
+                    {paymentProofUrl && (
+                      <p className="text-sm text-primary mt-2">
+                        Upload concluído ✅
+                      </p>
+                    )}
+
+                    {!paymentProofUrl && submitStatus === 'error' && (
+                      <p className="text-sm text-destructive mt-2">
+                        Por favor faça upload do comprovativo
+                      </p>
+                    )}
                   </div>
+                  <input
+                      type="hidden"
+                      {...register("paymentProofUrl")}
+                  />
 
                   {/* Submit Button */}
                   <div className="flex justify-center pt-4">

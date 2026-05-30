@@ -15,7 +15,8 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, label, error, id, options = [], children, ...props }, ref) => {
-    const [generatedId] = React.useState(() => `select-${Math.random().toString(36).substr(2, 9)}`)
+    const [generatedId] = React.useId()
+    //React.useState(() => `select-${Math.random().toString(36).substr(2, 9)}`)
     const selectId = id || generatedId
     const errorId = error ? `${selectId}-error` : undefined
 

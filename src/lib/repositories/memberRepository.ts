@@ -214,6 +214,23 @@ export class MemberRepository {
     })
   }
 
+  async updateMemberStatus(
+    memberId: string,
+    status: 'pending' | 'active' | 'rejected' | 'suspended'
+  ) {
+    const [updatedMember] = await db
+      .update(members)
+      .set({
+        status,
+        updatedAt: new Date()
+      })
+      .where(eq(members.id, memberId))
+      .returning()
+
+    return updatedMember
+  }
+
+
 
 }
 

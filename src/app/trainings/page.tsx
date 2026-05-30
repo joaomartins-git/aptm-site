@@ -154,8 +154,8 @@ export default function TrainingsPage() {
             </div>
           </div>
 
-          {/* Course Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Course Cards for Mock data*/}
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {trainingCourses.map((course) => (
               <Card
                 key={course.id}
@@ -234,7 +234,7 @@ export default function TrainingsPage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
