@@ -196,12 +196,12 @@ export default function TherapistFinderPage() {
               </div>
             )}
 
-            {selectedTherapistData.address && (
+            {/* {selectedTherapistData.address && (
               <div>
                 <h4 className="font-semibold mb-1">Morada</h4>
                 <p className="text-muted-foreground">{selectedTherapistData.address}</p>
               </div>
-            )}
+            )} */}
 
             <div className="flex flex-wrap gap-4">
               {selectedTherapistData.email && (
@@ -224,7 +224,7 @@ export default function TherapistFinderPage() {
                 </a>
               )} */}
 
-              {selectedTherapistData.website && (
+              {/* {selectedTherapistData.website && (
                 <a
                   href={selectedTherapistData.website}
                   target="_blank"
@@ -234,7 +234,7 @@ export default function TherapistFinderPage() {
                   <Globe className="h-4 w-4 mr-2" aria-hidden="true" />
                   Website
                 </a>
-              )}
+              )} */}
             </div>
 
             {selectedTherapistData.specialties && selectedTherapistData.specialties.length > 0 && (
@@ -251,10 +251,10 @@ export default function TherapistFinderPage() {
             )}
 
             {/* Map Integration */}
-            <div className="pt-4 border-t">
+            {/* <div className="pt-4 border-t">
               <h4 className="font-semibold mb-2">Localização</h4>
               <GoogleMapEmbed therapist={selectedTherapistData} />
-            </div>
+            </div> */}
           </CardContent>
         </Card>
       )}

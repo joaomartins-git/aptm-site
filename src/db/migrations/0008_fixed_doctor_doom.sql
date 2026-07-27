@@ -1,0 +1,1 @@
+ALTER TABLE "trainings" ALTER COLUMN "registration_url" SET NOT NULL;

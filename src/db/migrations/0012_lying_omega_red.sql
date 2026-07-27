@@ -1,0 +1,1 @@
+ALTER TABLE "members" ADD COLUMN "last_quota_paid_year" integer;
