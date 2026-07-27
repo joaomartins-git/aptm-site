@@ -3,18 +3,22 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getNews } from '@/lib/content'
+//import { getNews } from '@/lib/content'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import type { NewsItem } from '@/types/index'
+import { newsService } from "@/lib/services/newsService"
 
-export function HomeNewsCarousel() {
+type Props = {
+  news: Awaited<ReturnType<typeof newsService.getLatestNews>>
+}
+
+export function HomeNewsCarousel({ news }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
-  const news = getNews()
+  //const news = getNews()
   const carouselNews = news.slice(0, 5) // First 5 items for carousel
   const headlinesNews = news.slice(0, 6) // First 6 items for headlines list
 
@@ -75,8 +79,8 @@ export function HomeNewsCarousel() {
   const currentSlideData = carouselNews[currentSlide]
 
   // Format date for display
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
+  const formatDate = (date: Date) => {
+    //const date = new Date(dateString)
     return date.toLocaleDateString('pt-PT', {
       day: 'numeric',
       month: 'long',
@@ -123,10 +127,10 @@ export function HomeNewsCarousel() {
                     )}
                   >
                     {/* Background Image */}
-                    {newsItem.image ? (
+                    {newsItem.imageUrl ? (
                       <div className="relative w-full h-full">
                         <Image
-                          src={newsItem.image}
+                          src={newsItem.imageUrl}
                           alt={newsItem.title}
                           fill
                           className="object-cover"
@@ -149,7 +153,7 @@ export function HomeNewsCarousel() {
                     <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
                       <div className="transition-all duration-700 ease-in-out">
                         <div className="text-sm mb-2 opacity-90">
-                          {formatDate(newsItem.date)}
+                          {formatDate(newsItem.publishedAt)}
                         </div>
                         <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-tight">
                           {newsItem.title}
@@ -159,7 +163,7 @@ export function HomeNewsCarousel() {
                             {newsItem.excerpt}
                           </p>
                         )}
-                        <Link href={newsItem.href}>
+                        <Link href={`/news/${newsItem.id}`}>
                           <Button
                             variant="secondary"
                             size="sm"
@@ -267,11 +271,11 @@ export function HomeNewsCarousel() {
                     className="hover:shadow-md transition-all duration-200 cursor-pointer group"
                   >
                     <CardContent className="p-4">
-                      <Link href={newsItem.href} className="block">
+                      <Link href={`/news/${newsItem.id}`} className="block">
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex-1">
                             <div className="text-sm text-primary mb-2 font-medium">
-                              {formatDate(newsItem.date)}
+                              {formatDate(newsItem.publishedAt)}
                             </div>
                             <h4 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-tight">
                               {newsItem.title}

@@ -1,4 +1,4 @@
-import { requireAuth } from '@/lib/auth'
+import { requireAuth, requireCompletedProfile } from '@/lib/auth'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/button'
 import { signOut } from '@/app/api/auth/[...nextauth]/route'
@@ -10,7 +10,10 @@ import {
 } from 'lucide-react'
 
 export default async function SocioAreaPage() {
-  await requireAuth()
+  const { session, member } = await requireCompletedProfile()
+
+  // const {member} = await requireCompletedProfile()
+
 
   const memberResources = [
     {
@@ -50,7 +53,7 @@ export default async function SocioAreaPage() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-            Bem-vindo à Área de Sócios
+            Bem-vindo, {member.name}
           </h1>
           <p className="text-lg text-muted-foreground">
             Este é o espaço partilhado para todos os membros da APTM.

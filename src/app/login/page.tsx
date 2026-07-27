@@ -32,7 +32,6 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors },
-    setError
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -119,7 +118,16 @@ export default function LoginPage() {
                   href="/join" 
                   className="text-primary hover:text-primary/80 font-medium"
                 >
-                  Tornar-se Sócio
+                  Tornar-se Sócio.
+                </Link>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Primeiro acesso?{' '}
+                <Link
+                  href="/activate-account"
+                  className="text-sm text-blue-600 hover:underline"
+                >
+                  Ative a sua conta.
                 </Link>
               </p>
             </div>

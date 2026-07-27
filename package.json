@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "db:seed": "tsx scripts/seed.ts",
+    "db:seed:members": "tsx scripts/seedRealMembers.ts",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

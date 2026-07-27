@@ -113,7 +113,7 @@ const getNavigationItems = (isAuthenticated: boolean, role?: Role): NavItem[] =>
   } else {
     items.push({
       label: 'Área de Sócios',
-      href: '/login'
+      href: '/socio/area'
     })
   }
 

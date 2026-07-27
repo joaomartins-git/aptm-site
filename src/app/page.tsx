@@ -12,11 +12,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Heart, Target, Award, Users } from "lucide-react";
+import { newsService } from "@/lib/services/newsService"
+import { trainingService, TrainingService } from '@/lib/services/trainingService'
+
 
 export const dynamic = 'force-static';
 export const revalidate = 60; // or your preferred number
 
-export default function Home() {
+export default async function Home() {
+
+const news = await newsService.getLatestNews();
+
   return (
     <>
       {/* Home Hero Banner */}
@@ -29,7 +35,7 @@ export default function Home() {
       <HomeInstagram />
 
       {/* Home News Carousel */}
-      <HomeNewsCarousel />
+      <HomeNewsCarousel news ={news} />
 
       {/* Home Calendar Agenda */}
       <HomeCalendarAgenda />

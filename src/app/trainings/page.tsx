@@ -1,16 +1,18 @@
-'use client'
+//'use client'
 
 import React from 'react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+//import { useRouter } from 'next/navigation'
 import { Hero } from '@/components/sections/Hero'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/Badge'
 import { Input } from '@/components/ui/Input'
 import { BookOpen, Users, Clock, Star, Award, Target, TrendingUp, Shield } from 'lucide-react'
-import { getTrainings } from '@/lib/content'
+//import { getTrainings } from '@/lib/content'
+import { trainingService } from '@/lib/services/trainingService'
 
-const trainingCourses = getTrainings()
+//const trainingCourses = getTrainings()
 
 const levelInfo = {
   'Básico': 'Ideal para estudantes e profissionais iniciantes',
@@ -47,8 +49,13 @@ const certificationBenefits = [
   }
 ]
 
-export default function TrainingsPage() {
-  const router = useRouter()
+export default async function TrainingsPage() {
+  //const router = useRouter()
+
+  const trainings = await trainingService.getAllTrainings()
+
+  console.log(trainings)
+
 
   return (
     <>
@@ -155,8 +162,8 @@ export default function TrainingsPage() {
           </div>
 
           {/* Course Cards for Mock data*/}
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {trainingCourses.map((course) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {trainings.map((course) => (
               <Card
                 key={course.id}
                 className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
@@ -206,7 +213,7 @@ export default function TrainingsPage() {
                   <div className="mb-4">
                     <h4 className="font-medium text-foreground mb-2">Destaques:</h4>
                     <ul className="space-y-1">
-                      {(course.highlights ?? []).slice(0, 3).map((highlight: string, index: number) => (
+                      {(course.highlights?.split('|') ?? []).slice(0, 3).map((highlight: string, index: number) => (
                         <li key={index} className="flex items-center text-sm text-muted-foreground">
                           <Star className="h-3 w-3 text-primary mr-2" />
                           {highlight}
@@ -214,7 +221,6 @@ export default function TrainingsPage() {
                       ))}
                     </ul>
                   </div>
-
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-lg font-bold text-primary">
                       {course.price}
@@ -223,18 +229,24 @@ export default function TrainingsPage() {
                       {course.format}
                     </Badge>
                   </div>
-
-                  <Button
+                  {/* <Button
                     className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                     disabled={course.isPlaceholder}
                     onClick={() => !course.isPlaceholder && router.push(`/trainings/${course.id}`)}
                   >
                     {course.isPlaceholder ? 'Em Breve' : 'Ver Detalhes'}
-                  </Button>
+                  </Button> */}
+                  <Link href={`/trainings/${course.id}`}>
+                    <Button
+                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                    >
+                      Ver Detalhes
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
-          </div> */}
+          </div>
         </div>
       </section>
 
@@ -286,13 +298,19 @@ export default function TrainingsPage() {
                       </div>
                     </div>
                   </div>
-                  <Button
+                  {/* <Button
                     size="lg"
                     className="w-full sm:w-auto"
                     onClick={() => router.push('/contact')}
                   >
                     Saiba Mais Sobre Certificação
+                  </Button> */}
+                <Link href={'/contact'}>
+                  <Button                    size="lg"
+                    className="w-full sm:w-auto">
+                    Saiba Mais Sobre Certificação
                   </Button>
+                </Link>
                 </div>
 
                 <div className="space-y-4">
@@ -347,15 +365,29 @@ export default function TrainingsPage() {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button onClick={() => router.push('/contact')}>
+              <Link href={'/contact'}>
+                <Button>
+                  Receber Novidades
+                </Button>
+              </Link>
+              <Link href={'/contact'}>
+                <Button>
+                  Sugerir Curso
+                </Button>
+              </Link>
+              {/* <Button onClick={() => router.push('/contact')}>
                 Receber Novidades
               </Button>
               <Button variant="outline" onClick={() => router.push('/contact')}>
                 Sugerir Curso
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
+        {/* <div>
+  {JSON.stringify(trainings)}
+</div> */}
+
       </section>
 
       {/* Instructor Opportunities */}

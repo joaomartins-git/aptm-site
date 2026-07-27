@@ -2,6 +2,7 @@ import { eq, and, count, InferSelectModel, ilike, or } from 'drizzle-orm';
 import { db } from '@/db';
 import { members, memberships, type Member, type NewMember } from '@/db/schema';
 import type { MemberRole, MemberStatus } from '@/types';
+import type { CompleteProfileData } from '@/types/memberComplete'
 
 export type MemberWithMemberships =
   InferSelectModel<typeof members> & {
@@ -149,11 +150,16 @@ export class MemberRepository {
     // SEARCH FILTER
     if (search) {
       const searchLower = search.toLowerCase()
+      
 
-      filtered = filtered.filter(member =>
-        member.name.toLowerCase().includes(searchLower) ||
-        member.email.toLowerCase().includes(searchLower)
-      )
+      filtered = filtered.filter(member => {
+        const email = member.email?.toLowerCase() ?? ""
+
+        return(
+          member.name.toLowerCase().includes(searchLower) ||
+          email.includes(searchLower)
+        )
+      })
     }
 
     // STATUS FILTER
@@ -216,7 +222,7 @@ export class MemberRepository {
 
   async updateMemberStatus(
     memberId: string,
-    status: 'pending' | 'active' | 'rejected' | 'suspended'
+    status: MemberStatus
   ) {
     const [updatedMember] = await db
       .update(members)
@@ -230,6 +236,102 @@ export class MemberRepository {
     return updatedMember
   }
 
+async findImportedMember(
+  memberNumber: number,
+  name: string
+): Promise<Member | null> {
+  const [member] = await db
+    .select()
+    .from(members)
+    .where(
+      and(
+        eq(members.memberNumber, memberNumber),
+        eq(members.name, name),
+        eq(members.status, "imported")
+      )
+    )
+    .limit(1)
+
+  return member ?? null
+}
+
+async activateImportedMember(
+  memberId: string,
+  email: string,
+  passwordHash: string
+) {
+  const [member] = await db
+    .update(members)
+    .set({
+      email,
+      passwordHash,
+      status: "active",
+      profileCompleted: false,
+      updatedAt: new Date()
+    })
+    .where(eq(members.id, memberId))
+    .returning()
+
+  return member
+}
+
+async emailExists(email: string) {
+  const member = await db.query.members.findFirst({
+    where: (member, { eq }) => eq(member.email, email)
+  })
+
+  return !!member
+}
+
+async getPublicTherapists() {
+  return db.query.members.findMany({
+    where: (member, { and, eq }) =>
+      and(
+        eq(member.status, "active"),
+        eq(member.isPublicTherapist, true)
+      )
+  })
+}
+
+async findByMemberNumber(memberNumber: number): Promise<Member | null> {
+  try {
+    const result = await db
+      .select()
+      .from(members)
+      .where(eq(members.memberNumber, memberNumber))
+      .limit(1)
+
+    return result[0] ?? null
+
+  } catch (error) {
+    console.error('Error fetching member by member number:', error)
+    throw new Error('Failed to fetch member')
+  }
+}
+
+
+async completeProfile( memberId: string, data: CompleteProfileData){
+  await db
+  .update(members)
+  .set({
+      birthDate: data.birthDate,
+      phone: data.phone,
+      address: data.address,
+      nif: data.nif,
+      profession: data.profession,
+      institution: data.institution,
+      district: data.district,
+      professionalLicenseNumber: data.professionalLicenseNumber,
+      specialties: data.specialties,
+      habilitacoes: data.habilitacoes,
+      profilePhotoUrl: data.profilePhotoUrl,
+      professionalCardUrl: data.professionalCardUrl,
+      certificatesUrls: data.certificatesUrls,
+      profileCompleted: true,
+      updatedAt: new Date()
+  })
+  .where(eq(members.id, memberId))
+}
 
 
 }

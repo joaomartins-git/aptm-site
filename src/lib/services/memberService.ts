@@ -5,6 +5,7 @@ import type { MemberRole, MemberStatus } from '@/types';
 import type { MemberWithMemberships as RawMemberWithMemberships } from '@/lib/repositories/memberRepository';
 import type { InferSelectModel } from 'drizzle-orm';
 import { membershipRepository } from '@/lib/repositories/membershipRepository'
+import type { CompleteProfileData } from '@/types/memberComplete'
 
 type Membership = InferSelectModel<typeof memberships>;
 
@@ -60,6 +61,12 @@ export class MemberService {
       if (!member) {
         console.log('Authentication failed: member not found');
         return null;
+      }
+
+      // New Check for active members
+      if (member.status !== "active") {
+          console.log("Authentication failed: member is not active")
+          return null
       }
 
       // NEW CHECK for the password
@@ -249,29 +256,92 @@ export class MemberService {
     )
   }
 
+  async activateImportedMember(data: {
+  memberNumber: number
+  name: string
+  email: string
+  password: string
+}): Promise<Member> {
+
+  // Normalize inputs
+  const normalizedName = data.name
+    .trim()
+    .replace(/\s+/g, " ")
+
+  const normalizedEmail = data.email
+    .trim()
+    .toLowerCase()
+
+  const normalizedPassword = data.password.trim()
+
+  //const { memberNumber, name, email, password } = data
+
+  // 1 - Find imported member
+  const member = await memberRepository.findImportedMember(
+    data.memberNumber,
+    normalizedName
+  )
+
+  if (!member) {
+    throw new Error("Não foi encontrado nenhum sócio por ativar com os dados fornecidos.")
+  }
+
+  // 2 - Check status
+  if (member.status !== "imported") {
+    throw new Error("Esta conta já foi ativada.")
+  }
+
+  // 3 - Safety check
+  if (member.email) {
+    throw new Error("Esta conta já possui um email associado.")
+  }
+
+  // 4 - Email already exists?
+  const emailAlreadyExists = await memberRepository.emailExists(normalizedEmail)
+
+  if (emailAlreadyExists) {
+    throw new Error("Este email já está a ser utilizado.")
+  }
+
+  // 5 - Hash password
+  const passwordHash = await this.hashPassword(normalizedPassword)
+
+  // 6 - Activate account
+  const activatedMember =
+    await memberRepository.activateImportedMember(
+      member.id,
+      normalizedEmail,
+      passwordHash
+    )
+
+  if (!activatedMember) {
+    throw new Error("Não foi possível ativar a conta.")
+  }
+
+  return activatedMember
+}
+
+async getMemberByMemberNumber(memberNumber: number) {
+  return memberRepository.findByMemberNumber(memberNumber)
+}
+
+async completeProfile(memberId: string, data: CompleteProfileData){
+  const member =
+    await memberRepository.getMemberById(memberId)
+
+  if (!member) {
+    throw new Error(
+      'Sócio não encontrado'
+    )
+  }
+
+  await memberRepository.completeProfile(
+    member.id,
+    data
+  )
+}
 
 
-  // async searchMembersPaginated(
-  //   search: string,
-  //   status: string,
-  //   page: number,
-  //   pageSize: number
-  // ) {
-  //   const allMembers = await this.searchMembers(search, status, page, pageSize)
-
-  //   const total = allMembers.length
-
-  //   const paginated = allMembers.slice(
-  //     (page - 1) * pageSize,
-  //     page * pageSize
-  //   )
-
-  //   return {
-  //     data: paginated,
-  //     total,
-  //     totalPages: Math.ceil(total / pageSize),
-  //   }
-  // }
 
 }
 

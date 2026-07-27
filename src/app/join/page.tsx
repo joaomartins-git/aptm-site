@@ -317,7 +317,7 @@ export default function JoinPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-3 block">
+                    <label className="text-sm font-medium mb-3 block grid grid-cols-1 md:grid-cols-2 gap-6">
                       Habilitações Académicas (submeter certificados de formação) *
                     </label>
                     <UploadPayment
@@ -338,7 +338,7 @@ export default function JoinPage() {
                   />
 
 
-                  <div className="text-sm font-medium mb-3 block">
+                  <div className="text-sm font-medium mb-3 block grid grid-cols-1 md:grid-cols-2 gap-6">
                     <label>
                       Foto (submeter fotografia) *
                     </label>
@@ -358,7 +358,7 @@ export default function JoinPage() {
                     {...register("photoUrl")}
                   />
 
-                  <div className="text-sm font-medium mb-3 block">
+                  <div className="text-sm font-medium mb-3 block grid grid-cols-1 md:grid-cols-2 gap-6">
                     <label>
                       Cédula Profissional (submeter ficheiro)
                     </label>
@@ -466,7 +466,7 @@ export default function JoinPage() {
                     )}
                   </div> */}
                   {/* Upload Payment Proof */}
-                  <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <label className="text-sm font-medium mb-3 block">
                       Comprovativo de Pagamento *
                     </label>

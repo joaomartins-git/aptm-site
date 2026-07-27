@@ -147,7 +147,8 @@ export const MEMBER_STATUS = [
   'inactive',
   'pending',
   'rejected',
-  'suspended'
+  'suspended',
+  'imported'
 ] as const;
 
 export type MemberStatus = typeof MEMBER_STATUS[number];
