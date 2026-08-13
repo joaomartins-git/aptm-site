@@ -105,6 +105,7 @@ export default function AboutPage() {
         subtitle="Sobre Nós"
         title="Conheça a APTM"
         description="Excelência e desenvolvimento da terapia da mão em Portugal, promovendo educação, investigação e colaboração profissional."
+        backgroundImage="/aptm-hero-hand-therapy_aboutus.jpg"
         primaryAction={{
           label: "Tornar-se Membro",
           href: "/contact"

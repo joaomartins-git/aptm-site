@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "db:seed:members": "tsx scripts/seedRealMembers.ts",
+    "db:seed:events": "tsx scripts/seedEvents.ts",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

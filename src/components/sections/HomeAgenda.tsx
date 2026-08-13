@@ -7,9 +7,9 @@ import { Calendar, MapPin, Clock } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/button'
-import { getEvents } from '@/lib/content'
+// import { getEvents } from '@/lib/content'
 import { formatDate, truncateText } from '@/lib/utils'
-import type { Event } from '@/types/index'
+import type { Event } from '@/db/schema'
 
 /**
  * Get event type styling for badges
@@ -32,7 +32,7 @@ function getEventTypeBadgeVariant(eventType: Event['type']) {
 /**
  * Compact date badge component for agenda list
  */
-function DateBadge({ date }: { date: string }) {
+function DateBadge({ date }: { date: Date | string }) {
   const dateObj = new Date(date)
   const day = dateObj.getDate()
   const month = dateObj.toLocaleDateString('pt-PT', { month: 'short' })
@@ -45,18 +45,18 @@ function DateBadge({ date }: { date: string }) {
   )
 }
 
-export function HomeAgenda() {
-  const events = getEvents()
+export function HomeAgenda({ events }: { events: Event[] }) {
+  //const events = getEvents()
 
   // Sort events by date (upcoming first)
   const sortedEvents = [...events].sort((a, b) =>
-    new Date(a.date).getTime() - new Date(b.date).getTime()
+    new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
   )
 
   // Filter out past events
   const now = new Date()
   const upcomingEvents = sortedEvents.filter(event =>
-    new Date(event.date) >= now
+    new Date(event.startDate) >= now
   )
 
   // Get next featured event and remaining events for agenda list
@@ -101,10 +101,10 @@ export function HomeAgenda() {
               {featuredEvent && (
                 <Card className="h-full overflow-hidden border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
                   {/* Event Image */}
-                  {featuredEvent.image && (
+                  {featuredEvent.imageUrl && (
                     <div className="relative h-64 sm:h-80">
                       <Image
-                        src={featuredEvent.image}
+                        src={featuredEvent.imageUrl}
                         alt={featuredEvent.title}
                         fill
                         className="object-cover"
@@ -133,7 +133,7 @@ export function HomeAgenda() {
                         <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-3">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
-                            <span>{formatDate(featuredEvent.date)}</span>
+                            <span>{formatDate(featuredEvent.startDate)}</span>
                           </div>
                           {featuredEvent.speaker && (
                             <div className="flex items-center gap-1">
@@ -203,7 +203,7 @@ export function HomeAgenda() {
                       >
                         <div className="bg-white rounded-lg p-4 border border-slate-200 hover:border-primary hover:shadow-sm transition-all duration-200">
                           <div className="flex gap-3">
-                            <DateBadge date={event.date} />
+                            <DateBadge date={event.startDate} />
                             <div className="flex-1 min-w-0">
                               <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-1">
                                 {event.title}
@@ -219,7 +219,7 @@ export function HomeAgenda() {
                                   {event.type === 'conference' && 'Conferência'}
                                 </Badge>
                                 <span>•</span>
-                                <span>{formatDate(event.date)}</span>
+                                <span>{formatDate(event.startDate)}</span>
                               </div>
                               {event.speaker && (
                                 <p className="text-xs text-muted-foreground mt-1 line-clamp-1">

@@ -12,8 +12,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Heart, Target, Award, Users } from "lucide-react";
-import { newsService } from "@/lib/services/newsService"
-import { trainingService, TrainingService } from '@/lib/services/trainingService'
+import { newsService } from "@/lib/services/newsService";
+import { trainingService} from "@/lib/services/trainingService";
+import { eventService } from "@/lib/services/eventService";
 
 
 export const dynamic = 'force-static';
@@ -21,7 +22,49 @@ export const revalidate = 60; // or your preferred number
 
 export default async function Home() {
 
-const news = await newsService.getLatestNews();
+const news = await newsService.getLatestNews()
+
+const events = await eventService.getAllEvents()
+
+const trainings = await trainingService.getAllTrainings()
+
+const agendaItems = [
+  ...events.map((event) => ({
+    id: event.id,
+    title: event.title,
+    description: event.description,
+    startDate: event.startDate,
+    endDate: event.endDate,
+    imageUrl: event.imageUrl,
+    location: event.location,
+    registrationUrl: event.registrationUrl,
+    duration: event.duration,
+    price: event.price,
+    level: event.level,
+    type: 'event' as const,
+    eventType: event.type,
+    speaker: event.speaker,
+    href: `/events/${event.id}`,
+  })),
+
+  ...trainings.map((training) => ({
+    id: training.id,
+    title: training.title,
+    description: training.description,
+    startDate: training.startDate,
+    imageUrl: training.imageUrl,
+    location: training.location,
+    registrationUrl: training.registrationUrl,
+    duration: training.duration,
+    price: training.price,
+    level: training.level,
+    type: 'training' as const,
+    instructor: training.instructor,
+    href: `/trainings/${training.id}`,
+  })),
+]
+
+// transform events + trainings into agenda items
 
   return (
     <>
@@ -38,7 +81,9 @@ const news = await newsService.getLatestNews();
       <HomeNewsCarousel news ={news} />
 
       {/* Home Calendar Agenda */}
-      <HomeCalendarAgenda />
+      <HomeCalendarAgenda         
+        agendaItems={agendaItems}
+      />
       
       {/* About Preview Section */}
       {/*<section className="py-20 bg-background">

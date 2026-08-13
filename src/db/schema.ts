@@ -83,7 +83,13 @@ export const membersRelations = relations(members, ({ many }) => ({
   memberships: many(memberships),
 }));
 
-
+export const eventTypeEnum = pgEnum("event_type", [
+  "conference",
+  "seminar",
+  "workshop",
+  "webinar",
+  "course",
+]);
 
 export const trainings = pgTable('trainings', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -106,6 +112,9 @@ export const trainings = pgTable('trainings', {
   certification: boolean('certification').default(false),
 });
 
+export type Training = typeof trainings.$inferSelect;
+export type NewTraining = typeof trainings.$inferInsert;
+
 
 export const news = pgTable('news', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -116,3 +125,24 @@ export const news = pgTable('news', {
   publishedAt: timestamp('published_at').defaultNow().notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 });
+
+export const events = pgTable('events', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  title: varchar('title', { length: 255 }).notNull(),
+  description: text('description').notNull(),
+  imageUrl: varchar('image_url', { length: 500 }),
+  startDate: timestamp('start_date').notNull(),
+  endDate: timestamp('end_date'),
+  location: varchar('location', { length: 255 }),
+  registrationUrl: varchar('registration_url', { length: 500 }),
+  type: eventTypeEnum("type").notNull(),
+  speaker: varchar('speaker', { length: 255 }),
+  duration: varchar('duration', { length: 100 }),
+  price: varchar('price', { length: 100 }),
+  level: varchar('level', { length: 100 }),
+  isPublished: boolean('is_published').default(true),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+export type Event = typeof events.$inferSelect;
+export type NewEvent = typeof events.$inferInsert;

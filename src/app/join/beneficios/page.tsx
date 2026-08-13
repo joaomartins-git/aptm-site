@@ -54,6 +54,7 @@ export default function BeneficiosPage() {
         subtitle="Vantagens de Associado"
         title="Benefícios APTM"
         description="Descubra todas as vantagens de ser membro da Associação Portuguesa de Terapeutas da Mão e aceda a oportunidades únicas para o seu desenvolvimento profissional."
+        backgroundImage="/aptm-hero-hand-therapy_benefits.jpeg"
       />
 
       {/* Benefits Content */}

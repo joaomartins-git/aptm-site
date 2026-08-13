@@ -52,12 +52,12 @@ const navCards: NavCard[] = [
 
 export function HomeNavCards() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Explorar APTM
+            Tudo o que a APTM tem para oferecer
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Descubra os nossos eventos, formações e serviços e como podemos potenciar o seu desenvolvimento profissional.
@@ -65,7 +65,7 @@ export function HomeNavCards() {
         </div>
 
         {/* Navigation Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {navCards.map((card) => {
             const IconComponent = card.icon
             return (
@@ -73,18 +73,18 @@ export function HomeNavCards() {
                 key={card.id}
                 href={card.href}
                 className={cn(
-                  "group block transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-lg"
+                  "group block transition-all duration-300 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-lg"
                 )}
               >
                 <Card className={cn(
-                  "h-full border-slate-200 bg-white shadow-sm hover:shadow-md transition-all duration-300",
+                  "h-full py-3 border-slate-200 bg-white shadow-md hover:shadow-xl hover:border-primary/30 transition-all duration-300",
                   "focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
                 )}>
                   <CardHeader className="text-center pb-4">
-                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <div className="w-20 h-20 bg-primary/5 rounded-3xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                       <IconComponent className="w-8 h-8 text-primary" />
                     </div>
-                    <CardTitle className="text-xl sm:text-2xl group-hover:text-primary transition-colors">
+                    <CardTitle className="text-2xl group-hover:text-primary transition-colors">
                       {card.title}
                     </CardTitle>
                   </CardHeader>
@@ -92,6 +92,12 @@ export function HomeNavCards() {
                     <CardDescription className="text-base leading-relaxed">
                       {card.description}
                     </CardDescription>
+                    <div className="mt-6 flex justify-center">
+                      <span className="text-primary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Saber mais
+                        <span>→</span>
+                      </span>
+                    </div>
                   </CardContent>
                 </Card>
               </Link>
