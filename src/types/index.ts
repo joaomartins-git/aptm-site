@@ -42,35 +42,35 @@ export interface TeamMember {
   image: string;
 }
 
-export interface Event {
-  id: string;
-  title: string;
-  date: string;
-  type: 'webinar' | 'seminar' | 'workshop' | 'conference';
-  description: string;
-  speaker?: string;
-  duration?: string;
-  price?: string;
-  level?: string;
-  image?: string;
-  isPlaceholder?: boolean;
-}
+// export interface Event {
+//   id: string;
+//   title: string;
+//   date: string;
+//   type: 'webinar' | 'seminar' | 'workshop' | 'conference';
+//   description: string;
+//   speaker?: string;
+//   duration?: string;
+//   price?: string;
+//   level?: string;
+//   image?: string;
+//   isPlaceholder?: boolean;
+// }
 
-export interface Training {
-  id: string;
-  title: string;
-  duration: string;
-  level: 'beginner' | 'intermediate' | 'advanced';
-  description: string;
-  format: string;
-  price: string;
-  instructor: string;
-  modules: number;
-  certification: boolean;
-  image?: string;
-  isPlaceholder?: boolean;
-  highlights: string[];
-}
+// export interface Training {
+//   id: string;
+//   title: string;
+//   duration: string;
+//   level: 'beginner' | 'intermediate' | 'advanced';
+//   description: string;
+//   format: string;
+//   price: string;
+//   instructor: string;
+//   modules: number;
+//   certification: boolean;
+//   image?: string;
+//   isPlaceholder?: boolean;
+//   highlights: string[];
+// }
 
 export interface ContactForm {
   name: string;
@@ -190,6 +190,32 @@ export interface SocialCorpsGroup {
   members: SocialCorpsMember[];
 }
 
+export type AgendaItemType = 'event' | 'training'
 
+export interface AgendaItem {
+  id: string
+  title: string
+  description: string
+
+  startDate: Date
+  endDate?: Date | null
+
+  imageUrl?: string | null
+  location?: string | null
+  registrationUrl?: string | null
+
+  duration?: string | null
+  price?: string | null
+  level?: string | null
+
+  type: AgendaItemType
+
+  eventType?: 'conference' | 'seminar' | 'workshop' | 'webinar' | 'course'
+
+  speaker?: string | null
+  instructor?: string | null
+
+  href: string
+}
 
 

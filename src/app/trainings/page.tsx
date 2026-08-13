@@ -64,6 +64,7 @@ export default async function TrainingsPage() {
         subtitle="Formações"
         title="Desenvolvimento Profissional de Excelência"
         description="Comprometida com o desenvolvimento profissional contínuo, a APTM oferece cursos, workshops e programas de especialização em Terapia da Mão e Reeducação do Membro Superior. As formações são conduzidas por especialistas reconhecidos e destinam-se a profissionais que procurar desenvolver os seus conhecimentos teóricos e clínicos."
+        backgroundImage="/aptm-hero-hand-therapy_trainings.jpeg"
         primaryAction={{
           label: "Inscrever-se em Formações",
           href: "/contact"

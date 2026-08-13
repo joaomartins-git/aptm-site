@@ -1,16 +1,18 @@
-'use client'
+//'use client'
 
 import React from 'react'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Hero } from '@/components/sections/Hero'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/Badge'
 import { Input } from '@/components/ui/Input'
 import { Video, Users, MapPin, Calendar, Clock, Search, Star, Bell } from 'lucide-react'
-import { getEvents } from '@/lib/content'
+//import { getEvents } from '@/lib/content'
+import { eventService } from '@/lib/services/eventService'
 
-const upcomingEvents = getEvents()
+//const upcomingEvents = getEvents()
 
 const eventTypeInfo = {
   webinar: {
@@ -46,8 +48,9 @@ const levelInfo = {
   'Todos os níveis': 'Acessível a todos os profissionais'
 }
 
-export default function EventsPage() {
-  const router = useRouter()
+export default async function EventsPage() {
+  //const router = useRouter()
+  const events = await eventService.getUpcomingEvents();
 
   return (
     <>
@@ -56,6 +59,7 @@ export default function EventsPage() {
         subtitle="Eventos"
         title="Aprendizagem e Desenvolvimento Contínuo"
         description="A APTM organiza periodicamente congressos, simpósios e jornadas científicas com o objetivo de promover o intercâmbio de conhecimentos entre especialista na área da mão. Esses encontros visam fortalecer a prática baseada em evidências, estimular a produção científica e incentivar o networking entre terapeutas e instituições."
+        backgroundImage="/aptm-hero-hand-therapy_events.jpeg"
         primaryAction={{
           label: "Inscrever-se em Eventos",
           href: "/contact"
@@ -177,8 +181,8 @@ export default function EventsPage() {
           </div>
 
 {/* Mock data for events*/}
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {upcomingEvents.map((event) => {
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {events.map((event) => {
               const typeInfo = eventTypeInfo[event.type as keyof typeof eventTypeInfo]
               const IconComponent = typeInfo.icon
 
@@ -205,7 +209,7 @@ export default function EventsPage() {
                   <CardHeader>
                     <div className="flex items-center text-sm text-muted-foreground mb-2">
                       <Calendar className="h-4 w-4 mr-2" />
-                      {new Date(event.date).toLocaleDateString('pt-PT', {
+                      {new Date(event.startDate).toLocaleDateString('pt-PT', {
                         day: 'numeric',
                         month: 'long',
                         year: 'numeric'
@@ -242,18 +246,24 @@ export default function EventsPage() {
                       {levelInfo[event.level as keyof typeof levelInfo]}
                     </div>
 
-                    <Button
+                    {/* <Button
                       className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
                       disabled={event.isPlaceholder}
                       onClick={() => !event.isPlaceholder && router.push(`/events/${event.id}`)}
                     >
                       {event.isPlaceholder ? 'Em Breve' : 'Inscrever-se'}
                     </Button>
+                     */}
+                    <Link href={`/events/${event.id}`}>
+                      <Button className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          Ver Detalhes
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               )
             })}
-          </div> */}
+          </div> 
 
           <div className="text-center">
             <Button variant="outline" size="lg">

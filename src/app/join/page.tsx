@@ -127,6 +127,7 @@ export default function JoinPage() {
         subtitle="Tornar-se Sócio"
         title="Junte-se à APTM"
         description="Faça parte da principal associação de terapia da mão em Portugal e aceda a benefícios exclusivos, formação contínua e uma rede de profissionais dedicados."
+        backgroundImage="/aptm-hero-hand-therapy_join.jpeg"
         primaryAction={{
           label: "Submeter Candidatura",
           href: "#formulario"

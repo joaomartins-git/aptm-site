@@ -93,11 +93,11 @@ export function HomeNewsCarousel({ news }: Props) {
   }
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-24 lg:py-32 bg-slate-50">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16 ">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-20">
+          <h2 className="mt-5 text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Notícias e Destaques
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -110,7 +110,7 @@ export function HomeNewsCarousel({ news }: Props) {
           {/* Left Column: News Carousel */}
           <div className="order-2 lg:order-1">
             <div
-              className="relative rounded-lg overflow-hidden bg-muted/30"
+              className="relative rounded-3xl overflow-hidden bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onFocus={handleFocus}
@@ -133,11 +133,11 @@ export function HomeNewsCarousel({ news }: Props) {
                           src={newsItem.imageUrl}
                           alt={newsItem.title}
                           fill
-                          className="object-cover"
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
                           sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                         {/* Dark overlay for text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/25 to-transparent"/>
                       </div>
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
@@ -155,7 +155,7 @@ export function HomeNewsCarousel({ news }: Props) {
                         <div className="text-sm mb-2 opacity-90">
                           {formatDate(newsItem.publishedAt)}
                         </div>
-                        <h3 className="text-xl sm:text-2xl font-bold mb-3 leading-tight">
+                        <h3 className="text-2xl lg:text-3xl font-bold leading-tight max-w-xl">
                           {newsItem.title}
                         </h3>
                         {newsItem.excerpt && (
@@ -167,7 +167,7 @@ export function HomeNewsCarousel({ news }: Props) {
                           <Button
                             variant="secondary"
                             size="sm"
-                            className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-white/30"
+                            className="bg-white text-slate-900 hover:bg-slate-100 rounded-full px-6"
                           >
                             Ler mais
                           </Button>
@@ -268,7 +268,7 @@ export function HomeNewsCarousel({ news }: Props) {
                 {headlinesNews.map((newsItem, index) => (
                   <Card
                     key={newsItem.id}
-                    className="hover:shadow-md transition-all duration-200 cursor-pointer group"
+                    className="hover:bg-slate-50 transition-all duration-200 cursor-pointer group"
                   >
                     <CardContent className="p-4">
                       <Link href={`/news/${newsItem.id}`} className="block">
@@ -287,8 +287,8 @@ export function HomeNewsCarousel({ news }: Props) {
                             )}
                           </div>
                           {index === 0 && (
-                            <div className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full flex-shrink-0">
-                              Nova
+                            <div className="rounded-full px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full flex-shrink-0">
+                              Mais recente
                             </div>
                           )}
                         </div>
@@ -300,8 +300,8 @@ export function HomeNewsCarousel({ news }: Props) {
 
               {/* More News Link */}
               <div className="text-center">
-                <Link href="/about">
-                  <Button variant="outline" className="w-full sm:w-auto">
+                <Link href="/news">
+                  <Button variant="outline" className="rounded-full px-8 py-6 w-full sm:w-auto">
                     Ver mais notícias
                   </Button>
                 </Link>

@@ -201,6 +201,7 @@ export default function ContactPage() {
         subtitle="Contacto"
         title="Estamos Aqui para Ajudar"
         description="Entre em contacto connosco para tirar dúvidas, solicitar informações sobre membros, formações, eventos ou qualquer outra questão sobre terapia da mão."
+        backgroundImage="/aptm-hero-hand-therapy_contacts.jpeg"
         primaryAction={{
           label: "Enviar Mensagem",
           href: "#contact-form"

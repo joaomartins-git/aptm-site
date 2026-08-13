@@ -5,7 +5,7 @@ export default async function NewsPage() {
   const articles = await newsService.getLatestNews()
 
   return (
-    <div className="container py-10">
+    <div className="container max-w-7xl mx-auto px-4 pt-32 pb-20">
       <h1 className="text-4xl font-bold mb-8">
         Notícias
       </h1>
