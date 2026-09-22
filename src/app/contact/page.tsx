@@ -82,11 +82,11 @@ const socialMedia = [
     href: 'https://instagram.com/apterapiamao',
     description: 'Acompanhe nosso Instagram'
   },
-  {
-    name: 'Twitter',
-    href: '#',
-    description: 'Siga-nos no Twitter'
-  }
+  // {
+  //   name: 'Twitter',
+  //   href: '#',
+  //   description: 'Siga-nos no Twitter'
+  // }
 ]
 
 const faqItems = [
@@ -377,7 +377,7 @@ export default function ContactPage() {
                 </Card>
 
                 {/* Emergency Contact */}
-                <Card>
+                {/* <Card>
                   <CardHeader>
                     <CardTitle className="text-lg">Urgências</CardTitle>
                   </CardHeader>
@@ -395,7 +395,7 @@ export default function ContactPage() {
                       </p>
                     </div>
                   </CardContent>
-                </Card>
+                </Card> */}
 
                 {/* Social Media */}
                 <Card>
@@ -465,11 +465,11 @@ export default function ContactPage() {
               ))}
             </Accordion>
 
-            <div className="text-center mt-12">
+            {/* <div className="text-center mt-12">
               <Button onClick={() => router.push('/contact')}>
                 Ainda tem dúvidas? Entre em contacto
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

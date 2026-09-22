@@ -146,3 +146,30 @@ export const events = pgTable('events', {
 
 export type Event = typeof events.$inferSelect;
 export type NewEvent = typeof events.$inferInsert;
+
+export const newsImages = pgTable('news_images', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  newsId: uuid('news_id')
+    .notNull()
+    .references(() => news.id, { onDelete: 'cascade' }),
+
+  imageUrl: varchar('image_url', { length: 500 }).notNull(),
+  caption: varchar('caption', { length: 500 }),
+  altText: varchar('alt_text', { length: 500 }),
+  sortOrder: integer('sort_order').notNull().default(0),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export type NewsImage = typeof newsImages.$inferSelect;
+export type NewNewsImage = typeof newsImages.$inferInsert;
+
+export const newsRelations = relations(news, ({ many }) => ({
+  images: many(newsImages),
+}));
+
+export const newsImagesRelations = relations(newsImages, ({ one }) => ({
+  news: one(news, {
+    fields: [newsImages.newsId],
+    references: [news.id],
+  }),
+}));

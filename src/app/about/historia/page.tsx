@@ -46,7 +46,7 @@ export default function HistoriaPage() {
       </h1>
 
       <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
-        A Associação Portuguesa de Terapia da Mão (APTm) tem uma rica história de dedicação
+        A Associação Portuguesa de Terapia da Mão (APTM) tem uma rica história de dedicação
         à excelência na reabilitação da mão e membro superior. Desde a sua fundação, temos
         promovido a educação contínua e a investigação científica nesta área especializada.
       </p>

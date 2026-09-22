@@ -1,6 +1,6 @@
 import { db } from '@/db';
 import { trainings } from '@/db/schema';
-import { eq, desc, asc } from 'drizzle-orm'
+import { eq, desc, asc, and, or, gt, isNull   } from 'drizzle-orm'
 
 
 export class TrainingRepository {
@@ -18,12 +18,19 @@ export class TrainingRepository {
       return result[0] ?? null
     }
     
-    async getUpcomingTrainings() {
-      return db
-      .select()
-      .from(trainings)
-      .where(eq(trainings.isPublished, true))
-      .orderBy(asc(trainings.startDate))
+async getUpcomingTrainings() {
+  const now = new Date();
+
+  return db
+    .select()
+    .from(trainings)
+    .where(
+      and(
+        eq(trainings.isPublished, true),
+        gt(trainings.startDate, now)
+      )
+    )
+    .orderBy(asc(trainings.startDate));
 }
 
 }

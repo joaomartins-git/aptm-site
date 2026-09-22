@@ -136,7 +136,7 @@ export default function JoinPage() {
 
       {/* Main Content */}
       <section className="py-20 bg-background">
-        <div className="container">
+        <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto">
 
             {/* Introduction */}
@@ -199,7 +199,7 @@ export default function JoinPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                  {/* <div className="p-4 bg-primary/5 border border-primary/20 rounded-lg">
                     <div className="flex items-start gap-3">
                       <Phone className="h-5 w-5 text-primary mt-0.5" />
                       <div>
@@ -208,7 +208,7 @@ export default function JoinPage() {
                         <p className="font-mono text-sm bg-background p-2 rounded border">{MBWAY_PHONE}</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <p className="text-xs text-muted-foreground">
                     Após efetuar o pagamento, carregue o comprovativo no formulário abaixo.
                   </p>

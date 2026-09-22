@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card'
 import { Select } from '@/components/ui/Select'
 import { Input } from '@/components/ui/Input'
 import { Badge } from '@/components/ui/Badge'
 import therapistsData from '@/data/therapists.json'
 import type { District, Therapist } from '@/types'
-import { MapPin, Mail, Phone, Globe, Search, AlertCircle } from 'lucide-react'
+import { MapPin, Mail, Phone, Globe, Search, AlertCircle, MessageSquare } from 'lucide-react'
 
 const districts: District[] = [
   'Aveiro', 'Beja', 'Braga', 'Bragança', 'Castelo Branco', 'Coimbra',
@@ -91,15 +91,15 @@ export default function TherapistFinderPage() {
   return (
     <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 py-16">
       {/* Header Section */}
-      <div className="mb-8 text-center max-w-7xl mx-auto px-4">
+      {/* <div className="mb-8 text-center max-w-7xl mx-auto px-4">
         <h1 className="text-4xl font-bold mb-4">Encontrar o seu Terapeuta</h1>
         <p className="text-lg text-muted-foreground">
           Use os filtros abaixo para encontrar um terapeuta da mão no seu distrito.
         </p>
-      </div>
+      </div> */}
 
       {/* Controls Section */}
-      <div className="flex flex-wrap gap-4 mb-8">
+      {/* <div className="flex flex-wrap gap-4 mb-8">
         <div className="flex-1 min-w-[200px]">
           <Select
             id="district-select"
@@ -111,9 +111,9 @@ export default function TherapistFinderPage() {
               label: district
             }))}
           />
-        </div>
+        </div> */}
 
-        <div className="flex-1 min-w-[200px]">
+        {/* <div className="flex-1 min-w-[200px]">
           <Select
             id="therapist-select"
             label="Terapeuta"
@@ -125,9 +125,9 @@ export default function TherapistFinderPage() {
               label: `${therapist.name} - ${therapist.profession}`
             }))}
           />
-        </div>
+        </div> */}
 
-        <div className="flex-1 min-w-[200px]">
+        {/* <div className="flex-1 min-w-[200px]">
           <Input
             id="name-filter"
             type="text"
@@ -138,63 +138,63 @@ export default function TherapistFinderPage() {
             label="Pesquisar por nome"
           />
         </div>
-      </div>
+      </div> */}
 
       {/* Empty States */}
-      {!selectedDistrict && (
+      {/* {!selectedDistrict && (
         <div className="flex items-center gap-2 p-4 bg-blue-50 border border-blue-200 rounded-lg mb-8">
           <AlertCircle className="h-5 w-5 text-blue-600" aria-hidden="true" />
           <p className="text-blue-800">
             Selecione um distrito para ver os terapeutas disponíveis.
           </p>
         </div>
-      )}
+      )} */}
 
-      {selectedDistrict && filteredTherapists.length === 0 && (
+      {/* {selectedDistrict && filteredTherapists.length === 0 && (
         <div className="flex items-center gap-2 p-4 bg-yellow-50 border border-yellow-200 rounded-lg mb-8">
           <AlertCircle className="h-5 w-5 text-yellow-600" aria-hidden="true" />
           <p className="text-yellow-800">
             Nenhum terapeuta encontrado neste distrito para a pesquisa atual.
           </p>
         </div>
-      )}
+      )} */}
 
-      {selectedDistrict && filteredTherapists.length > 0 && nameFilter && filteredTherapists.length === 0 && (
+      {/* {selectedDistrict && filteredTherapists.length > 0 && nameFilter && filteredTherapists.length === 0 && (
         <div className="flex items-center gap-2 p-4 bg-yellow-50 border border-yellow-200 rounded-lg mb-8">
           <AlertCircle className="h-5 w-5 text-yellow-600" aria-hidden="true" />
           <p className="text-yellow-800">
             Nenhum terapeuta encontrado para esta pesquisa.
           </p>
         </div>
-      )}
+      )} */}
 
       {/* A11y Live Region */}
-      <div
+      {/* <div
         aria-live="polite"
         aria-atomic="true"
         className="sr-only"
       >
         {selectedTherapistData && `Terapeuta selecionado: ${selectedTherapistData.name}`}
         {selectedDistrict && `Distrito selecionado: ${selectedDistrict}. Encontrados ${filteredTherapists.length} terapeutas.`}
-      </div>
+      </div> */}
 
       {/* Therapist Details Card */}
       {selectedTherapistData && (
         <Card className="mb-8">
-          <CardHeader>
+          {/* <CardHeader>
             <CardTitle>{selectedTherapistData.name}</CardTitle>
             <div className="flex flex-wrap gap-2 mt-2">
               <Badge variant="secondary">{selectedTherapistData.profession}</Badge>
               <Badge variant="outline">{selectedTherapistData.district}</Badge>
             </div>
-          </CardHeader>
-          <CardContent className="space-y-4">
+          </CardHeader> */}
+          {/* <CardContent className="space-y-4">
             {selectedTherapistData.institution && (
               <div>
                 <h4 className="font-semibold mb-1">Instituição</h4>
                 <p className="text-muted-foreground">{selectedTherapistData.institution}</p>
               </div>
-            )}
+            )} */}
 
             {/* {selectedTherapistData.address && (
               <div>
@@ -204,7 +204,7 @@ export default function TherapistFinderPage() {
             )} */}
 
             <div className="flex flex-wrap gap-4">
-              {selectedTherapistData.email && (
+              {/* {selectedTherapistData.email && (
                 <a
                   href={`mailto:${selectedTherapistData.email}`}
                   className="inline-flex items-center text-primary hover:underline"
@@ -212,7 +212,7 @@ export default function TherapistFinderPage() {
                   <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
                   {selectedTherapistData.email}
                 </a>
-              )}
+              )} */}
 
               {/* {selectedTherapistData.phone && (
                 <a
@@ -237,7 +237,7 @@ export default function TherapistFinderPage() {
               )} */}
             </div>
 
-            {selectedTherapistData.specialties && selectedTherapistData.specialties.length > 0 && (
+            {/* {selectedTherapistData.specialties && selectedTherapistData.specialties.length > 0 && (
               <div>
                 <h4 className="font-semibold mb-2">Especialidades</h4>
                 <div className="flex flex-wrap gap-2">
@@ -248,16 +248,36 @@ export default function TherapistFinderPage() {
                   ))}
                 </div>
               </div>
-            )}
+            )} */}
 
             {/* Map Integration */}
             {/* <div className="pt-4 border-t">
               <h4 className="font-semibold mb-2">Localização</h4>
               <GoogleMapEmbed therapist={selectedTherapistData} />
             </div> */}
-          </CardContent>
+          {/* </CardContent> */}
         </Card>
       )}
+
+              <div className="lg:col-span-2 text-center">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-3xl sm:text-4xl font-bold text-foreground mb-4 text-center">
+                      {/* <MessageSquare className="h-5 w-5 mr-2" aria-hidden="true" /> */}
+                      Em Manutenção
+                    </CardTitle>
+                    {/* <CardDescription>
+                      Preencha o formulário abaixo e entraremos em contacto consigo
+                    </CardDescription> */}
+                  </CardHeader>
+                  {/* <CardContent>
+                      dsed
+                  </CardContent> */}
+                </Card>
+              </div>  
+
+
+
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { db } from '@/db';
-import { news } from '@/db/schema';
-import { eq, desc } from 'drizzle-orm'
+import { news, newsImages } from '@/db/schema';
+import { eq, asc } from 'drizzle-orm'
 
 
 export class NewsRepository {
@@ -15,7 +15,22 @@ export class NewsRepository {
         .from(news)
         .where(eq(news.id, id))
     
-      return result[0] ?? null
+          const article = result[0];
+
+      if (!article) {
+        return null;
+      }
+
+      const images = await db
+        .select()
+        .from(newsImages)
+        .where(eq(newsImages.newsId, id))
+        .orderBy(asc(newsImages.sortOrder));
+
+      return {
+        ...article,
+        images,
+      };
     }
 
 }

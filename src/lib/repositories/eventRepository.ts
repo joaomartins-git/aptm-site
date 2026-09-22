@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { events } from "@/db/schema";
-import { eq, asc } from "drizzle-orm";
+import { eq, asc, and, or, gt, isNull  } from "drizzle-orm";
 
 export class EventRepository {
   async getAllEvents() {
@@ -10,13 +10,26 @@ export class EventRepository {
       .orderBy(asc(events.startDate));
   }
 
-  async getUpcomingEvents() {
-    return db
-      .select()
-      .from(events)
-      .where(eq(events.isPublished, true))
-      .orderBy(asc(events.startDate));
-  }
+async getUpcomingEvents() {
+  const now = new Date();
+
+  return db
+    .select()
+    .from(events)
+    .where(
+      and(
+        eq(events.isPublished, true),
+        or(
+          gt(events.endDate, now),
+          and(
+            isNull(events.endDate),
+            gt(events.startDate, now)
+          )
+        )
+      )
+    )
+    .orderBy(asc(events.startDate));
+}
 
   async getEventById(id: string) {
     const result = await db

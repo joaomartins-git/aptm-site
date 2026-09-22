@@ -10,17 +10,17 @@ const ctaFeatures = [
   {
     icon: Users,
     title: 'Comunidade Ativa',
-    description: 'Junte-se a mais de 500 profissionais especializados'
+    // description: 'Junte-se a mais de 500 profissionais especializados'
   },
   {
     icon: Award,
     title: 'Certificação',
-    description: 'Obtenha certificação reconhecida nacionalmente'
+    // description: 'Obtenha certificação reconhecida nacionalmente'
   },
   {
     icon: BookOpen,
     title: 'Formação Contínua',
-    description: 'Acesso a workshops e eventos exclusivos'
+    // description: 'Acesso a workshops e eventos exclusivos'
   }
 ]
 
@@ -51,9 +51,9 @@ export function CallToAction() {
                   <h3 className="text-lg font-semibold mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-primary-foreground/80 text-sm">
+                  {/* <p className="text-primary-foreground/80 text-sm">
                     {feature.description}
-                  </p>
+                  </p> */}
                 </div>
               )
             })}

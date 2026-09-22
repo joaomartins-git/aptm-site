@@ -111,5 +111,5 @@ export async function fetchInstagramMedia(): Promise<InstagramPost[]> {
 
       username: item.username,
     }))
-    .slice(0, 6)
+    .slice(0, 3)
 }

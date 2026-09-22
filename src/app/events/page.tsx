@@ -19,25 +19,25 @@ const eventTypeInfo = {
     label: 'Webinar',
     icon: Video,
     color: 'bg-blue-100 text-blue-800 border-blue-200',
-    description: 'Sessões online interativas ao vivo'
+    // description: 'Sessões online interativas ao vivo'
   },
   seminar: {
     label: 'Seminário',
     icon: Users,
     color: 'bg-green-100 text-green-800 border-green-200',
-    description: 'Apresentações especializadas e discussões'
+    // description: 'Apresentações especializadas e discussões'
   },
   workshop: {
     label: 'Workshop',
     icon: MapPin,
     color: 'bg-orange-100 text-orange-800 border-orange-200',
-    description: 'Sessões práticas e aprendizado hands-on'
+    // description: 'Sessões práticas e aprendizado hands-on'
   },
   conference: {
     label: 'Congresso',
     icon: Users,
     color: 'bg-purple-100 text-purple-800 border-purple-200',
-    description: 'Grandes eventos com múltiplos especialistas'
+    // description: 'Grandes eventos com múltiplos especialistas'
   }
 }
 
@@ -58,7 +58,7 @@ export default async function EventsPage() {
       <Hero
         subtitle="Eventos"
         title="Aprendizagem e Desenvolvimento Contínuo"
-        description="A APTM organiza periodicamente congressos, simpósios e jornadas científicas com o objetivo de promover o intercâmbio de conhecimentos entre especialista na área da mão. Esses encontros visam fortalecer a prática baseada em evidências, estimular a produção científica e incentivar o networking entre terapeutas e instituições."
+        description="A APTM participa periodicamente em congressos, simpósios e jornadas científicas com o objetivo de promover o intercâmbio de conhecimentos entre especialista na área da mão. Esses encontros visam fortalecer a prática baseada em evidências, estimular a produção científica e incentivar o networking entre terapeutas e instituições."
         backgroundImage="/aptm-hero-hand-therapy_events.jpeg"
         primaryAction={{
           label: "Inscrever-se em Eventos",
@@ -101,11 +101,11 @@ export default async function EventsPage() {
                       {info.label}s
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  {/* <CardContent>
                     <CardDescription>
                       {info.description}
                     </CardDescription>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               )
             })}
@@ -114,7 +114,7 @@ export default async function EventsPage() {
       </section>
 
       {/* Search and Filter */}
-      <section className="py-20 bg-muted/30">
+      {/* <section className="py-20 bg-muted/30">
         <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -161,12 +161,12 @@ export default async function EventsPage() {
               </div>
 
               <Button className="w-full md:w-auto">
-                Buscar Eventos
+                Procurar Eventos
               </Button>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Upcoming Events */}
       <section className="py-20 bg-background" id="upcoming-events">
@@ -265,11 +265,11 @@ export default async function EventsPage() {
             })}
           </div> 
 
-          <div className="text-center">
+          {/* <div className="text-center">
             <Button variant="outline" size="lg">
               Ver Calendário Completo
             </Button>
-          </div>
+          </div> */}
         </div>
       </section>
 

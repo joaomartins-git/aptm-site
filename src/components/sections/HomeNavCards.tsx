@@ -23,22 +23,22 @@ const navCards: NavCard[] = [
   {
     id: 'events',
     title: 'Eventos',
-    description: 'Acompanhe nossa agenda e participe dos próximos eventos científicos',
+    description: 'Agenda e próximos eventos científicos.',
     href: '/events',
     icon: Calendar
   },
   {
     id: 'trainings',
     title: 'Formações',
-    description: 'Consulte o calendário de formações e invista na sua atualização profissional',
+    description: 'Próximas atividades formativas.',
     href: '/trainings',
     icon: GraduationCap
   },
   {
     id: 'services',
-    title: 'Atividades',
-    description: 'O nosso compromisso é promover a excelência no cuidado e na reeducação, fortalecendo o papel transformador da Terapia da Mão na vida das pessoas (Em Manutenção)',
-    href: '',
+    title: 'Parcerias e Colaborações',
+    description: 'A APTM promove a articulação com entidades e organizações ligadas à Terapia da Mão e à valorização dos seus profissionais.',
+    href: '/parcerias',
     icon: Hand
   },
   {
@@ -60,7 +60,8 @@ export function HomeNavCards() {
             Tudo o que a APTM tem para oferecer
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Descubra os nossos eventos, formações e serviços e como podemos potenciar o seu desenvolvimento profissional.
+            Venha conhecer a APTM
+            {/* Descubra os nossos eventos, formações e serviços e como podemos potenciar o seu desenvolvimento profissional. */}
           </p>
         </div>
 

@@ -108,7 +108,7 @@ export default function AboutPage() {
         backgroundImage="/aptm-hero-hand-therapy_aboutus.jpg"
         primaryAction={{
           label: "Tornar-se Membro",
-          href: "/contact"
+          href: "/join"
         }}
         secondaryAction={{
           label: "Contactar-nos",
@@ -119,7 +119,7 @@ export default function AboutPage() {
       {/* Mission & Vision */}
       <section className="py-20 bg-background" id="mission">
         <div className="container max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+          <div className="grid lg:grid-cols-2 gap-12 mb-20">
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
                 Missão
@@ -198,7 +198,7 @@ export default function AboutPage() {
           </div>
 
           {/* Values */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-20 items-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
               Valores
             </h2>
