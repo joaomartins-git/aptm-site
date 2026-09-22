@@ -16,7 +16,7 @@ const footerLinks = {
   recursos: [
     { label: 'Eventos', href: '/events' },
     { label: 'Formações', href: '/trainings' },
-    { label: 'Publicações', href: '/publications' },
+    // { label: 'Publicações', href: '/publications' },
     { label: 'Notícias', href: '/news' }
   ],
   empresa: [
@@ -52,8 +52,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Associação Portuguesa de Terapia da Mão – Promovendo excelência
-              e desenvolvimento na terapia da mão em Portugal.
+              Associação Portuguesa de Terapia da Mão – Juntos pela Terapia da Mão.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (

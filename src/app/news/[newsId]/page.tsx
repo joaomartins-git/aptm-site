@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import { newsService } from "@/lib/services/newsService"
-
+import { NewsGallery } from "@/components/news/NewsGallery"
 
 export default async function NewsDetailPage({
   params,
@@ -18,13 +18,13 @@ export default async function NewsDetailPage({
   return (
     <div className="container mx-auto py-20 max-w-4xl">
 
-    {article.imageUrl && (
+      {article.imageUrl && (
         <img
-        src={article.imageUrl}
-        alt={article.title}
-        className="w-full rounded-lg mb-8"
+          src={article.imageUrl}
+          alt={article.title}
+          className="w-full rounded-lg mb-8"
         />
-    )}
+      )}
 
       <h1 className="text-4xl font-bold mb-4">
         {article.title}
@@ -34,9 +34,14 @@ export default async function NewsDetailPage({
         {new Date(article.publishedAt).toLocaleDateString("pt-PT")}
       </p>
 
-      <div className="prose max-w-none">
+      <div className="prose max-w-none whitespace-pre-line">
         {article.content}
       </div>
+
+      <NewsGallery
+        images={article.images}
+        articleTitle={article.title}
+      />
 
     </div>
   )

@@ -13,7 +13,7 @@ export class TrainingService{
   }
 
   async getUpcomingTrainings(){
-    return trainingRepository.getUpcomingTrainings
+    return trainingRepository.getUpcomingTrainings()
   }
 
 }

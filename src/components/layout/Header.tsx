@@ -8,8 +8,41 @@ import { Navigation } from './Navigation'
 import { SearchBar } from './SearchBar'
 import { cn } from '@/lib/utils'
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
+import { trainings } from '@/db/schema'
+
+interface HeaderProps {
+  hasHero?: boolean
+}
+
 
 export function Header() {
+
+const pathname = usePathname()
+
+const noHeroRoutes = [
+  '/about/historia',
+  '/about/estatutos',
+  '/about/corpos-sociais',
+  '/contact/terapeutas',
+  '/socio/area',
+  '/socio/perfil',
+  '/news',
+  '/parcerias',
+  '/trainings/',
+  '/events/'
+]
+
+const hasHero =
+  !noHeroRoutes.includes(pathname) &&
+  !pathname.startsWith('/admin') &&
+  !pathname.startsWith('/socio') &&
+  !pathname.startsWith('/news') &&
+  !pathname.startsWith('/events/') &&
+  !pathname.startsWith('/trainings/') 
+
+
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -87,7 +120,7 @@ export function Header() {
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-500",
-        isScrolled
+        !hasHero || isScrolled
           ? "bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm"
           : "bg-transparent border-transparent"
       )}
@@ -112,7 +145,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex">
-          <Navigation />
+          <Navigation isScrolled={isScrolled} hasHero={hasHero}/>
         </div>
 
         {/* Search Bar and Actions */}
@@ -179,7 +212,7 @@ export function Header() {
         inert={!isMobileMenuOpen}
       >
         <div className="container p-4">
-          <Navigation mobile onCloseMenu={closeMobileMenu} />
+          <Navigation mobile onCloseMenu={closeMobileMenu} hasHero={hasHero}/>
         </div>
       </div>
     </header>

@@ -30,31 +30,31 @@ const certificationBenefits = [
   {
     icon: Award,
     title: 'Reconhecimento Nacional',
-    description: 'Certificado reconhecido por instituições de saúde em Portugal'
+    // description: 'Certificado reconhecido por instituições de saúde em Portugal'
   },
   {
     icon: Shield,
     title: 'Validação de Competências',
-    description: 'Atestado oficial de competências clínicas avaliadas'
+    // description: 'Atestado oficial de competências clínicas avaliadas'
   },
   {
     icon: TrendingUp,
     title: 'Desenvolvimento Profissional',
-    description: 'Créditos para desenvolvimento profissional contínuo'
+    // description: 'Créditos para desenvolvimento profissional contínuo'
   },
   {
     icon: Users,
     title: 'Rede Profissional',
-    description: 'Acesso exclusivo a rede de profissionais certificados'
+    // description: 'Acesso exclusivo a rede de profissionais certificados'
   }
 ]
 
 export default async function TrainingsPage() {
   //const router = useRouter()
 
-  const trainings = await trainingService.getAllTrainings()
+  const trainings = await trainingService.getUpcomingTrainings()
 
-  console.log(trainings)
+  //console.log(trainings)
 
 
   return (
@@ -98,9 +98,9 @@ export default async function TrainingsPage() {
                     </div>
                     <CardTitle className="text-lg">{benefit.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  {/* <CardContent>
                     <CardDescription>{benefit.description}</CardDescription>
-                  </CardContent>
+                  </CardContent> */}
                 </Card>
               )
             })}
@@ -252,7 +252,7 @@ export default async function TrainingsPage() {
       </section>
 
       {/* Certification Program */}
-      <section className="py-20 bg-background">
+      {/* <section className="py-20 bg-background">
         <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -299,13 +299,13 @@ export default async function TrainingsPage() {
                       </div>
                     </div>
                   </div>
-                  {/* <Button
+                  <Button
                     size="lg"
                     className="w-full sm:w-auto"
                     onClick={() => router.push('/contact')}
                   >
                     Saiba Mais Sobre Certificação
-                  </Button> */}
+                  </Button>
                 <Link href={'/contact'}>
                   <Button                    size="lg"
                     className="w-full sm:w-auto">
@@ -334,10 +334,10 @@ export default async function TrainingsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Coming Soon Notice */}
-      <section className="py-20 bg-muted/30">
+      {/* <section className="py-20 bg-muted/30">
         <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center bg-background rounded-2xl p-8 md:p-12 shadow-sm border">
             <div className="mx-auto w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
@@ -376,20 +376,20 @@ export default async function TrainingsPage() {
                   Sugerir Curso
                 </Button>
               </Link>
-              {/* <Button onClick={() => router.push('/contact')}>
+              <Button onClick={() => router.push('/contact')}>
                 Receber Novidades
               </Button>
               <Button variant="outline" onClick={() => router.push('/contact')}>
                 Sugerir Curso
-              </Button> */}
+              </Button>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div>
   {JSON.stringify(trainings)}
 </div> */}
 
-      </section>
+      {/* </section> */}
 
       {/* Instructor Opportunities */}
       <section className="py-20 bg-background">

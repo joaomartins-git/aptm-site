@@ -123,6 +123,8 @@ const getNavigationItems = (isAuthenticated: boolean, role?: Role): NavItem[] =>
 interface NavigationProps {
   mobile?: boolean
   onCloseMenu?: () => void
+  isScrolled?: boolean
+  hasHero?: boolean
 }
 
 // Profile dropdown component
@@ -240,7 +242,7 @@ function ProfileDropdown({ mobile = false, onCloseMenu }: { mobile?: boolean, on
   )
 }
 
-export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
+export function Navigation({ mobile = false, onCloseMenu, isScrolled = false, hasHero = true}: NavigationProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const { data: session } = useSession()
@@ -295,18 +297,22 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
   }, [])
 
   const navClasses = cn(
-    "flex space-x-1",
-    mobile ? "flex-col space-y-1 space-x-0" : ""
+    "flex items-center gap-1",
+    mobile ? "flex-col items-stretch gap-1" : ""
   )
 
-  const itemClasses = (href: string, isActive: boolean) => cn(
-    "relative px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200",
-    "hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-    isActive
-      ? "bg-primary text-primary-foreground hover:bg-primary/90"
-      : "text-foreground",
-    mobile ? "w-full text-left" : ""
-  )
+const itemClasses = (href: string, isActive: boolean) => cn(
+  "relative px-3 py-2 text-sm font-medium rounded-md transition-colors duration-300",
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+  isActive
+    ? "bg-primary text-primary-foreground hover:bg-primary/90"
+    : mobile
+      ? "text-foreground hover:bg-accent hover:text-accent-foreground"
+      : !hasHero || isScrolled
+        ? "text-foreground hover:bg-accent hover:text-accent-foreground"
+        : "text-white hover:bg-white/10 hover:text-white",
+  mobile ? "w-full text-left" : ""
+)
 
   const dropdownClasses = cn(
     "absolute top-full left-0 min-w-[200px] bg-background border border-border rounded-md shadow-lg z-50",
@@ -331,14 +337,14 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
           return (
             <div
               key={item.label}
-              className={cn("relative", mobile ? "w-full" : "")}
+              className={cn("relative flex items-center", mobile ? "w-full justify-between" : "")}
               onMouseEnter={() => handleMouseEnter(item.label)}
               onMouseLeave={handleMouseLeave}
             >
               <div
                 className={cn(
                   itemClasses(item.href, isActive),
-                  "flex items-center justify-between w-full"
+                  "flex h-10 items-center"
                 )}
               >
                 <Link
@@ -367,7 +373,8 @@ export function Navigation({ mobile = false, onCloseMenu }: NavigationProps) {
                 >
                   <ChevronDown
                     className={cn(
-                      "h-4 w-4 transition-transform duration-200",
+                      "h-4 w-4 transition-all duration-300",
+                      !mobile && hasHero && !isScrolled ? "text-white" : "text-foreground",
                       activeDropdown === item.label ? "rotate-180" : ""
                     )}
                     aria-hidden="true"

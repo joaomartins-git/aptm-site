@@ -1,5 +1,5 @@
 import { newsRepository } from "@/lib/repositories/newsRepository"
-import { news } from '@/db/schema';
+// // import { news } from '@/db/schema';
 
 
 export class NewsService{

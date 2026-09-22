@@ -30,7 +30,7 @@ export function HomeHeroBanner() {
 
           {/* Description */}
           <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Excelência em Reeducação da Mão e Membro Superior. 
+            A força da nossa comunidade está em cada membro. 
           </p>
 
           {/* Primary CTA */}
